@@ -62,15 +62,13 @@ if KEY:
         m = re.search(r'\{[\s\S]*\}', t)
         if m:
             ai = json.loads(m.group())
-            for k in ['sentimentNote','cycleNature','visibleLines','hiddenLines','capitalFlow','strategy']:
-                if k in ai: recap['sentiment' if k=='sentimentNote' else 'cycle' if k=='cycleNature' else k]['note' if k=='sentimentNote' else 'nature' if k=='cycleNature' else k] = ai[k]
-            recap['sentiment']['note']=ai.get('sentimentNote','')
-            recap['cycle']['nature']=ai.get('cycleNature','')
-            recap['visibleLines']=ai.get('visibleLines','')
-            recap['hiddenLines']=ai.get('hiddenLines','')
-            recap['capitalFlow']=ai.get('capitalFlow','')
-            recap['strategy']=ai.get('strategy','')
-            recap['risks']=ai.get('risks',[''])
+            recap['sentiment']['note'] = ai.get('sentimentNote','')
+            recap['cycle']['nature'] = ai.get('cycleNature','')
+            recap['visibleLines'] = ai.get('visibleLines','')
+            recap['hiddenLines'] = ai.get('hiddenLines','')
+            recap['capitalFlow'] = ai.get('capitalFlow','')
+            recap['strategy'] = ai.get('strategy','')
+            recap['risks'] = ai.get('risks',[''])
             print("✅ AI已生成")
     except Exception as e: print(f"⚠️ AI: {e}")
 
