@@ -1,0 +1,60 @@
+name: 每日复盘自动抓取
+
+on:
+  schedule:
+    # 北京时间 08:00 = UTC 00:00，只抓美股数据
+    - cron: '0 0 * * 1-5'
+    # 北京时间 16:00 = UTC 08:00，全量抓取A股+写入复盘
+    - cron: '0 8 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  # ===== 早上 8 点(北京)：只抓美股 =====
+  fetch-us-only:
+    if: github.event.schedule == '0 0 * * 1-5'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install requests
+      - name: 抓取美股收盘数据
+        run: python3 scripts/fetch_us.py
+      - name: 提交美股数据
+        run: |
+          git config user.name "recap-bot"
+          git config user.email "bot@recap.local"
+          git add data/_us_latest.json
+          if git diff --staged --quiet; then
+            echo "美股无变化"
+          else
+            git commit -m "🇺🇸 $(date +%Y-%m-%d) 美股收盘数据"
+            git push
+          fi
+
+  # ===== 下午 4 点(北京)：全量复盘 =====
+  fetch-full:
+    if: github.event.schedule != '0 0 * * 1-5'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install requests
+      - name: 全量抓取复盘数据
+        run: python3 scripts/fetch_data.py
+      - name: 提交复盘数据
+        run: |
+          git config user.name "recap-bot"
+          git config user.email "bot@recap.local"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "今日无新数据"
+          else
+            git commit -m "📊 $(date +%Y-%m-%d) 自动复盘"
+            git push
+          fi
