@@ -9,11 +9,31 @@
     "note": "费半暴跌+韩国续跌=外部偏弱。A股靠自己走出深V。"
   },
   "indices": {
-    "上证": { "close": 4094.40, "chg": "+0.50%", "vol": 15900 },
-    "深成指": { "close": 16205.56, "chg": "+2.48%", "vol": 18500 },
-    "创业板": { "close": 4342.71, "chg": "+2.99%", "vol": 9083 },
-    "科创50": { "close": 2207.86, "chg": "+3.85%", "vol": 1946 },
-    "北证50": { "close": 1251.20, "chg": "+2.10%", "vol": 255 }
+    "上证": {
+      "close": 4094.4,
+      "chg": "+0.50%",
+      "vol": 15900
+    },
+    "深成指": {
+      "close": 16205.56,
+      "chg": "+2.48%",
+      "vol": 18500
+    },
+    "创业板": {
+      "close": 4342.71,
+      "chg": "+2.99%",
+      "vol": 9083
+    },
+    "科创50": {
+      "close": 2207.86,
+      "chg": "+3.85%",
+      "vol": 1946
+    },
+    "北证50": {
+      "close": 1251.2,
+      "chg": "+2.10%",
+      "vol": 255
+    }
   },
   "totalVolume": "3.29万亿",
   "volumeChange": "缩量2455亿",
@@ -23,59 +43,179 @@
   "limitDown": 37,
   "boardRate": "73%",
   "internalExternal": [
-    { "period": "6.29", "internal": "分歧", "external": "费半弱", "result": "抢修复" },
-    { "period": "6.30（今日）", "internal": "强势延续", "external": "日韩水下", "result": "深V反转，内因独立修复" }
+    {
+      "period": "6.29",
+      "internal": "分歧",
+      "external": "费半弱",
+      "result": "抢修复"
+    },
+    {
+      "period": "6.30（今日）",
+      "internal": "强势延续",
+      "external": "日韩水下",
+      "result": "深V反转，内因独立修复"
+    }
   ],
   "newsEvents": [
-    { "event": "MLCC 7.1全线涨价", "impact": "真实", "sector": "MLCC", "performance": "风华一字跌停(异动)" },
-    { "event": "韩国800万亿韩元建厂", "impact": "真实", "sector": "半导体设备", "performance": "昊华涨停" }
+    {
+      "event": "MLCC 7.1全线涨价",
+      "impact": "真实",
+      "sector": "MLCC",
+      "performance": "风华一字跌停(异动)"
+    },
+    {
+      "event": "韩国800万亿韩元建厂",
+      "impact": "真实",
+      "sector": "半导体设备",
+      "performance": "昊华涨停"
+    }
   ],
-  "cycle": { "stage": "良性震荡", "pivot": "6.15", "days": 15, "nature": "深V反转+科创50半年涨64%" },
+  "cycle": {
+    "stage": "良性震荡",
+    "pivot": "6.15",
+    "days": 15,
+    "nature": "深V反转+科创50半年涨64%"
+  },
   "techAnchors": [
-    { "anchor": "20日线", "position": "回踩确认", "status": "未跌破" },
-    { "anchor": "科创50 2000点", "position": "2207.86", "status": "站上确认" }
+    {
+      "anchor": "20日线",
+      "position": "回踩确认",
+      "status": "未跌破"
+    },
+    {
+      "anchor": "科创50 2000点",
+      "position": "2207.86",
+      "status": "站上确认"
+    }
   ],
   "volumeProfile": [
-    { "period": "早盘", "volume": "缩量低开", "behavior": "日韩水下，低开" },
-    { "period": "午盘", "volume": "放量拉升", "behavior": "半导体+医药带量" },
-    { "period": "尾盘", "volume": "稳定", "behavior": "无恐慌" }
+    {
+      "period": "早盘",
+      "volume": "缩量低开",
+      "behavior": "日韩水下，低开"
+    },
+    {
+      "period": "午盘",
+      "volume": "放量拉升",
+      "behavior": "半导体+医药带量"
+    },
+    {
+      "period": "尾盘",
+      "volume": "稳定",
+      "behavior": "无恐慌"
+    }
   ],
   "sentiment": {
-    "limitUp": 105, "limitUpPrev": 124,
-    "limitDown": 37, "limitDownPrev": 69,
-    "upCount": 3049, "upCountPrev": 2468,
-    "downCount": 2363, "downCountPrev": 2933,
+    "limitUp": 105,
+    "limitUpPrev": 124,
+    "limitDown": 37,
+    "limitDownPrev": 69,
+    "upCount": 3049,
+    "upCountPrev": 2468,
+    "downCount": 2363,
+    "downCountPrev": 2933,
     "note": "涨跌家数改善。百股涨停+37跌停。"
   },
   "divergence": [
-    { "dim": "科创+3.85% vs 缩量2000亿", "today": "量价背离" },
-    { "dim": "MLCC跌停 vs 半导体涨", "today": "方向极致分化" }
+    {
+      "dim": "科创+3.85% vs 缩量2000亿",
+      "today": "量价背离"
+    },
+    {
+      "dim": "MLCC跌停 vs 半导体涨",
+      "today": "方向极致分化"
+    }
   ],
   "auction": [
-    { "signal": "多氟多20.81亿封单", "performance": "最大封单", "meaning": "电子特气方向锚" },
-    { "signal": "MLCC批量低开", "performance": "风华一字跌停", "meaning": "方向证伪" }
+    {
+      "signal": "多氟多20.81亿封单",
+      "performance": "最大封单",
+      "meaning": "电子特气方向锚"
+    },
+    {
+      "signal": "MLCC批量低开",
+      "performance": "风华一字跌停",
+      "meaning": "方向证伪"
+    }
   ],
-  "ceiling": { "max": "3板", "stock": "威派格", "status": "高度压缩" },
+  "ceiling": {
+    "max": "3板",
+    "stock": "威派格",
+    "status": "高度压缩"
+  },
   "ladder": [
-    { "tier": "3板", "stock": "威派格", "direction": "液冷", "role": "最高标", "relation": "" },
-    { "tier": "6天3板", "stock": "雅克科技", "direction": "芯片电子气体", "role": "趋势", "relation": "" },
-    { "tier": "4天3板", "stock": "彤程新材/柏诚", "direction": "光刻胶/洁净室", "role": "半导体跟随", "relation": "" }
+    {
+      "tier": "3板",
+      "stock": "威派格",
+      "direction": "液冷",
+      "role": "最高标",
+      "relation": ""
+    },
+    {
+      "tier": "6天3板",
+      "stock": "雅克科技",
+      "direction": "芯片电子气体",
+      "role": "趋势",
+      "relation": ""
+    },
+    {
+      "tier": "4天3板",
+      "stock": "彤程新材/柏诚",
+      "direction": "光刻胶/洁净室",
+      "role": "半导体跟随",
+      "relation": ""
+    }
   ],
   "keyMoments": [
-    { "time": "09:25", "event": "多氟多一字+MLCC低开", "signal": "电子特气方向定调" },
-    { "time": "09:30-10:00", "event": "科技冲高回落", "signal": "抢修复被兑现" },
-    { "time": "14:00", "event": "半导体设备带量拉升", "signal": "资金回流传导体" }
+    {
+      "time": "09:25",
+      "event": "多氟多一字+MLCC低开",
+      "signal": "电子特气方向定调"
+    },
+    {
+      "time": "09:30-10:00",
+      "event": "科技冲高回落",
+      "signal": "抢修复被兑现"
+    },
+    {
+      "time": "14:00",
+      "event": "半导体设备带量拉升",
+      "signal": "资金回流传导体"
+    }
   ],
   "visibleLines": "半导体设备/材料★★★★★、电子特气★★★★★、PCB★★★★、存储★★★★",
   "hiddenLines": "MLCC崩盘→风华一字跌停，涨价线被异动打乱。资金在科技内部继续缩圈。",
   "seeSaw": [
-    { "strong": "半导体设备/材料", "weak": "MLCC", "stage": "半导体持续3天强" },
-    { "strong": "PCB", "weak": "光纤/CPO", "stage": "PCB修复，CPO仍弱" }
+    {
+      "strong": "半导体设备/材料",
+      "weak": "MLCC",
+      "stage": "半导体持续3天强"
+    },
+    {
+      "strong": "PCB",
+      "weak": "光纤/CPO",
+      "stage": "PCB修复，CPO仍弱"
+    }
   ],
   "poolStatus": [
-    { "status": "🟢", "stock": "昊华科技", "today": "涨停+10%", "ma5": "站上" },
-    { "status": "🟢", "stock": "中国巨石", "today": "反弹+5%", "ma5": "站上" },
-    { "status": "🔴", "stock": "风华高科", "today": "一字跌停", "ma5": "跌破" }
+    {
+      "status": "🟢",
+      "stock": "昊华科技",
+      "today": "涨停+10%",
+      "ma5": "站上"
+    },
+    {
+      "status": "🟢",
+      "stock": "中国巨石",
+      "today": "反弹+5%",
+      "ma5": "站上"
+    },
+    {
+      "status": "🔴",
+      "stock": "风华高科",
+      "today": "一字跌停",
+      "ma5": "跌破"
+    }
   ],
   "capitalFlow": "缩量+3000涨=场内存量修复，不是增量。深V说明抛压枯竭后自然回弹。",
   "risks": [
