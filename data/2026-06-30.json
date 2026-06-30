@@ -199,28 +199,52 @@
   ],
   "poolStatus": [
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "中国巨石",
-      "today": "0.00%",
-      "close": ""
+      "today": "2.68%",
+      "close": 72.88
     },
     {
       "status": "🟡",
       "stock": "兆易创新",
-      "today": "0.00%",
-      "close": ""
+      "today": "-2.98%",
+      "close": 815
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "冰轮环境",
-      "today": "0.00%",
-      "close": ""
+      "today": "10.00%",
+      "close": 56.22
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "新洁能",
-      "today": "0.00%",
-      "close": ""
+      "today": "10.00%",
+      "close": 99.14
+    },
+    {
+      "status": "🟢",
+      "stock": "生益科技",
+      "today": "1.31%",
+      "close": 173.4
+    },
+    {
+      "status": "🔴",
+      "stock": "风华高科",
+      "today": "-10.00%",
+      "close": 72.24
+    },
+    {
+      "status": "🟢",
+      "stock": "东山精密",
+      "today": "5.11%",
+      "close": 262.35
+    },
+    {
+      "status": "🟢",
+      "stock": "光迅科技",
+      "today": "8.90%",
+      "close": 256.94
     }
   ],
   "capitalFlow": "缩量2455亿=不是放量大反攻，是强分歧后的修复性收口。下午半导体拉升被金融砸=GJD压节奏=慢牛可控。科技连续两天修复后明天大概率分歧。",
