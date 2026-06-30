@@ -37,10 +37,10 @@
   },
   "totalVolume": "3.29万亿",
   "volumeChange": "缩量2455亿",
-  "upCount": 2468,
-  "downCount": 2933,
-  "limitUp": 100,
-  "limitDown": 37,
+  "upCount": 50,
+  "downCount": 111,
+  "limitUp": 0,
+  "limitDown": 0,
   "boardRate": "73%",
   "internalExternal": [
     {
@@ -106,13 +106,13 @@
     }
   ],
   "sentiment": {
-    "limitUp": 105,
+    "limitUp": 0,
     "limitUpPrev": 124,
-    "limitDown": 37,
+    "limitDown": 0,
     "limitDownPrev": 69,
-    "upCount": 3049,
+    "upCount": 50,
     "upCountPrev": 2468,
-    "downCount": 2363,
+    "downCount": 111,
     "downCountPrev": 2933,
     "note": "科技连续反弹两天(类似6.24-6.25)，近因效应下明日大概率分歧。涨停100+跌停37，连板晋级率12.5%。量化平铺环节，轮动快不可追高。风华一字跌停=MLCC涨价线证伪。"
   },
@@ -199,22 +199,28 @@
   ],
   "poolStatus": [
     {
-      "status": "🟢",
-      "stock": "昊华科技",
-      "today": "涨停+10%",
-      "ma5": "站上"
-    },
-    {
-      "status": "🟢",
+      "status": "🟡",
       "stock": "中国巨石",
-      "today": "反弹+5%",
-      "ma5": "站上"
+      "today": "0.00%",
+      "close": ""
     },
     {
-      "status": "🔴",
-      "stock": "风华高科",
-      "today": "一字跌停",
-      "ma5": "跌破"
+      "status": "🟡",
+      "stock": "兆易创新",
+      "today": "0.00%",
+      "close": ""
+    },
+    {
+      "status": "🟡",
+      "stock": "冰轮环境",
+      "today": "0.00%",
+      "close": ""
+    },
+    {
+      "status": "🟡",
+      "stock": "新洁能",
+      "today": "0.00%",
+      "close": ""
     }
   ],
   "capitalFlow": "缩量2455亿=不是放量大反攻，是强分歧后的修复性收口。下午半导体拉升被金融砸=GJD压节奏=慢牛可控。科技连续两天修复后明天大概率分歧。",
