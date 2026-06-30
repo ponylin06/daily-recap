@@ -1,153 +1,105 @@
 #!/usr/bin/env python3
-"""
-每日复盘数据抓取脚本 — 运行在 GitHub Actions 中
-抓取 A 股收盘数据，生成 data/YYYY-MM-DD.json
-"""
-import json, os, sys
+"""每日复盘数据抓取 + AI分析 — GitHub Actions 自动运行"""
+import json, os, sys, re
 from datetime import datetime, timezone, timedelta
+import urllib.request
 
-try:
-    import requests
-except ImportError:
-    import urllib.request
-    import json as _json
-    def _get(url):
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            return _json.loads(r.read())
-    requests = type('req', (), {'get': lambda url, timeout=15: type('r', (), {'json': lambda: _get(url)})()})()
-
-TZ = timezone(timedelta(hours=8))  # 北京时间
+TZ = timezone(timedelta(hours=8))
 NOW = datetime.now(TZ)
 TODAY = NOW.strftime('%Y-%m-%d')
 WEEKDAYS = ['周一','周二','周三','周四','周五','周六','周日']
 WEEKDAY = WEEKDAYS[NOW.weekday()]
 
 if NOW.weekday() >= 5:
-    print(f"今日 {WEEKDAY}，非交易日，跳过")
-    sys.exit(0)
+    print(f"今日 {WEEKDAY}，非交易日，跳过"); sys.exit(0)
 
-# ===== 抓取模块 =====
-BASE = "https://push2.eastmoney.com/api/qt"
+def api(path):
+    req = urllib.request.Request(
+        f"https://push2.eastmoney.com/api/qt{path}",
+        headers={'User-Agent': 'Mozilla/5.0','Referer': 'https://data.eastmoney.com/'})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        return json.loads(r.read())
 
-def api(path: str) -> dict:
-    return requests.get(f"{BASE}{path}", timeout=15).json()
-
-# 1. 指数行情 + 涨跌家数
-indices_raw = api("/ulist.np/get?fltt=2&fields=f2,f3,f6,f170,f171&secids=1.000001,0.399001,0.399006,1.000688,0.899050")
-diffs = indices_raw['data']['diff']
-idx_names = ['上证', '深成指', '创业板', '科创50', '北证50']
+# ===== 1. 指数 =====
+idx = api("/ulist.np/get?fltt=2&fields=f2,f3,f6,f170,f171&secids=1.000001,0.399001,0.399006,1.000688,0.899050")
+diffs = idx['data']['diff']
+names = ['上证','深成指','创业板','科创50','北证50']
 indices = {}
-for i, name in enumerate(idx_names):
+for i, n in enumerate(names):
     d = diffs[i]
-    indices[name] = {
-        'close': d['f2'],
-        'chg': f"{d['f3']:+.2f}%",
-        'vol': round(d.get('f6', 0) / 1e8) if d.get('f6') else 0
-    }
+    indices[n] = {'close': d['f2'], 'chg': f"{d['f3']:+.2f}%", 'vol': round(d.get('f6',0)/1e8) if d.get('f6') else 0}
+up_count = diffs[0].get('f170',0)
+dn_count = diffs[0].get('f171',0)
+total_vol = round(sum(d.get('f6',0) for d in diffs)/1e8)
 
-up_count = diffs[0].get('f170', 0)
-dn_count = diffs[0].get('f171', 0)
-total_vol = round(sum(d.get('f6', 0) for d in diffs) / 1e8)
-
-# 2. 涨跌停数量
-try:
-    lu = api("/clt/get?np=1&pn=1&pz=1&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fltt=2")
-    limit_up = lu['data']['total']
-except: limit_up = 0
-
-try:
-    ld = api("/clt/get?np=1&pn=1&pz=1&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fltt=2&downt=1")
-    limit_down = ld['data']['total']
-except: limit_down = 0
-
-# 3. 美股数据（优先读取早上 8 点缓存）
-us_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', '_us_latest.json')
-ext_data = { "nasdaq": "N/A", "note": "" }
-if os.path.exists(us_file):
+# ===== 2. 涨跌停 =====
+def limit(rise=True):
     try:
-        with open(us_file, 'r', encoding='utf-8') as f:
-            us_cached = json.load(f)
-        ext_data = {
-            "nasdaq": us_cached.get('纳斯达克', {}).get('chg', 'N/A'),
-            "dow": us_cached.get('道琼斯', {}).get('chg', 'N/A'),
-            "sp500": us_cached.get('标普500', {}).get('chg', 'N/A'),
-            "phlx": us_cached.get('费城半导体', {}).get('chg', 'N/A'),
-            "fetchedAt": us_cached.get('_fetched', ''),
-            "note": f"今早 {us_cached.get('_fetchedAt','')} 更新"
-        }
-    except: pass
-else:
-    # fallback: 直接抓
-    try:
-        us_raw = api("/ulist.np/get?fltt=2&fields=f3&secids=100.NDX,100.DJIA,100.SPCS")
-        ext_data["nasdaq"] = f"{us_raw['data']['diff'][0]['f3']:+.2f}%"
-    except: pass
+        u = '&downt=1' if not rise else ''
+        d = api(f"/clt/get?np=1&pn=1&pz=1&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fltt=2{u}")
+        return d['data']['total']
+    except: return 0
+limit_up = limit(True)
+limit_down = limit(False)
 
-# 4. 池子行情
-pool_codes = (
-    "1.000636,0.600183,1.600176,0.002384,0.002281,0.000657,"
-    "1.603986,1.605589,0.002080,1.603256,1.605376,1.600226,"
-    "1.605111,0.002859,0.000811,1.603186,1.603002,1.600110,0.002741"
-)
-pool_names = '风华高科 生益科技 中国巨石 东山精密 光迅科技 中钨高新 兆易创新 圣泉集团 中材科技 宏和科技 博迁新材 亨通股份 新洁能 洁美科技 冰轮环境 华正新材 宏昌电子 诺德股份 光华科技'.split()
+# ===== 3. 美股 + 池子 =====
+ext_data = {"nasdaq":"N/A","note":""}
+try:
+    us = api("/ulist.np/get?fltt=2&fields=f3&secids=100.NDX,100.DJIA,100.SPCS")
+    ext_data["nasdaq"] = f"{us['data']['diff'][0]['f3']:+.2f}%"
+except: pass
+
+pool_codes = "1.000636,0.600183,1.600176,0.002384,0.002281,0.000657,1.603986,1.605589,0.002080,1.603256,1.605376,1.600226,1.605111,0.002859,0.000811,1.603186,1.603002,1.600110,0.002741"
 pool_data = api(f"/ulist.np/get?fltt=2&fields=f2,f3,f14&secids={pool_codes}")
 pool_status = []
 for d in pool_data['data']['diff']:
-    st = '🟢' if d['f3'] > 0 else ('🔴' if d['f3'] < -5 else ('🟡' if d['f3'] < 0 else '⚪'))
-    pool_status.append({
-        'status': st, 'stock': d['f14'],
-        'today': f"{d['f3']:+.2f}%",
-        'ma5': '站上' if d['f3'] > -3 else ('跌破' if d['f3'] < -7 else '边缘')
-    })
+    st = '🟢' if d['f3']>0 else ('🔴' if d['f3']<-5 else ('🟡' if d['f3']<0 else '⚪'))
+    pool_status.append({'status':st,'stock':d['f14'],'today':f"{d['f3']:+.2f}%",'ma5':'站上' if d['f3']>-3 else ('跌破' if d['f3']<-7 else '边缘')})
 
-# ===== 组装 JSON =====
+# ===== 4. 组装 JSON =====
 recap = {
-    "date": TODAY, "weekday": WEEKDAY,
-    "autoGenerated": True,
-    "external": ext_data,
-    "indices": indices,
-    "totalVolume": f"{total_vol/10000:.2f}万亿" if total_vol > 10000 else f"{total_vol}亿",
-    "upCount": up_count, "downCount": dn_count,
-    "limitUp": limit_up, "limitDown": limit_down,
-    "internalExternal": [
-        { "period": TODAY, "internal": "待分析", "external": nasdaq_chg, "result": "手动补充" }
-    ],
-    "newsEvents": [],
-    "cycle": { "stage": "手动补充", "pivot": "6.15", "days": 15, "nature": "" },
-    "techAnchors": [
-        { "anchor": "20日线", "position": idx_names[0], "status": "手动检查" }
-    ],
-    "volumeProfile": [],
-    "sentiment": {
-        "limitUp": limit_up, "limitDown": limit_down,
-        "upCount": up_count, "downCount": dn_count,
-        "note": "自动抓取，情绪分析手动补充"
-    },
-    "divergence": [],
-    "auction": [],
-    "ceiling": { "max": "手动补充", "stock": "" },
-    "ladder": [],
-    "keyMoments": [],
-    "visibleLines": "手动补充",
-    "hiddenLines": "手动补充",
-    "seeSaw": [],
-    "poolStatus": pool_status,
-    "capitalFlow": f"成交额 {total_vol/10000:.2f}万亿，涨{up_count}跌{dn_count}，手动定性。",
-    "risks": ["手动补充"],
-    "selfQA": "手动补充",
-    "strategy": "手动补充"
+    "date":TODAY,"weekday":WEEKDAY,"autoGenerated":True,
+    "external":ext_data,"indices":indices,
+    "totalVolume":f"{total_vol/10000:.2f}万亿" if total_vol>10000 else f"{total_vol}亿",
+    "upCount":up_count,"downCount":dn_count,"limitUp":limit_up,"limitDown":limit_down,
+    "poolStatus":pool_status,
+    "sentiment":{"limitUp":limit_up,"limitDown":limit_down,"upCount":up_count,"downCount":dn_count,"note":"AI分析中"},
+    "cycle":{"stage":"","nature":"","pivot":"6.15","days":(NOW-datetime(2026,6,15,tzinfo=TZ)).days},
+    "selfQA":"","strategy":"","visibleLines":"","hiddenLines":"","capitalFlow":"","risks":[""],
+    "ladder":[],"keyMoments":[],"auction":[],"newsEvents":[],"divergence":[],"seeSaw":[],"volumeProfile":[]
 }
 
-# ===== 写入文件 =====
-data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
-os.makedirs(data_dir, exist_ok=True)
-filepath = os.path.join(data_dir, f'{TODAY}.json')
-with open(filepath, 'w', encoding='utf-8') as f:
-    json.dump(recap, f, ensure_ascii=False, indent=2)
+# ===== 5. AI 分析 =====
+KEY = os.environ.get('DEEPSEEK_KEY','')
+if KEY:
+    pool_best = [p for p in pool_status if '涨停' in p['today'] or (p['today'].startswith('+') and float(p['today'].replace('%',''))>5)]
+    pool_best_str = '，'.join([f"{p['stock']}{p['today']}" for p in pool_best[:5]]) or '无'
+    prompt = f"""A股复盘。上证{indices['上证']['close']}({indices['上证']['chg']})深成指{indices['深成指']['chg']}创业板{indices['创业板']['chg']}科创50{indices['科创50']['chg']}。成交{recap['totalVolume']}。涨停{limit_up}跌停{limit_down}。涨{up_count}跌{dn_count}。纳指{ext_data['nasdaq']}。池子最强:{pool_best_str}。输出JSON:{{"sentimentNote":"情绪一句","cycleNature":"周期一句","visibleLines":"明线排序","hiddenLines":"暗线逻辑","capitalFlow":"资金判断","strategy":"明日策略","risks":["风险1","风险2"]}}"""
+    try:
+        req = urllib.request.Request('https://api.deepseek.com/v1/chat/completions',
+            data=json.dumps({"model":"deepseek-chat","messages":[{"role":"user","content":prompt}],"max_tokens":800}).encode(),
+            headers={'Content-Type':'application/json','Authorization':f'Bearer {KEY}'})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            ai_text = json.loads(r.read())['choices'][0]['message']['content']
+        m = re.search(r'\{[\s\S]*\}', ai_text)
+        if m:
+            ai = json.loads(m.group())
+            recap['sentiment']['note'] = ai.get('sentimentNote','')
+            recap['cycle']['nature'] = ai.get('cycleNature','')
+            recap['visibleLines'] = ai.get('visibleLines','')
+            recap['hiddenLines'] = ai.get('hiddenLines','')
+            recap['capitalFlow'] = ai.get('capitalFlow','')
+            recap['strategy'] = ai.get('strategy','')
+            recap['risks'] = ai.get('risks',[''])
+            print("✅ AI分析已生成")
+    except Exception as e:
+        print(f"⚠️ AI调用失败: {e}")
 
-print(f"✅ 已生成: {filepath}")
-print(f"   指数: {indices['上证']['close']} ({indices['上证']['chg']})")
-print(f"   涨跌: {limit_up}涨停 / {limit_down}跌停")
-print(f"   成交额: ~{total_vol}亿")
-print(f"   上涨 {up_count} / 下跌 {dn_count}")
+# ===== 6. 写入 =====
+data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'data')
+os.makedirs(data_dir, exist_ok=True)
+path = os.path.join(data_dir, f'{TODAY}.json')
+with open(path,'w',encoding='utf-8') as f:
+    json.dump(recap, f, ensure_ascii=False, indent=2)
+print(f"✅ {path}")
+print(f"   指数: {indices['上证']['close']}({indices['上证']['chg']}) | 涨停{limit_up}/跌停{limit_down} | {recap['totalVolume']}")
