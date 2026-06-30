@@ -65,9 +65,33 @@ export default function Edit() {
     setSaving(false)
   }
 
+  const [aiLoading, setAiLoading] = useState(false)
+
   const updateField = (key, value) => {
     if (!data) return
     setData({ ...safeSet({ ...data }, key, value) })
+  }
+
+  const handleAIDraft = async () => {
+    setAiLoading(true)
+    setMsg('')
+    try {
+      const res = await fetch('/api/ai-draft', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ date, data, pass })
+      })
+      const result = await res.json()
+      if (result.error) { setMsg(`🤖 ${result.error}`); setAiLoading(false); return }
+      // 把 AI 返回的字段填进去
+      let updated = { ...data }
+      Object.entries(result).forEach(([key, value]) => {
+        updated = safeSet(updated, key, value)
+      })
+      setData(updated)
+      setMsg('🤖 AI草稿已生成，请审核修改后点保存')
+    } catch { setMsg('🤖 生成失败') }
+    setAiLoading(false)
   }
 
   if (!auth) {
@@ -99,6 +123,10 @@ export default function Edit() {
         <button onClick={handleSave} disabled={saving}
           style={{ padding: '8px 20px', borderRadius: 8, background: saving ? '#374151' : '#22c55e', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 14, fontWeight: 600 }}>
           {saving ? '保存中...' : '💾 保存'}
+        </button>
+        <button onClick={handleAIDraft} disabled={aiLoading}
+          style={{ padding: '8px 20px', borderRadius: 8, background: aiLoading ? '#374151' : '#8b5cf6', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 14, fontWeight: 600, marginLeft: 8 }}>
+          {aiLoading ? '生成中...' : '🤖 AI草稿'}
         </button>
       </div>
 
