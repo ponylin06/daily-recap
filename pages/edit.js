@@ -30,7 +30,8 @@ export default function Edit() {
   const [pass, setPass] = useState('')
   const [auth, setAuth] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [msg, setMsg] = useState('')
+  const [checks, setChecks] = useState([])
+  const [checkLoading, setCheckLoading] = useState(false)
 
   useEffect(() => {
     const d = new URLSearchParams(window.location.search).get('date')
@@ -71,6 +72,24 @@ export default function Edit() {
     if (!data) return
     setData({ ...safeSet({ ...data }, key, value) })
   }
+
+  const [msg, setMsg] = useState('')
+
+  // 生成检查清单
+  const loadChecks = async () => {
+    setCheckLoading(true)
+    try {
+      const res = await fetch('/api/checklist', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data })
+      })
+      const r = await res.json()
+      setChecks(r.checks || [])
+    } catch { }
+    setCheckLoading(false)
+  }
+
+  useEffect(() => { if (data) loadChecks() }, [data])
 
   const handleAIDraft = async () => {
     setAiLoading(true)
@@ -130,7 +149,25 @@ export default function Edit() {
         </button>
       </div>
 
-      {msg && <div style={{ padding: 10, borderRadius: 8, background: msg.includes('✅') ? '#064e3b' : '#450a0a', color: msg.includes('✅') ? '#4ade80' : '#fca5a5', marginBottom: 16, fontSize: 14 }}>{msg}</div>}
+      {msg && <div style={{ padding: 10, borderRadius: 8, background: msg.includes('✅') ? '#064e3b' : msg.includes('🤖') ? '#1e1b4b' : '#450a0a', color: msg.includes('✅') ? '#4ade80' : msg.includes('🤖') ? '#c4b5fd' : '#fca5a5', marginBottom: 16, fontSize: 14 }}>{msg}</div>}
+
+      {checks.length > 0 && (
+        <details style={{ marginBottom: 16, background: '#1a1d27', borderRadius: 10, border: '1px solid #2a2d37' }}>
+          <summary style={{ padding: '10px 16px', cursor: 'pointer', color: '#f59e0b', fontSize: 14, fontWeight: 600 }}>📋 今日复盘检查清单（{checks.length}项）</summary>
+          <div style={{ padding: '0 16px 12px' }}>
+            {Object.entries(
+              checks.reduce((acc, c) => { const t = c.tag || '其他'; if (!acc[t]) acc[t] = []; acc[t].push(c); return acc }, {})
+            ).map(([tag, items]) => (
+              <div key={tag} style={{ marginBottom: 8 }}>
+                <div style={{ color: '#6b7280', fontSize: 11, marginBottom: 3 }}>{tag}</div>
+                {items.map((c, i) => (
+                  <div key={i} style={{ color: '#d1d5db', fontSize: 13, padding: '2px 0' }}>{c.icon} {c.text}</div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </details>
+      )}
 
       <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
         {['2026-06-22','2026-06-23','2026-06-24','2026-06-25','2026-06-26','2026-06-29','2026-06-30'].map(d => (
