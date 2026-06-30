@@ -194,4 +194,4 @@ export default function Edit() {
       {!data && <p style={{ color: '#6b7280' }}>该日期暂无数据</p>}
     </div>
   )
-}
+} 
