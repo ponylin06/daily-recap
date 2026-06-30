@@ -1,0 +1,61 @@
+{
+  "date": "2026-06-25", "weekday": "周四",
+  "external": { "nasdaq": "-0.43%", "kospi": "+3.26%反弹", "note": "美光盘后+16%炸裂业绩。韩国熔断后暴力反弹。外部转利多。" },
+  "indices": {
+    "上证": { "close": 4120.28, "chg": "+0.23%", "vol": 15900 },
+    "深成指": { "close": 16344.08, "chg": "+1.82%", "vol": 18500 },
+    "创业板": { "close": 4371.99, "chg": "+2.84%", "vol": 9083 },
+    "科创50": { "close": 2066.33, "chg": "+3.87%", "vol": 1946 },
+    "北证50": { "close": -1.41, "chg": "-1.41%", "vol": 255 }
+  },
+  "totalVolume": "3.62万亿", "volumeChange": "放量3120亿",
+  "upCount": 1231, "downCount": 4228,
+  "limitUp": 92, "limitDown": 79, "boardRate": "72%",
+  "internalExternal": [
+    { "period": "6.24", "internal": "强修复", "external": "费半-5.3%", "result": "独立修复" },
+    { "period": "6.25", "internal": "延续修复", "external": "美光炸裂+韩国反弹", "result": "内外共振向上，科创50站上2000" }
+  ],
+  "newsEvents": [
+    { "event": "美光财报炸裂(Q4指引490-510亿vs预期432亿)", "impact": "真实+16%盘后", "sector": "存储芯片", "performance": "北京君正20cm涨停" },
+    { "event": "MLCC高容现货翻倍+尼吉康涨价", "impact": "真实", "sector": "MLCC/被动元件", "performance": "涨停潮(风华涨停)" },
+    { "event": "英特尔液冷认证落地", "impact": "真实", "sector": "液冷", "performance": "冰轮涨停" }
+  ],
+  "cycle": { "stage": "内外共振向上", "pivot": "6.15", "days": 10, "nature": "科创50首次站上2000点。MLCC轮动爆发。" },
+  "volumeProfile": [
+    { "period": "早盘", "volume": "放量", "behavior": "增量资金进场" },
+    { "period": "午后", "volume": "回落", "behavior": "部分兑现" }
+  ],
+  "sentiment": {
+    "limitUp": 92, "limitUpPrev": 98, "limitDown": 79, "limitDownPrev": 58,
+    "upCount": 1231, "upCountPrev": 1434, "downCount": 4228, "downCountPrev": 4034,
+    "note": "近百家涨停vs近百家跌停。结构性分化达极致。" },
+  "divergence": [
+    { "dim": "科创50站上2000 vs 4228跌", "today": "极致割裂" },
+    { "dim": "MLCC涨停潮 vs 贵金属暴跌", "today": "中报主线碾压" }
+  ],
+  "auction": [
+    { "signal": "艾华集团高开+8.49%", "performance": "MLCC方向定调", "meaning": "竞价确认MLCC最强" },
+    { "signal": "兴业科技竞价涨停", "performance": "5板破天花板", "meaning": "一字板无参与性" }
+  ],
+  "ceiling": { "max": "5板(被破)", "stock": "兴业科技", "status": "首次突破5板天花板" },
+  "ladder": [
+    { "tier": "5板", "stock": "兴业科技", "direction": "磷化铟", "role": "破天花板", "relation": "一字板" },
+    { "tier": "7天6板", "stock": "艾华集团", "direction": "电容器", "role": "MLCC总龙头", "relation": "带动风华+博迁涨停" },
+    { "tier": "8天5板", "stock": "冰轮环境", "direction": "液冷", "role": "液冷龙头", "relation": "连涨5天+47%" }
+  ],
+  "visibleLines": "MLCC/被动元件★★★★★、存储芯片★★★★★、液冷★★★★★、PCB上游★★★★",
+  "hiddenLines": "今天是MLCC方向的轮动爆发日。中报主线不同分支轮着涨：PCB→存储→MLCC。平铺策略验证。",
+  "seeSaw": [
+    { "strong": "MLCC(涨停潮)", "weak": "功率半导体", "stage": "MLCC爆发" },
+    { "strong": "液冷(冰轮涨停)", "weak": "光纤(涨速放缓)", "stage": "液冷接棒" }
+  ],
+  "poolStatus": [
+    { "status": "🟢", "stock": "风华高科", "today": "涨停+10%", "ma5": "站上" },
+    { "status": "🟢", "stock": "中国巨石", "today": "+9.23%涨停打开", "ma5": "站上" },
+    { "status": "🟢", "stock": "冰轮环境", "today": "涨停+10%", "ma5": "站上" },
+    { "status": "🟢", "stock": "艾华集团", "today": "7天6板", "ma5": "站上" }
+  ],
+  "capitalFlow": "放量3120亿=增量进场。启动即跟随的良性循环：MLCC全线涨停。" ,
+  "risks": ["79跌停继续恶化","MLCC全线涨停=高潮日","巨石涨停打开分歧","昀冢停牌(MLCC监管信号)"],
+  "strategy": "高潮次日不追高。风华离异动仅差1.91%，明天找高点卖。持有巨石+冰轮等轮动。不买边缘杂毛。"
+}

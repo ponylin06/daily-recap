@@ -1,0 +1,57 @@
+{
+  "date": "2026-06-26", "weekday": "周五",
+  "external": { "nasdaq": "-0.46%", "phlx": "-5.29%", "kospi": "-5.8%暴跌", "note": "苹果涨价20%引发AI成本转嫁恐慌+韩国再度暴跌+美PCE4.1%三年新高" },
+  "indices": {
+    "上证": { "close": 4027.26, "chg": "-2.26%", "vol": 16200 },
+    "深成指": { "close": 15782.22, "chg": "-3.44%", "vol": 19300 },
+    "创业板": { "close": 4194.21, "chg": "-4.07%", "vol": 9381 },
+    "科创50": { "close": 2032.28, "chg": "-1.65%", "vol": 2017 },
+    "北证50": { "close": 1266.90, "chg": "-0.84%", "vol": 252 }
+  },
+  "totalVolume": "3.57万亿", "volumeChange": "缩量约500亿",
+  "upCount": 790, "downCount": 4676,
+  "limitUp": 73, "limitDown": 44, "boardRate": "63%",
+  "internalExternal": [
+    { "period": "6.25", "internal": "高潮", "external": "美光炸裂", "result": "MLCC涨停潮" },
+    { "period": "6.26", "internal": "被拖累", "external": "苹果-6%+韩国-5.8%", "result": "金融+科技同步杀跌=短期风险信号" }
+  ],
+  "newsEvents": [
+    { "event": "苹果涨价20%", "impact": "🔴🔴", "sector": "AI终端", "performance": "AI成本转嫁→需求担忧" },
+    { "event": "美光+15%", "impact": "🟢对冲", "sector": "存储", "performance": "相对抗跌" },
+    { "event": "美PCE 4.1%三年新高", "impact": "🔴", "sector": "整体", "performance": "加息预期" }
+  ],
+  "cycle": { "stage": "首次外围冲击型大跌", "pivot": "6.15", "days": 11, "nature": "金融+科技同步杀跌=短期风险信号。上证跌破4070。" },
+  "volumeProfile": [
+    { "period": "全天", "volume": "放量砸盘", "behavior": "主动卖盘，不是承接" }
+  ],
+  "sentiment": {
+    "limitUp": 73, "limitUpPrev": 92, "limitDown": 44, "limitDownPrev": 79,
+    "upCount": 790, "upCountPrev": 1231, "downCount": 4676, "downCountPrev": 4228,
+    "note": "全线暴跌。涨跌停双减。4600+跌=系统性普跌。" },
+  "divergence": [
+    { "dim": "科创-1.65% vs 创业板-4%", "today": "科技核心相对抗跌" },
+    { "dim": "巨石+4.69%创新高 vs 4600+跌", "today": "极个别核心逆势" }
+  ],
+  "auction": [
+    { "signal": "大族激光一字", "performance": "走光纤→板块绿开矛盾→炸板", "meaning": "大盘一致转分歧时竞价加单易被砸" }
+  ],
+  "ceiling": { "max": "6板", "stock": "兴业科技", "status": "唯一高度标" },
+  "ladder": [
+    { "tier": "6板", "stock": "兴业科技", "direction": "磷化铟", "role": "工具人", "relation": "封单减小" },
+    { "tier": "断板", "stock": "光纤/CPO方向", "direction": "烽火跌停/特发跌停", "role": "崩盘", "relation": "被苹果涨价逻辑冲击" }
+  ],
+  "visibleLines": "电子布/PCB上游(巨石+4.69%)、存储(相对抗跌)、航天/军工(逆势)",
+  "hiddenLines": "6.15池子证伪风险：上证4027跌破6.15拐点日收盘价。光通信崩=抗跌不领涨=证伪。",
+  "seeSaw": [
+    { "strong": "巨石(创新高)", "weak": "光通信(集体跌停)", "stage": "电子布是唯一活口" }
+  ],
+  "poolStatus": [
+    { "status": "🟢", "stock": "中国巨石", "today": "+4.69%创新高", "ma5": "站上" },
+    { "status": "🟡", "stock": "风华高科", "today": "-1.41%", "ma5": "边缘" },
+    { "status": "🔴", "stock": "烽火通信", "today": "跌停", "ma5": "跌破" },
+    { "status": "🔴", "stock": "新洁能", "today": "-0.53%", "ma5": "跌破" }
+  ],
+  "capitalFlow": "放量砸盘=主动卖盘。金融+科技同步杀跌=短期风险信号，不能乐观。",
+  "risks": ["金融+科技同步杀跌","上证跌破4070","6.15池子证伪风险","光通信集体崩","苹果涨价=AI逻辑冲击"],
+  "strategy": "周五不买。连涨两天后收紧仓位。扛跌品种(巨石)持有。风华异动风险不赌，卖了。周末消息面重点关注长鑫存储IPO。"
+}

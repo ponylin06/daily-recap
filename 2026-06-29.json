@@ -1,0 +1,61 @@
+{
+  "date": "2026-06-29", "weekday": "周一",
+  "external": { "nasdaq": "-0.24%", "phlx": "-5.29%", "kospi": "-2%续跌", "note": "费半暴跌+韩国续跌=外部仍弱。美伊停火地缘缓和。A股靠自己独立修复。" },
+  "indices": {
+    "上证": { "close": 4073.90, "chg": "+1.16%", "vol": 15100 },
+    "深成指": { "close": 15812.87, "chg": "+0.19%", "vol": 17700 },
+    "创业板": { "close": 4216.70, "chg": "+0.54%", "vol": 8538 },
+    "科创50": { "close": 2126.01, "chg": "+4.61%", "vol": 1946 },
+    "北证50": { "close": 1225.48, "chg": "-3.27%", "vol": 255 }
+  },
+  "totalVolume": "3.52万亿", "volumeChange": "缩量347亿",
+  "upCount": 2468, "downCount": 2933,
+  "limitUp": 124, "limitDown": 69, "boardRate": "73%",
+  "internalExternal": [
+    { "period": "6.26", "internal": "被拖累", "external": "费半-5.3%韩国-5.8%", "result": "同步杀跌" },
+    { "period": "6.29", "internal": "强势独立", "external": "费半仍弱", "result": "内因独立修复，科创50+4.61%创新高" }
+  ],
+  "newsEvents": [
+    { "event": "医保双目录初审公示", "impact": "真实", "sector": "医药", "performance": "20余股涨停" },
+    { "event": "三星/SK 800万亿韩元建厂计划", "impact": "真实", "sector": "半导体设备/材料", "performance": "全线爆发" },
+    { "event": "MLCC 7.1全线涨价将至", "impact": "真实", "sector": "MLCC", "performance": "风华+2.25%(逼近异动)" }
+  ],
+  "cycle": { "stage": "内因强势修复", "pivot": "6.15", "days": 14, "nature": "抢修复开盘→分歧→午后半导体带量修复。科创50破2100。" },
+  "volumeProfile": [
+    { "period": "早盘", "volume": "缩量低开", "behavior": "抢修复被兑现" },
+    { "period": "午盘", "volume": "半导体带量", "behavior": "三星催化+医药双线拉升" }
+  ],
+  "sentiment": {
+    "limitUp": 124, "limitUpPrev": 73, "limitDown": 69, "limitDownPrev": 44,
+    "upCount": 2468, "upCountPrev": 790, "downCount": 2933, "downCountPrev": 4676,
+    "note": "涨停增跌停增——双增说明结构性分化在加剧而非改善。连板晋级率仅12.5%冰点。" },
+  "divergence": [
+    { "dim": "科创50+4.61% vs 北证-3.27%", "today": "科技碾压小票" }
+  ],
+  "auction": [
+    { "signal": "多氟多20.81亿封单", "performance": "电子特气最大封单", "meaning": "电子特气方向锚" },
+    { "signal": "凯美特气9.84亿", "performance": "封单增加", "meaning": "光刻气+特气方向确认" },
+    { "signal": "科技竞价一致性过高", "performance": "抢修复", "meaning": "后手无买点，只有先手卖点" }
+  ],
+  "ceiling": { "max": "3板", "stock": "威派格", "status": "高度被压缩" },
+  "ladder": [
+    { "tier": "3板", "stock": "威派格", "direction": "液冷", "role": "最高标", "relation": "" },
+    { "tier": "6天3板", "stock": "雅克科技", "direction": "芯片电子气体", "role": "趋势", "relation": "" },
+    { "tier": "4天3板", "stock": "彤程新材/柏诚", "direction": "光刻胶/洁净室", "role": "半导体跟随", "relation": "" }
+  ],
+  "visibleLines": "半导体设备/材料★★★★★、医药★★★★★、存储★★★★、MLCC(涨但异动风险)★★★",
+  "hiddenLines": "易中天破20日线=科技情绪核心阵眼出问题。但博主判断为假摔。半导体独自涨=爆发分离还是补涨细分？需要PCB/CPO止跌验证。",
+  "seeSaw": [
+    { "strong": "半导体设备/材料", "weak": "PCB/光纤(继续跌)", "stage": "半导体独强" },
+    { "strong": "医药", "weak": "贵金属", "stage": "防御跷跷板" }
+  ],
+  "poolStatus": [
+    { "status": "🟢", "stock": "新洁能", "today": "+8.42%触及涨停", "ma5": "站上" },
+    { "status": "🟢", "stock": "风华高科", "today": "+2.25%", "ma5": "边缘" },
+    { "status": "🟢", "stock": "中国巨石", "today": "-4.24%补跌", "ma5": "跌破" },
+    { "status": "🔴", "stock": "光通信(烽火/特发)", "today": "续跌", "ma5": "跌破" }
+  ],
+  "capitalFlow": "缩量修复=抛压枯竭后的反弹，不是增量。A股下午跟棒子走，毫无主动性。",
+  "risks": ["易中天破20日线","连板晋级率12.5%","6.15池子证伪风险","涨价线被宏和跌停证伪","科技回落分歧恶劣"],
+  "strategy": "上午抢修复=不买。买点后置到下午。方向：存储>半导体设备ETF>MLCC(等风华异动消化)。"
+}

@@ -1,0 +1,60 @@
+{
+  "date": "2026-06-22", "weekday": "周一",
+  "external": { "nasdaq": "长假期间费半+12%", "kospi": "假期反弹", "note": "假期外围科技大涨，但A股开盘后科技被金融+有色抽血" },
+  "indices": {
+    "上证": { "close": 4163.10, "chg": "+1.78%", "vol": 17000 },
+    "深成指": { "close": 16372.50, "chg": "+2.13%", "vol": 20300 },
+    "创业板": { "close": 4359.39, "chg": "+2.52%", "vol": 10300 },
+    "科创50": { "close": 1948.93, "chg": "+1.96%", "vol": 2009 },
+    "北证50": { "close": 1271.45, "chg": "+0.50%", "vol": 252 }
+  },
+  "totalVolume": "3.74万亿", "volumeChange": "放量4303亿",
+  "upCount": 2916, "downCount": 2468,
+  "limitUp": 151, "limitDown": 30, "boardRate": "84%",
+  "internalExternal": [
+    { "period": "节前", "internal": "弱势震荡", "external": "平淡", "result": "锁仓" },
+    { "period": "6.22", "internal": "强势", "external": "费半暴涨", "result": "金融有色抢夺科技主导权" }
+  ],
+  "newsEvents": [
+    { "event": "矿产资源法实施条例落地", "impact": "真实", "sector": "有色/锆/钨", "performance": "近10股涨停" },
+    { "event": "费城半导体暴涨12%", "impact": "真实", "sector": "半导体", "performance": "冲高回落被兑现" }
+  ],
+  "cycle": { "stage": "刚迈入良性震荡", "pivot": "6.15", "days": 7, "nature": "风格切换试探，科技主角光环被金融有色抢走" },
+  "volumeProfile": [
+    { "period": "早盘", "volume": "放量", "behavior": "金融+有色拉升，科技被抽血" },
+    { "period": "午盘", "volume": "继续放量", "behavior": "情绪回暖，增量资金入场" }
+  ],
+  "sentiment": {
+    "limitUp": 151, "limitUpPrev": 0, "limitDown": 30, "limitDownPrev": 0,
+    "upCount": 2916, "upCountPrev": 0, "downCount": 2468, "downCountPrev": 0,
+    "note": "上午冰火两重天（指数红1189涨），午后共振回暖。涨停151+跌停30。"
+  },
+  "divergence": [
+    { "dim": "上午指数红 vs 4200+跌", "today": "极致二八分化" },
+    { "dim": "双创领涨 vs 沪指跟涨", "today": "无背离" }
+  ],
+  "auction": [
+    { "signal": "有色锆批量一字", "performance": "东方锆业22.72亿封单", "meaning": "上游材料方向定调" },
+    { "signal": "PCB竞价弱势", "performance": "三进四无强势表态", "meaning": "PCB今天分歧" }
+  ],
+  "ceiling": { "max": "5板", "stock": "旭光电子", "status": "12天7板" },
+  "ladder": [
+    { "tier": "5板", "stock": "旭光电子", "direction": "光通信", "role": "总龙头", "relation": "破局天娱数科" },
+    { "tier": "4板", "stock": "江钨装备/艾华集团", "direction": "钨/MLCC", "role": "身位板", "relation": "江钨压制中钨" },
+    { "tier": "2板", "stock": "东方锆业等19只", "direction": "锆/AI/PCB", "role": "量化平铺", "relation": "东方锆业助攻旭光" }
+  ],
+  "visibleLines": "大金融★★★★★、有色/小金属★★★★★、培育钻石★★★★★、化工★★★★",
+  "hiddenLines": "资金从AI硬件中游（PCB/MLCC）向上游原材料（锆/钨/锗）纵深挖掘。矿产资源法是制度性供给收紧。",
+  "seeSaw": [
+    { "strong": "光通信（长飞涨停）", "weak": "PCB", "stage": "光强PCB弱" },
+    { "strong": "上游材料", "weak": "中游制造", "stage": "上游加速，中游被抽" }
+  ],
+  "poolStatus": [
+    { "status": "🟢", "stock": "中国巨石", "today": "涨停+10%", "ma5": "站上" },
+    { "status": "🟢", "stock": "冰轮环境", "today": "+8.41%", "ma5": "站上" },
+    { "status": "🟡", "stock": "风华高科", "today": "-2.17%", "ma5": "跌破" }
+  ],
+  "capitalFlow": "3.74万亿历史次天量=高强度换手。踏空资金进场即被教育。",
+  "risks": ["CPO高位天量分歧（中际386亿）","30只跌停偏高","有色短期过热"],
+  "strategy": "明日看资源分歧后资金是否回流科技。PCB/MLCC方向低吸机会。"
+}
