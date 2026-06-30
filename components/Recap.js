@@ -270,4 +270,4 @@ export default function Recap({ data }) {
       </footer>
     </div>
   )
-} 
+}
