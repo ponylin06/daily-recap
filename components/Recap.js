@@ -1,8 +1,20 @@
 import { useState, useEffect } from 'react'
 
-const G = ({ children }) => <span className="text-green-400">{children}</span>
-const R = ({ children }) => <span className="text-red-400">{children}</span>
-const Y = ({ children }) => <span className="text-yellow-400">{children}</span>
+// A股规则：红涨绿跌。利好=红，利空=绿。
+const Up = ({ children }) => <span className="text-red-400 font-semibold">{children}</span>
+const Down = ({ children }) => <span className="text-green-500">{children}</span>
+const Warn = ({ children }) => <span className="text-yellow-400">{children}</span>
+
+const RISE_COLOR = 'text-red-400 font-semibold'
+const FALL_COLOR = 'text-green-500'
+
+function chgColor(v) {
+  if (!v) return ''
+  const s = String(v)
+  if (s.startsWith('+') || s.includes('涨停') || s.includes('领涨') || s.includes('走强')) return RISE_COLOR
+  if (s.startsWith('-') || s.includes('跌停') || s.includes('大跌') || s.includes('领跌') || s.includes('走弱')) return FALL_COLOR
+  return ''
+}
 
 function Section({ num, title, children }) {
   return (
@@ -31,7 +43,7 @@ function DataTable({ headers, rows }) {
           {rows.map((row, i) => (
             <tr key={i} className="border-b border-[#22252e]">
               {row.map((cell, j) => (
-                <td key={j} className="py-2 px-3 text-gray-300">{cell}</td>
+                <td key={j} className={`py-2 px-3 text-gray-300 ${chgColor(cell)}`}>{cell}</td>
               ))}
             </tr>
           ))}
@@ -41,9 +53,17 @@ function DataTable({ headers, rows }) {
   )
 }
 
+function StatBlock({ label, value, color }) {
+  return (
+    <div className="bg-white/5 rounded-lg p-3 text-center">
+      <div className="text-gray-500 text-xs">{label}</div>
+      <div className={`font-semibold ${color || 'text-gray-200'}`}>{value}</div>
+    </div>
+  )
+}
+
 export default function Recap({ data }) {
   if (!data) return <div className="text-center text-gray-500 py-20">未找到该日期的复盘数据</div>
-
   const d = data
 
   return (
@@ -54,8 +74,8 @@ export default function Recap({ data }) {
         <DataTable
           headers={['市场', '表现', '对A股传导']}
           rows={[
-            ['美股纳指', d.external?.nasdaq || '', '弱'],
-            ['费城半导体', d.external?.phlx || '', '🔴 承压'],
+            ['美股纳指', d.external?.nasdaq || '', <span className={String(d.external?.nasdaq||'').startsWith('-')?FALL_COLOR:RISE_COLOR}>{d.external?.nasdaq}</span>],
+            ['费城半导体', d.external?.phlx || '', ''],
             ['韩国KOSPI', d.external?.kospi || '', ''],
             ['日经', d.external?.nikkei || '', ''],
           ]}
@@ -68,34 +88,18 @@ export default function Recap({ data }) {
         <DataTable
           headers={['指数', '收盘', '涨跌幅', '成交额(亿)', '特征']}
           rows={Object.entries(d.indices || {}).map(([name, v]) => [
-            name, v.close, <span className={v.chg?.startsWith('-') ? 'text-red-400' : 'text-green-400'}>{v.chg}</span>, v.vol, ''
+            name, v.close,
+            <span className={String(v.chg).startsWith('-') ? FALL_COLOR : RISE_COLOR}>{v.chg}</span>,
+            v.vol, ''
           ])}
         />
         <div className="grid grid-cols-3 gap-3 mt-3 text-sm">
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-gray-500 text-xs">成交额</div>
-            <div className="text-gray-200 font-semibold">{d.totalVolume}</div>
-          </div>
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-gray-500 text-xs">上涨</div>
-            <div className="text-green-400 font-semibold">{d.upCount}</div>
-          </div>
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-gray-500 text-xs">下跌</div>
-            <div className="text-red-400 font-semibold">{d.downCount}</div>
-          </div>
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-gray-500 text-xs">涨停</div>
-            <div className="text-green-400 font-semibold">{d.limitUp}</div>
-          </div>
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-gray-500 text-xs">跌停</div>
-            <div className="text-red-400 font-semibold">{d.limitDown}</div>
-          </div>
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-gray-500 text-xs">封板率</div>
-            <div className="text-gray-200 font-semibold">{d.boardRate}</div>
-          </div>
+          <StatBlock label="成交额" value={d.totalVolume} />
+          <StatBlock label="上涨" value={d.upCount} color="text-red-400" />
+          <StatBlock label="下跌" value={d.downCount} color="text-green-500" />
+          <StatBlock label="涨停" value={d.limitUp} color="text-red-400" />
+          <StatBlock label="跌停" value={d.limitDown} color="text-green-500" />
+          <StatBlock label="封板率" value={d.boardRate} />
         </div>
       </Section>
 
@@ -111,14 +115,18 @@ export default function Recap({ data }) {
       <Section num={4} title="外部因素与盘中消息">
         <DataTable
           headers={['事件', '影响', '映射板块', '今日表现']}
-          rows={(d.newsEvents || []).map(e => [e.event, e.impact, e.sector, e.performance])}
+          rows={(d.newsEvents || []).map(e => [
+            e.event,
+            <span className={e.impact?.includes('真实') ? RISE_COLOR : FALL_COLOR}>{e.impact}</span>,
+            e.sector, e.performance
+          ])}
         />
       </Section>
 
       {/* 5. 周期定位 */}
       <Section num={5} title="周期定位">
         <div className="grid grid-cols-2 gap-3 text-sm">
-          <div className="bg-white/5 rounded-lg p-3"><span className="text-gray-500">阶段</span> <span className="text-gray-200 ml-2">{d.cycle?.stage}</span></div>
+          <div className="bg-white/5 rounded-lg p-3"><span className="text-gray-500">阶段</span> <span className="text-amber-400 ml-2 font-semibold">{d.cycle?.stage}</span></div>
           <div className="bg-white/5 rounded-lg p-3"><span className="text-gray-500">拐点</span> <span className="text-gray-200 ml-2">{d.cycle?.pivot}，第{d.cycle?.days}天</span></div>
         </div>
         <p className="text-sm text-gray-400 mt-2">{d.cycle?.nature}</p>
@@ -128,7 +136,7 @@ export default function Recap({ data }) {
       <Section num={6} title="指数技术锚">
         <DataTable
           headers={['锚点', '位置', '状态', '含义']}
-          rows={(d.techAnchors || []).map(a => [a.anchor, a.position, a.status, ''])}
+          rows={(d.techAnchors || []).map(a => [a.anchor, a.position, <span className={a.status?.includes('跌破')?FALL_COLOR:RISE_COLOR}>{a.status}</span>, ''])}
         />
       </Section>
 
@@ -145,10 +153,10 @@ export default function Recap({ data }) {
         <DataTable
           headers={['指标', '昨日', '今日', '方向']}
           rows={[
-            ['涨停', d.sentiment?.limitUpPrev, d.sentiment?.limitUp, ''],
-            ['跌停', d.sentiment?.limitDownPrev, d.sentiment?.limitDown, ''],
-            ['上涨家数', d.sentiment?.upCountPrev, d.sentiment?.upCount, ''],
-            ['下跌家数', d.sentiment?.downCountPrev, d.sentiment?.downCount, ''],
+            ['涨停', d.sentiment?.limitUpPrev, <span className={RISE_COLOR}>{d.sentiment?.limitUp}</span>, ''],
+            ['跌停', d.sentiment?.limitDownPrev, <span className={FALL_COLOR}>{d.sentiment?.limitDown}</span>, ''],
+            ['上涨家数', d.sentiment?.upCountPrev, <span className={RISE_COLOR}>{d.sentiment?.upCount}</span>, ''],
+            ['下跌家数', d.sentiment?.downCountPrev, <span className={FALL_COLOR}>{d.sentiment?.downCount}</span>, ''],
           ]}
         />
         <p className="text-sm text-gray-400 mt-2">{d.sentiment?.note}</p>
@@ -199,11 +207,11 @@ export default function Recap({ data }) {
       <Section num={14} title="明线 & 暗线">
         <div className="mb-3">
           <div className="text-xs text-gray-500 mb-1">明线</div>
-          <p className="text-sm text-gray-300">{d.visibleLines}</p>
+          <p className="text-sm whitespace-pre-line text-gray-300">{d.visibleLines}</p>
         </div>
         <div className="border-t border-[#2a2d37] pt-3">
           <div className="text-xs text-gray-500 mb-1">暗线</div>
-          <p className="text-sm text-gray-300">{d.hiddenLines}</p>
+          <p className="text-sm whitespace-pre-line text-gray-300">{d.hiddenLines}</p>
         </div>
       </Section>
 
@@ -225,8 +233,9 @@ export default function Recap({ data }) {
         <DataTable
           headers={['状态', '标的', '今日', '5日线']}
           rows={(d.poolStatus || []).map(p => [
-            p.status, p.stock,
-            <span className={p.today?.includes('涨停') || p.today?.includes('+') ? 'text-green-400' : p.today?.includes('跌') ? 'text-red-400' : ''}>{p.today}</span>,
+            p.status,
+            p.stock,
+            <span className={String(p.today).startsWith('+') ? RISE_COLOR : FALL_COLOR}>{p.today}</span>,
             p.ma5
           ])}
         />
@@ -239,8 +248,10 @@ export default function Recap({ data }) {
 
       {/* 19. 风险 */}
       <Section num={19} title="风险点">
-        <ul className="text-sm text-red-400 space-y-1">
-          {(d.risks || []).map((r, i) => <li key={i}>• {r}</li>)}
+        <ul className="text-sm space-y-1">
+          {(d.risks || []).map((r, i) => (
+            <li key={i} className="text-green-500">• {r}</li>
+          ))}
         </ul>
       </Section>
 
