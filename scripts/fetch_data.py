@@ -21,26 +21,33 @@ def api(path):
         return json.loads(r.read())
 
 # ===== 1. 指数 =====
-idx = api("/ulist.np/get?fltt=2&fields=f2,f3,f6,f170,f171&secids=1.000001,0.399001,0.399006,1.000688,0.899050")
+idx = api("/ulist.np/get?fltt=2&fields=f2,f3,f6&secids=1.000001,0.399001,0.399006,1.000688,0.899050")
 diffs = idx['data']['diff']
 names = ['上证','深成指','创业板','科创50','北证50']
 indices = {}
 for i, n in enumerate(names):
     d = diffs[i]
     indices[n] = {'close': d['f2'], 'chg': f"{d['f3']:+.2f}%", 'vol': round(d.get('f6',0)/1e8) if d.get('f6') else 0}
-up_count = diffs[0].get('f170',0)
-dn_count = diffs[0].get('f171',0)
 total_vol = round(sum(d.get('f6',0) for d in diffs)/1e8)
 
+# 涨跌家数 - 从上证指数单独获取
+try:
+    sh = api("/stock/get?secid=1.000001&fields=f170,f171")
+    up_count = sh['data']['f170']
+    dn_count = sh['data']['f171']
+except:
+    up_count = dn_count = 0
+
 # ===== 2. 涨跌停 =====
-def limit(rise=True):
+def get_limit(is_up=True):
     try:
-        u = '&downt=1' if not rise else ''
-        d = api(f"/clt/get?np=1&pn=1&pz=1&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fltt=2{u}")
-        return d['data']['total']
+        url = f"https://push2.eastmoney.com/api/qt/clt/get?fields=f12&np=1&pn=1&pz=1&po=0&fid=f3&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fltt=2{'&downt=1' if not is_up else ''}"
+        req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0','Referer':'https://data.eastmoney.com/'})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return json.loads(r.read())['data']['total']
     except: return 0
-limit_up = limit(True)
-limit_down = limit(False)
+limit_up = get_limit(True)
+limit_down = get_limit(False)
 
 # ===== 3. 美股 + 池子 =====
 ext_data = {"nasdaq":"N/A","note":""}
