@@ -1,0 +1,273 @@
+import { useState, useEffect } from 'react'
+
+// A股规则：红涨绿跌。利好=红，利空=绿。
+const Up = ({ children }) => <span className="text-red-400 font-semibold">{children}</span>
+const Down = ({ children }) => <span className="text-green-500">{children}</span>
+const Warn = ({ children }) => <span className="text-yellow-400">{children}</span>
+
+const RISE_COLOR = 'text-red-400 font-semibold'
+const FALL_COLOR = 'text-green-500'
+
+function chgColor(v) {
+  if (!v) return ''
+  const s = String(v)
+  if (s.startsWith('+') || s.includes('涨停') || s.includes('领涨') || s.includes('走强')) return RISE_COLOR
+  if (s.startsWith('-') || s.includes('跌停') || s.includes('大跌') || s.includes('领跌') || s.includes('走弱')) return FALL_COLOR
+  return ''
+}
+
+function Section({ num, title, children }) {
+  return (
+    <section className="bg-[#1a1d27] border border-[#2a2d37] rounded-xl p-5 mb-4">
+      <h2 className="text-base font-bold text-gray-200 mb-3 flex items-center gap-2">
+        <span className="bg-amber-500 text-black text-xs px-2 py-0.5 rounded-full font-bold">{num}</span>
+        {title}
+      </h2>
+      {children}
+    </section>
+  )
+}
+
+function DataTable({ headers, rows }) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm border-collapse">
+        <thead>
+          <tr>
+            {headers.map((h, i) => (
+              <th key={i} className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i} className="border-b border-[#22252e]">
+              {row.map((cell, j) => (
+                <td key={j} className={`py-2 px-3 text-gray-300 ${chgColor(cell)}`}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+function StatBlock({ label, value, color }) {
+  return (
+    <div className="bg-white/5 rounded-lg p-3 text-center">
+      <div className="text-gray-500 text-xs">{label}</div>
+      <div className={`font-semibold ${color || 'text-gray-200'}`}>{value}</div>
+    </div>
+  )
+}
+
+export default function Recap({ data }) {
+  if (!data) return <div className="text-center text-gray-500 py-20">未找到该日期的复盘数据</div>
+  const d = data
+
+  return (
+    <div className="max-w-3xl mx-auto px-4 py-6">
+
+      {/* 1. 外围速览 */}
+      <Section num={1} title="外围速览">
+        <DataTable
+          headers={['市场', '表现', '对A股传导']}
+          rows={[
+            ['美股纳指', d.external?.nasdaq || '', <span className={String(d.external?.nasdaq||'').startsWith('-')?FALL_COLOR:RISE_COLOR}>{d.external?.nasdaq}</span>],
+            ['费城半导体', d.external?.phlx || '', ''],
+            ['韩国KOSPI', d.external?.kospi || '', ''],
+            ['日经', d.external?.nikkei || '', ''],
+          ]}
+        />
+        <p className="text-sm text-gray-400 mt-2">{d.external?.note}</p>
+      </Section>
+
+      {/* 2. 盘面总览 */}
+      <Section num={2} title="盘面总览">
+        <DataTable
+          headers={['指数', '收盘', '涨跌幅', '成交额(亿)', '特征']}
+          rows={Object.entries(d.indices || {}).map(([name, v]) => [
+            name, v.close,
+            <span className={String(v.chg).startsWith('-') ? FALL_COLOR : RISE_COLOR}>{v.chg}</span>,
+            v.vol, ''
+          ])}
+        />
+        <div className="grid grid-cols-3 gap-3 mt-3 text-sm">
+          <StatBlock label="成交额" value={d.totalVolume} />
+          <StatBlock label="上涨" value={d.upCount} color="text-red-400" />
+          <StatBlock label="下跌" value={d.downCount} color="text-green-500" />
+          <StatBlock label="涨停" value={d.limitUp} color="text-red-400" />
+          <StatBlock label="跌停" value={d.limitDown} color="text-green-500" />
+          <StatBlock label="封板率" value={d.boardRate} />
+        </div>
+      </Section>
+
+      {/* 3. 内外因博弈 */}
+      <Section num={3} title="内外因博弈">
+        <DataTable
+          headers={['时期', '内因', '外因', '结果']}
+          rows={(d.internalExternal || []).map(e => [e.period, e.internal, e.external, e.result])}
+        />
+      </Section>
+
+      {/* 4. 外部消息 */}
+      <Section num={4} title="外部因素与盘中消息">
+        <DataTable
+          headers={['事件', '影响', '映射板块', '今日表现']}
+          rows={(d.newsEvents || []).map(e => [
+            e.event,
+            <span className={e.impact?.includes('真实') ? RISE_COLOR : FALL_COLOR}>{e.impact}</span>,
+            e.sector, e.performance
+          ])}
+        />
+      </Section>
+
+      {/* 5. 周期定位 */}
+      <Section num={5} title="周期定位">
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="bg-white/5 rounded-lg p-3"><span className="text-gray-500">阶段</span> <span className="text-amber-400 ml-2 font-semibold">{d.cycle?.stage}</span></div>
+          <div className="bg-white/5 rounded-lg p-3"><span className="text-gray-500">拐点</span> <span className="text-gray-200 ml-2">{d.cycle?.pivot}，第{d.cycle?.days}天</span></div>
+        </div>
+        <p className="text-sm text-gray-400 mt-2">{d.cycle?.nature}</p>
+      </Section>
+
+      {/* 6. 技术锚 */}
+      <Section num={6} title="指数技术锚">
+        <DataTable
+          headers={['锚点', '位置', '状态', '含义']}
+          rows={(d.techAnchors || []).map(a => [a.anchor, a.position, <span className={a.status?.includes('跌破')?FALL_COLOR:RISE_COLOR}>{a.status}</span>, ''])}
+        />
+      </Section>
+
+      {/* 7. 量能定性 */}
+      <Section num={7} title="量能定性">
+        <DataTable
+          headers={['时段', '量能', '行为']}
+          rows={(d.volumeProfile || []).map(v => [v.period, v.volume, v.behavior])}
+        />
+      </Section>
+
+      {/* 8. 市场情绪 */}
+      <Section num={8} title="市场情绪">
+        <DataTable
+          headers={['指标', '昨日', '今日', '方向']}
+          rows={[
+            ['涨停', d.sentiment?.limitUpPrev, <span className={RISE_COLOR}>{d.sentiment?.limitUp}</span>, ''],
+            ['跌停', d.sentiment?.limitDownPrev, <span className={FALL_COLOR}>{d.sentiment?.limitDown}</span>, ''],
+            ['上涨家数', d.sentiment?.upCountPrev, <span className={RISE_COLOR}>{d.sentiment?.upCount}</span>, ''],
+            ['下跌家数', d.sentiment?.downCountPrev, <span className={FALL_COLOR}>{d.sentiment?.downCount}</span>, ''],
+          ]}
+        />
+        <p className="text-sm text-gray-400 mt-2">{d.sentiment?.note}</p>
+      </Section>
+
+      {/* 9. 背离 */}
+      <Section num={9} title="背离观测">
+        <ul className="text-sm text-gray-300 space-y-1">
+          {(d.divergence || []).map((dv, i) => (
+            <li key={i}>• {dv.dim}：{dv.today}</li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* 10. 竞价 */}
+      <Section num={10} title="竞价复盘">
+        <DataTable
+          headers={['竞价信号', '表现', '含义']}
+          rows={(d.auction || []).map(a => [a.signal, a.performance, a.meaning])}
+        />
+      </Section>
+
+      {/* 11. 连板天花板 */}
+      <Section num={11} title="连板天花板">
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="bg-white/5 rounded-lg p-3"><span className="text-gray-500">高度</span> <span className="text-amber-400 ml-2 font-bold">{d.ceiling?.max}</span></div>
+          <div className="bg-white/5 rounded-lg p-3"><span className="text-gray-500">最高标</span> <span className="text-gray-200 ml-2">{d.ceiling?.stock}</span></div>
+        </div>
+      </Section>
+
+      {/* 12. 连板梯队 */}
+      <Section num={12} title="连板梯队 & 关系网">
+        <DataTable
+          headers={['梯队', '标的', '方向', '角色', '关系']}
+          rows={(d.ladder || []).map(l => [l.tier, l.stock, l.direction, l.role, l.relation])}
+        />
+      </Section>
+
+      {/* 13. 盘中节点 */}
+      <Section num={13} title="盘中关键节点">
+        <DataTable
+          headers={['时间', '事件', '信号']}
+          rows={(d.keyMoments || []).map(k => [k.time, k.event, k.signal])}
+        />
+      </Section>
+
+      {/* 14. 明线暗线 */}
+      <Section num={14} title="明线 & 暗线">
+        <div className="mb-3">
+          <div className="text-xs text-gray-500 mb-1">明线</div>
+          <p className="text-sm whitespace-pre-line text-gray-300">{d.visibleLines}</p>
+        </div>
+        <div className="border-t border-[#2a2d37] pt-3">
+          <div className="text-xs text-gray-500 mb-1">暗线</div>
+          <p className="text-sm whitespace-pre-line text-gray-300">{d.hiddenLines}</p>
+        </div>
+      </Section>
+
+      {/* 15. 跷跷板 */}
+      <Section num={15} title="科技内部跷跷板">
+        <DataTable
+          headers={['强', '弱', '轮动阶段']}
+          rows={(d.seeSaw || []).map(s => [s.strong, s.weak, s.stage])}
+        />
+      </Section>
+
+      {/* 16. 政策 */}
+      <Section num={16} title="政策 vs 市场">
+        <p className="text-sm text-gray-300">{d.visibleLines}</p>
+      </Section>
+
+      {/* 17. 池子 */}
+      <Section num={17} title="博主池子追踪">
+        <DataTable
+          headers={['状态', '标的', '今日', '5日线']}
+          rows={(d.poolStatus || []).map(p => [
+            p.status,
+            p.stock,
+            <span className={String(p.today).startsWith('+') ? RISE_COLOR : FALL_COLOR}>{p.today}</span>,
+            p.ma5
+          ])}
+        />
+      </Section>
+
+      {/* 18. 增量/腾挪 */}
+      <Section num={18} title="增量资金 vs 场内腾挪">
+        <p className="text-sm text-gray-300">{d.capitalFlow}</p>
+      </Section>
+
+      {/* 19. 风险 */}
+      <Section num={19} title="风险点">
+        <ul className="text-sm space-y-1">
+          {(d.risks || []).map((r, i) => (
+            <li key={i} className="text-green-500">• {r}</li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* 20. 自问 */}
+      <Section num={20} title="每日自问">
+        <p className="text-sm text-gray-300 whitespace-pre-line">{d.selfQA}</p>
+      </Section>
+
+      {/* 21. 明日策略 */}
+      <Section num={21} title="明日策略">
+        <p className="text-sm text-gray-300 whitespace-pre-line">{d.strategy}</p>
+      </Section>
+
+      <footer className="text-center text-xs text-gray-600 py-8">
+        daily-recap · deploy on Vercel
+      </footer>
+    </div>
+  )
+}
