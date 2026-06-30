@@ -1,0 +1,58 @@
+{
+  "date": "2026-06-24", "weekday": "周三",
+  "external": { "nasdaq": "-2.21%", "phlx": "-7.87%", "kospi": "+3.26%反弹，盘中+5.7%熔断", "note": "纳指三连跌+费半暴跌，但A股走出独立修复行情" },
+  "indices": {
+    "上证": { "close": 4110.81, "chg": "+0.11%", "vol": 15100 },
+    "深成指": { "close": 16051.32, "chg": "+1.24%", "vol": 17700 },
+    "创业板": { "close": 4251.42, "chg": "+1.41%", "vol": 8538 },
+    "科创50": { "close": 1989.43, "chg": "+3.82%", "vol": 1946 },
+    "北证50": { "close": 1295.95, "chg": "+1.15%", "vol": 252 }
+  },
+  "totalVolume": "3.28万亿", "volumeChange": "缩量1564亿",
+  "upCount": 1434, "downCount": 4034,
+  "limitUp": 98, "limitDown": 58, "boardRate": "81%",
+  "internalExternal": [
+    { "period": "6.23", "internal": "强分歧", "external": "韩国熔断", "result": "冲高回落" },
+    { "period": "6.24", "internal": "强势独立修复", "external": "纳指-2.2%费半-7.9%", "result": "A股独立修复，科创50+3.82%" }
+  ],
+  "newsEvents": [
+    { "event": "英伟达辟谣压价PCB", "impact": "辟谣→利好", "sector": "PCB上游", "performance": "中国巨石涨停" },
+    { "event": "台积电先进封装涨价", "impact": "真实", "sector": "先进封装", "performance": "长电科技涨停" },
+    { "event": "扬杰科技7.1起涨价10-15%", "impact": "真实", "sector": "功率半导体", "performance": "扬杰高开低走" }
+  ],
+  "cycle": { "stage": "良性震荡分歧次日强修复", "pivot": "6.15", "days": 9, "nature": "强修复但缩量。修复的是科技核心，不是全面修复。" },
+  "volumeProfile": [
+    { "period": "早盘", "volume": "放量", "behavior": "科技核心修复" }
+  ],
+  "sentiment": {
+    "limitUp": 98, "limitUpPrev": 94, "limitDown": 58, "limitDownPrev": 39,
+    "upCount": 1434, "upCountPrev": 2764, "downCount": 4034, "downCountPrev": 2644,
+    "note": "涨停98跌停58，冰火两重天。修复在核心，边缘仍失血。" },
+  "divergence": [
+    { "dim": "指数全红 vs 4034跌", "today": "极致分化" },
+    { "dim": "科技核心涨停 vs 4000+跌", "today": "核心碾压边缘" }
+  ],
+  "auction": [
+    { "signal": "诺德/光华地板打开", "performance": "PCB修复信号", "meaning": "跌停撬板=修复预期" },
+    { "signal": "中国巨石竞价最强", "performance": "PCB大票里最抗跌", "meaning": "电子布方向选巨石" }
+  ],
+  "ceiling": { "max": "4板", "stock": "东方锆业/长裕集团/兴业科技", "status": "江钨断板，高度压缩到4" },
+  "ladder": [
+    { "tier": "4板", "stock": "东方锆业/长裕集团/兴业科技", "direction": "锆/锆/磷化铟", "role": "转一致", "relation": "锆前排分歧转一致" },
+    { "tier": "3板", "stock": "正和生态/三孚股份", "direction": "AI/光纤", "role": "", "relation": "" }
+  ],
+  "visibleLines": "先进封装★★★★★、PCB上游★★★★★、光纤★★★、MLCC★★、创新药★★★★★",
+  "hiddenLines": "英伟达辟谣→PCB错杀修复。中报主线统一：存储/光纤/电子布全在中报逻辑上。",
+  "seeSaw": [
+    { "strong": "PCB上游(巨石涨停)", "weak": "功率半导体(新洁能-0.5%)", "stage": "上游碾压" }
+  ],
+  "poolStatus": [
+    { "status": "🟢", "stock": "中国巨石", "today": "涨停+10%", "ma5": "站上" },
+    { "status": "🟢", "stock": "冰轮环境", "today": "+8.41%", "ma5": "站上" },
+    { "status": "🟢", "stock": "风华高科", "today": "+3.09%修复", "ma5": "站上" },
+    { "status": "🔴", "stock": "生益科技", "today": "修复中", "ma5": "跌破" }
+  ],
+  "capitalFlow": "缩量修复=抛压枯竭的自然反弹，不是增量进攻。",
+  "risks": ["58跌停继续恶化","4000+下跌","缩量修复不支撑追高","韩国跳水"],
+  "strategy": "修复日不加仓。持有核心等轮动。平铺PCB上游+存储+光纤三个方向。"
+}

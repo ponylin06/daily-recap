@@ -1,0 +1,59 @@
+{
+  "date": "2026-06-23", "weekday": "周二",
+  "external": { "nasdaq": "三连跌", "kospi": "暴跌-10%熔断", "note": "韩国加税引发崩盘+英伟达压价PCB谣言+PCB技术延期，外部利空叠加" },
+  "indices": {
+    "上证": { "close": 4106.25, "chg": "-1.37%", "vol": 15900 },
+    "深成指": { "close": 15854.20, "chg": "-3.17%", "vol": 18500 },
+    "创业板": { "close": 4192.19, "chg": "-3.84%", "vol": 9083 },
+    "科创50": { "close": 1916.21, "chg": "-1.68%", "vol": 1868 },
+    "北证50": { "close": 1281.21, "chg": "+0.77%", "vol": 255 }
+  },
+  "totalVolume": "3.44万亿", "volumeChange": "缩量2964亿",
+  "upCount": 2764, "downCount": 2644,
+  "limitUp": 94, "limitDown": 39, "boardRate": "66%",
+  "internalExternal": [
+    { "period": "6.22", "internal": "强势", "external": "费半暴涨", "result": "风格切换" },
+    { "period": "6.23", "internal": "强分歧", "external": "韩国熔断+谣言", "result": "科技被外围拖累，第一次大分歧" }
+  ],
+  "newsEvents": [
+    { "event": "英伟达压价PCB光通信10%", "impact": "谣言", "sector": "PCB/CPO", "performance": "批量跌停→后续被辟谣" },
+    { "event": "PCB正交背板技术延期", "impact": "真实(影响5-8%)", "sector": "PCB", "performance": "实质利空" },
+    { "event": "韩国加税(盈利税)", "impact": "真实", "sector": "整体科技", "performance": "韩股熔断→A股承压" }
+  ],
+  "cycle": { "stage": "良性震荡首次大分歧", "pivot": "6.15", "days": 8, "nature": "强分歧——下午新增跌停>涨停家数。高位股开启淘汰赛。" },
+  "volumeProfile": [
+    { "period": "早盘", "volume": "放量下跌", "behavior": "止损盘集中释放" },
+    { "period": "午盘", "volume": "缩量下行", "behavior": "无承接，分歧延续" },
+    { "period": "尾盘", "volume": "无放量出逃", "behavior": "没有恐慌砸盘" }
+  ],
+  "sentiment": {
+    "limitUp": 94, "limitUpPrev": 151, "limitDown": 39, "limitDownPrev": 30,
+    "upCount": 2764, "upCountPrev": 2916, "downCount": 2644, "downCountPrev": 2468,
+    "note": "高位分歧加剧。涨停94炸板率34%连板晋级率26%。旭光断板。" },
+  "divergence": [
+    { "dim": "指数大跌 vs 2764涨", "today": "权重砸盘，中小票企稳" }
+  ],
+  "auction": [
+    { "signal": "液冷英维克24亿封单", "performance": "液冷集体高开", "meaning": "英伟达液冷消息→高位利好=出货" },
+    { "signal": "PCB/MLCC批量低开", "performance": "竞价全部投河", "meaning": "方向不及预期" }
+  ],
+  "ceiling": { "max": "5板", "stock": "江钨装备（开板60+次）", "status": "旭光断板，天花板5板" },
+  "ladder": [
+    { "tier": "5板", "stock": "江钨装备", "direction": "钨", "role": "被动最高标", "relation": "开板60次，筹码散" },
+    { "tier": "3板", "stock": "东方锆业/长裕集团", "direction": "锆", "role": "穿越活口", "relation": "长裕换手准备卡位" },
+    { "tier": "2板", "stock": "黄河旋风等", "direction": "钻石", "role": "量化互割", "relation": "博云让位黄河" }
+  ],
+  "visibleLines": "功率半导体★★★★★、医药★★★★★、光纤★★★★、液冷★★★",
+  "hiddenLines": "科技内部赛道切换：功率半导体取代CPO/PCB。锆节奏模型验证：启动→续强→后排分歧。",
+  "seeSaw": [
+    { "strong": "光纤/功率半导体", "weak": "PCB/MLCC", "stage": "强弱分岔" }
+  ],
+  "poolStatus": [
+    { "status": "🟢", "stock": "新洁能", "today": "+5.40%", "ma5": "站上" },
+    { "status": "🟢", "stock": "中国巨石", "today": "+0.94%逆势翻红", "ma5": "站上" },
+    { "status": "🔴", "stock": "生益科技", "today": "-9.01%", "ma5": "跌破" }
+  ],
+  "capitalFlow": "缩量2964亿=场内存量腾挪。放量+4000+跌=抽血不是增量。",
+  "risks": ["39跌停近期峰值","旭光断板空间压缩","有色连续暴跌","金融+科技同步杀跌=短期风险信号"],
+  "strategy": "明日看外围止跌+跌停数降到20以下。池子淘汰赛：留站上10日线的，淘汰跌破的。"
+}
