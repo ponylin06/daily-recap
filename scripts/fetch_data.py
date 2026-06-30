@@ -49,12 +49,18 @@ try:
     ext_data["nasdaq"] = f"{us['data']['diff'][0]['f3']:+.2f}%"
 except: pass
 
-pool_codes = "1.000636,0.600183,1.600176,0.002384,0.002281,0.000657,1.603986,1.605589,0.002080,1.603256,1.605376,1.600226,1.605111,0.002859,0.000811,1.603186,1.603002,1.600110,0.002741"
-pool_data = api(f"/ulist.np/get?fltt=2&fields=f2,f3,f14&secids={pool_codes}")
+pool_batches = [
+    "1.000636,0.600183,1.600176,0.002384,0.002281,0.000657,1.603986,1.605589,0.002080,1.603256",
+    "1.605376,1.600226,1.605111,0.002859,0.000811,1.603186,1.603002,1.600110,0.002741"
+]
 pool_status = []
-for d in pool_data['data']['diff']:
-    st = '🟢' if d['f3']>0 else ('🔴' if d['f3']<-5 else ('🟡' if d['f3']<0 else '⚪'))
-    pool_status.append({'status':st,'stock':d['f14'],'today':f"{d['f3']:+.2f}%",'ma5':'站上' if d['f3']>-3 else ('跌破' if d['f3']<-7 else '边缘')})
+for batch in pool_batches:
+    try:
+        d = api(f"/ulist.np/get?fltt=2&fields=f2,f3,f14&secids={batch}")
+        for s in d['data']['diff']:
+            st = '🟢' if s['f3']>0 else ('🔴' if s['f3']<-5 else ('🟡' if s['f3']<0 else '⚪'))
+            pool_status.append({'status':st,'stock':s['f14'],'today':f"{s['f3']:+.2f}%",'ma5':'站上' if s['f3']>-3 else ('跌破' if s['f3']<-7 else '边缘')})
+    except: pass
 
 # ===== 4. 组装 JSON =====
 recap = {
