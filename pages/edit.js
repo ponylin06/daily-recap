@@ -140,7 +140,7 @@ export default function Edit() {
         <a href={`/?date=${date}`} style={{ color: '#3b82f6', fontSize: 14 }}>预览 →</a>
         <div style={{ flex: 1 }} />
         <button onClick={handleSave} disabled={saving}
-          style={{ padding: '8px 20px', borderRadius: 8, background: saving ? '#374151' : '#22c55e', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 14, fontWeight: 600 }}>
+          style={{ padding: '8px 20px', borderRadius: 8, background: saving ? '#374151' : '#dc2626', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 14, fontWeight: 600 }}>
           {saving ? '保存中...' : '💾 保存'}
         </button>
         <button onClick={handleAIDraft} disabled={aiLoading}
@@ -149,7 +149,7 @@ export default function Edit() {
         </button>
       </div>
 
-      {msg && <div style={{ padding: 10, borderRadius: 8, background: msg.includes('✅') ? '#064e3b' : msg.includes('🤖') ? '#1e1b4b' : '#450a0a', color: msg.includes('✅') ? '#4ade80' : msg.includes('🤖') ? '#c4b5fd' : '#fca5a5', marginBottom: 16, fontSize: 14 }}>{msg}</div>}
+      {msg && <div style={{ padding: 10, borderRadius: 8, background: msg.includes('✅') ? '#450a0a' : msg.includes('🤖') ? '#1e1b4b' : '#064e3b', color: msg.includes('✅') ? '#fca5a5' : msg.includes('🤖') ? '#c4b5fd' : '#4ade80', marginBottom: 16, fontSize: 14 }}>{msg}</div>}
 
       {checks.length > 0 && (
         <details style={{ marginBottom: 16, background: '#1a1d27', borderRadius: 10, border: '1px solid #2a2d37' }}>
@@ -194,4 +194,4 @@ export default function Edit() {
       {!data && <p style={{ color: '#6b7280' }}>该日期暂无数据</p>}
     </div>
   )
-} 
+}
