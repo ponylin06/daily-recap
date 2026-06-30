@@ -1,6 +1,3 @@
 {
-  "name": "daily-recap",
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install"
+  "buildCommand": "rm -f pages/ai-draft.js && npm run build"
 }
