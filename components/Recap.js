@@ -62,6 +62,74 @@ function StatBlock({ label, value, color }) {
   )
 }
 
+function HoldingsSection() {
+  const [h, setH] = useState([])
+
+  useEffect(() => {
+    fetch('/api/holdings')
+      .then(r => r.json())
+      .then(async d => {
+        const items = []
+        for (const item of (d.holdings || [])) {
+          try {
+            const r = await fetch(`https://qt.gtimg.cn/q=${item.code}`, {
+              headers: { 'User-Agent': 'Mozilla/5.0' }
+            })
+            const t = await r.text()
+            const parts = t.split('~')
+            const price = parseFloat(parts[3]) || 0
+            const m = t.match(/(\d{14})~(-?[\d.]+)~(-?[\d.]+)~/)
+            const chg = m ? parseFloat(m[3]) : 0
+            const pnl = ((price - item.cost) / item.cost * 100)
+            items.push({ ...item, price, chg, pnl })
+          } catch { items.push(item) }
+        }
+        setH(items)
+      })
+  }, [])
+
+  if (h.length === 0) return null
+
+  return (
+    <section className="bg-[#1a1d27] border border-amber-500/30 rounded-xl p-5 mb-4">
+      <h2 className="text-base font-bold mb-3 flex items-center gap-2">
+        <span className="bg-amber-500 text-black text-xs px-2 py-0.5 rounded-full font-bold">📌</span>
+        <span className="text-amber-400">我的持仓</span>
+      </h2>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm border-collapse">
+          <thead>
+            <tr>
+              <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">标的</th>
+              <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">成本</th>
+              <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">现价</th>
+              <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">涨跌</th>
+              <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">浮盈</th>
+            </tr>
+          </thead>
+          <tbody>
+            {h.map((item, i) => (
+              <tr key={i} className="border-b border-[#22252e]">
+                <td className="py-2 px-3 text-gray-300">{item.stock}</td>
+                <td className="py-2 px-3 text-gray-400">{item.cost}</td>
+                <td className={`py-2 px-3 ${item.chg > 0 ? 'text-red-400' : item.chg < 0 ? 'text-green-500' : 'text-gray-300'}`}>
+                  {item.price || '-'}
+                </td>
+                <td className={`py-2 px-3 font-semibold ${item.chg > 0 ? 'text-red-400' : item.chg < 0 ? 'text-green-500' : 'text-gray-300'}`}>
+                  {item.chg ? (item.chg > 0 ? '+' : '') + item.chg.toFixed(2) + '%' : '-'}
+                </td>
+                <td className={`py-2 px-3 font-semibold ${item.pnl > 0 ? 'text-red-400' : item.pnl < 0 ? 'text-green-500' : 'text-gray-300'}`}>
+                  {item.pnl ? (item.pnl > 0 ? '+' : '') + item.pnl.toFixed(2) + '%' : '-'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
 export default function Recap({ data, onDataUpdate }) {
   if (!data) return <div className="text-center text-gray-500 py-20">未找到该日期的复盘数据</div>
   const [d, setD] = useState(data)
@@ -302,6 +370,9 @@ export default function Recap({ data, onDataUpdate }) {
       <Section num={21} title="明日策略">
         <p className="text-sm text-gray-300 whitespace-pre-line">{d.strategy}</p>
       </Section>
+
+      {/* 持仓 */}
+      <HoldingsSection />
 
       <footer className="text-center text-xs text-gray-600 py-8">
         daily-recap · deploy on Vercel
