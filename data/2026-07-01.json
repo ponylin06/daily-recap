@@ -216,9 +216,19 @@
   ],
   "keyMoments": [
     {
-      "time": "10:39",
-      "event": "昊华涨停卖出",
-      "signal": "+16%止盈"
+      "time": "早盘",
+      "event": "涨停106只集中封板",
+      "signal": "早盘做多积极"
+    },
+    {
+      "time": "午后",
+      "event": "午后33只封板",
+      "signal": "资金午后回流"
+    },
+    {
+      "time": "全天",
+      "event": "37只炸板超2次",
+      "signal": "分歧较大"
     }
   ],
   "poolStatus": [
