@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 // A股规则：红涨绿跌。利好=红，利空=绿。
 const Up = ({ children }) => <span className="text-red-400 font-semibold">{children}</span>
@@ -136,8 +136,9 @@ export default function Recap({ data, onDataUpdate }) {
   useEffect(() => { setD(data) }, [data])
   const [aiLoading, setAiLoading] = useState(false)
   const [aiMsg, setAiMsg] = useState('')
+  const [aiDone, setAiDone] = useState(false)
 
-  const handleLiveAI = async () => {
+  const handleLiveAI = useCallback(async () => {
     setAiLoading(true); setAiMsg('')
     try {
       const r = await fetch('/api/ai-draft', {
@@ -145,35 +146,38 @@ export default function Recap({ data, onDataUpdate }) {
         body: JSON.stringify({ data: d, pass: 'live' })
       })
       const res = await r.json()
-      if (res.error) { setAiMsg('生成失败: '+res.error); setAiLoading(false); return }
-      // 把 AI 结果直接填进当前页面
+      if (res.error) { setAiMsg('AI: '+res.error); setAiLoading(false); return }
       if (res.visibleLines) d.visibleLines = res.visibleLines
       if (res.hiddenLines) d.hiddenLines = res.hiddenLines
       if (res.capitalFlow) d.capitalFlow = res.capitalFlow
       if (res.strategy) d.strategy = res.strategy
-      if (res['sentiment.note']) d.sentiment = d.sentiment || {}; d.sentiment.note = res['sentiment.note']
-      if (res['cycle.nature']) d.cycle = d.cycle || {}; d.cycle.nature = res['cycle.nature']
+      if (res['sentiment.note']) { d.sentiment = d.sentiment || {}; d.sentiment.note = res['sentiment.note'] }
+      if (res['cycle.nature']) { d.cycle = d.cycle || {}; d.cycle.nature = res['cycle.nature'] }
       if (res.risks) d.risks = res.risks
       setAiMsg('✅ 分析已生成')
       const updated = JSON.parse(JSON.stringify(d))
       setD(updated)
-      if (onDataUpdate) onDataUpdate(updated)
-    } catch { setAiMsg('生成失败') }
+    } catch { setAiMsg('AI生成失败') }
     setAiLoading(false)
-  }
+  }, [d])
+
+  // 自动触发AI分析（如果数据缺分析）
+  useEffect(() => {
+    if (aiDone || aiLoading) return
+    const hasAnalysis = d.strategy && d.strategy.length > 10 && d.visibleLines && d.visibleLines.length > 10
+    if (!hasAnalysis && d.indices && d.indices['上证']?.close > 0) {
+      setAiDone(true)
+      handleLiveAI()
+    } else if (hasAnalysis) {
+      setAiDone(true)
+    }
+  }, [d, aiDone, aiLoading, handleLiveAI])
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
 
-      {/* AI 实时分析按钮 */}
-      <div className="flex items-center gap-3 mb-4">
-        <button onClick={handleLiveAI} disabled={aiLoading}
-          className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition"
-          style={{ background: aiLoading ? '#374151' : '#8b5cf6' }}>
-          {aiLoading ? '⏳ AI分析中...' : '🤖 AI实时分析'}
-        </button>
-        {aiMsg && <span className="text-sm" style={{color: aiMsg.includes('✅')?'#fca5a5':'#9ca3af'}}>{aiMsg}</span>}
-      </div>
+      {/* AI自动分析：页面加载时若缺分析则自动生成 */}
+      {aiMsg && <div className="text-center mb-2"><span className="text-xs" style={{color: aiMsg.includes('✅')?'#fca5a5':'#9ca3af'}}>{aiMsg}</span></div>}
 
       {/* 1. 外围速览 */}
       <Section num={1} title="外围速览">
