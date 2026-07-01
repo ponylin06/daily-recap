@@ -410,6 +410,27 @@ export default function Recap({ data, onDataUpdate }) {
       {/* 持仓 */}
       <HoldingsSection />
 
+      {/* 新闻 */}
+      {d.news && d.news.length > 0 && (
+        <section className="bg-[#1a1d27] border border-blue-500/30 rounded-xl p-5 mb-4">
+          <h2 className="text-base font-bold mb-3 flex items-center gap-2">
+            <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">📰</span>
+            <span className="text-blue-400">今日要闻</span>
+          </h2>
+          <div className="space-y-3">
+            {d.news.slice(0, 10).map((n, i) => (
+              <div key={i} className="border-b border-[#2a2d37] pb-2 last:border-0">
+                <div className="text-gray-300 text-sm font-medium">{n.title}</div>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-gray-500 text-xs">{n.time}</span>
+                  <a href={n.link} target="_blank" className="text-blue-400 text-xs hover:underline">阅读 →</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       <footer className="text-center text-xs text-gray-600 py-8">
         daily-recap · deploy on Vercel
       </footer>
