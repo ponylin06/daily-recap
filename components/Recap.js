@@ -448,6 +448,18 @@ export default function Recap({ data, onDataUpdate }) {
         </div>
       )}
 
+      <details className="mb-4 opacity-50 hover:opacity-100 transition">
+        <summary className="text-xs text-gray-600 cursor-pointer py-2">📡 数据来源</summary>
+        <div className="text-xs text-gray-600 space-y-1 mt-2 pl-4 border-l border-gray-800">
+          <p>腾讯 qt.gtimg.cn — 指数/纳指/个股行情</p>
+          <p>AKShare — 涨跌停/涨跌家数/连板梯队/财经新闻</p>
+          <p>东财 push2.eastmoney.com — 日经/韩国 (Mac本地)</p>
+          <p>DeepSeek — AI定性分析</p>
+          <p>同花顺 — 竞价数据 (手动)</p>
+          <p>博主复盘帖 — 量化信号/深度分析 (手动)</p>
+        </div>
+      </details>
+
       <footer className="text-center text-xs text-gray-600 py-8">
         daily-recap · deploy on Vercel
       </footer>
