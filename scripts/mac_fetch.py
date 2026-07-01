@@ -57,8 +57,8 @@ for code, name in idx_cfg:
         price = float(parts[3]) if len(parts) > 3 else 0
         m = re.search(r'(\d{14})~(-?[\d.]+)~(-?[\d.]+)~', t)
         chg = float(m.group(3)) if m else 0
-        amt = float(parts[37])/1e8 if len(parts) > 37 and parts[37] else 0
-        indices[name] = {'close': round(price,2), 'chg': f'{chg:+.2f}%', 'vol': amt}
+        amt = float(parts[37])/1e4 if len(parts) > 37 and parts[37] else 0
+        indices[name] = {'close': round(price,2), 'chg': f'{chg:+.2f}%', 'vol': round(amt)}
     except: indices[name] = {'close':0,'chg':'N/A','vol':0}
 
 nas = "N/A"
@@ -68,9 +68,28 @@ try:
     if m: nas = f"{float(m.group(3)):+.2f}%"
 except: pass
 
-total_vol = indices.get('上证',{}).get('vol',0) + indices.get('深成指',{}).get('vol',0)
+total_vol = (indices.get('上证',{}).get('vol',0) + indices.get('深成指',{}).get('vol',0)) / 1e4
 
-# ===== 4. 池子 =====
+# ===== 4. 连板梯队 =====
+ladder = []
+try:
+    import akshare as ak
+    df = ak.stock_zt_pool_em(date=TODAY.replace('-',''))
+    df_lb = df[df['连板数']>=2].sort_values('连板数', ascending=False)
+    for lb, grp in df_lb.groupby('连板数'):
+        for _, row in grp.iterrows():
+            ladder.append({
+                'tier': f'{int(lb)}板',
+                'stock': row['名称'],
+                'direction': row.get('所属行业',''),
+                'role': '最高标' if lb == df_lb['连板数'].max() else '',
+                'relation': f"封板{row.get('首次封板时间','?')} 炸板{int(row.get('炸板次数',0))}次"
+            })
+    print(f'连板梯队: {len(ladder)}只')
+except Exception as e:
+    print(f'连板梯队: {e}')
+
+# ===== 5. 池子 =====
 POOL = [('sh600176','中国巨石'),('sh603986','兆易创新'),('sz000811','冰轮环境'),
         ('sh605111','新洁能'),('sz002384','东山精密'),('sz002281','光迅科技'),
         ('sz000636','风华高科'),('sh600183','生益科技')]
@@ -100,6 +119,7 @@ old['downCount'] = dn_count
 old['limitUp'] = limit_up
 old['limitDown'] = limit_down
 old['poolStatus'] = pool_status
+old['ladder'] = ladder
 old['external'] = old.get('external',{})
 old['external']['nasdaq'] = nas
 old['external']['nikkei'] = nikkei
