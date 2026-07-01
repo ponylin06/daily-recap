@@ -61,10 +61,10 @@
   "ladder": [
     {
       "tier": "3板",
-      "stock": "国华退",
-      "direction": "软件开发",
+      "stock": "浙江东日",
+      "direction": "一般零售",
       "role": "最高标",
-      "relation": "炸板5次"
+      "relation": "炸板7次"
     },
     {
       "tier": "3板",
@@ -75,13 +75,6 @@
     },
     {
       "tier": "3板",
-      "stock": "浙江东日",
-      "direction": "一般零售",
-      "role": "最高标",
-      "relation": "炸板7次"
-    },
-    {
-      "tier": "3板",
       "stock": "多氟多",
       "direction": "化学制品",
       "role": "最高标",
@@ -89,10 +82,17 @@
     },
     {
       "tier": "2板",
-      "stock": "恒久退",
+      "stock": "水晶光电",
       "direction": "光学光电",
       "role": "",
       "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "肯特催化",
+      "direction": "化学制品",
+      "role": "",
+      "relation": "炸板2次"
     },
     {
       "tier": "2板",
@@ -145,13 +145,6 @@
     },
     {
       "tier": "2板",
-      "stock": "肯特催化",
-      "direction": "化学制品",
-      "role": "",
-      "relation": "炸板2次"
-    },
-    {
-      "tier": "2板",
       "stock": "云南能投",
       "direction": "电力",
       "role": "",
@@ -159,8 +152,8 @@
     },
     {
       "tier": "2板",
-      "stock": "水晶光电",
-      "direction": "光学光电",
+      "stock": "恒尚节能",
+      "direction": "装修装饰",
       "role": "",
       "relation": ""
     },
@@ -210,13 +203,6 @@
       "tier": "2板",
       "stock": "中矿资源",
       "direction": "能源金属",
-      "role": "",
-      "relation": ""
-    },
-    {
-      "tier": "2板",
-      "stock": "恒尚节能",
-      "direction": "装修装饰",
       "role": "",
       "relation": ""
     },
@@ -296,7 +282,7 @@
   "volumeProfile": [],
   "ceiling": {
     "max": "3板",
-    "stock": "国华退",
+    "stock": "浙江东日",
     "status": ""
   }
 }
