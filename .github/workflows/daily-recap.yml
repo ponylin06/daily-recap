@@ -57,5 +57,5 @@ jobs:
             echo "今日无新数据"
           else
             git commit -m "📊 $(date +%Y-%m-%d) 自动复盘"
-            git push
+            git push 
           fi
