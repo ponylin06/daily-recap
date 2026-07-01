@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 import Recap from '../components/Recap'
+import { fetchLiveData } from '../lib/liveData'
 
 export default function Home() {
   const [date, setDate] = useState('')
@@ -36,7 +37,9 @@ export default function Home() {
       const res = await fetch(`/api/recap?date=${d}`)
       if (res.ok) {
         const json = await res.json()
-        setData(json)
+        // 用腾讯API实时刷新数据
+        const live = await fetchLiveData(json)
+        setData(live)
       } else {
         setData(null)
       }
