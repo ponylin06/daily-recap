@@ -112,4 +112,33 @@ if 'sentiment' in old:
     old['sentiment']['downCount'] = dn_count
 
 with open(filepath, 'w') as f: json.dump(old, f, ensure_ascii=False, indent=2)
-print(f"✅ {filepath} | 涨停{limit_up}跌停{limit_down} | 日经{nikkei}韩国{kospi} | 纳指{nas}")
+print(f"✅ {filepath} | 涨{up_count}跌{dn_count} | 涨停{limit_up}跌停{limit_down} | 纳指{nas}")
+
+# ===== 6. 自动提交到GitHub =====
+# 从Vercel env获取token (如果存在)
+token = os.environ.get('GH_TOKEN','')
+if not token:
+    # fallback: 从 ~/.gh_token 读取
+    try:
+        with open(os.path.expanduser('~/.gh_token')) as f:
+            token = f.read().strip()
+    except: pass
+
+if token:
+    try:
+        import base64
+        content = base64.b64encode(json.dumps(old, ensure_ascii=False, indent=2).encode()).decode()
+        p = f'data/{TODAY}.json'
+        u = f'https://api.github.com/repos/ponylin06/daily-recap/contents/{p}'
+        A = {'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json'}
+        # 读旧文件sha
+        get_req = urllib.request.Request(u, headers=A)
+        with urllib.request.urlopen(get_req, timeout=10) as r:
+            sha = json.loads(r.read()).get('sha','')
+        # 更新
+        body = json.dumps({'message':f'Mac自动补全 {TODAY}','content':content,'sha':sha,'branch':'main'}).encode()
+        put_req = urllib.request.Request(u, data=body, headers={**A,'Content-Type':'application/json'}, method='PUT')
+        with urllib.request.urlopen(put_req, timeout=10) as r:
+            print('✅ 已提交到GitHub')
+    except Exception as e:
+        print(f'GitHub提交失败(需token): {e}')
