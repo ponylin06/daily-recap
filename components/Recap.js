@@ -180,10 +180,10 @@ export default function Recap({ data, onDataUpdate }) {
         <DataTable
           headers={['市场', '表现', '对A股传导']}
           rows={[
-            ['美股纳指', d.external?.nasdaq || '', <span className={String(d.external?.nasdaq||'').startsWith('-')?FALL_COLOR:RISE_COLOR}>{d.external?.nasdaq}</span>],
-            ['费城半导体', d.external?.phlx || '', ''],
-            ['韩国KOSPI', d.external?.kospi || '', ''],
-            ['日经', d.external?.nikkei || '', ''],
+            ['美股纳指', d.external?.nasdaq || '—', <span className={String(d.external?.nasdaq||'').startsWith('-')?FALL_COLOR:RISE_COLOR}>{d.external?.nasdaq||'—'}</span>],
+            ['费城半导体', d.external?.phlx || '—', ''],
+            ['韩国KOSPI', d.external?.kospi || '—', ''],
+            ['日经225', d.external?.nikkei || '—', ''],
           ]}
         />
         <p className="text-sm text-gray-400 mt-2">{d.external?.note}</p>
@@ -223,7 +223,7 @@ export default function Recap({ data, onDataUpdate }) {
           headers={['事件', '影响', '映射板块', '今日表现']}
           rows={(d.newsEvents || []).map(e => [
             e.event,
-            <span className={e.impact?.includes('真实') ? RISE_COLOR : FALL_COLOR}>{e.impact}</span>,
+            <span className={e.impact?.includes('利好') || e.impact?.includes('真实') ? RISE_COLOR : (e.impact?.includes('利空') ? FALL_COLOR : '')}>{e.impact}</span>,
             e.sector, e.performance
           ])}
         />
@@ -380,4 +380,3 @@ export default function Recap({ data, onDataUpdate }) {
     </div>
   )
 }
- 
