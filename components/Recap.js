@@ -200,11 +200,11 @@ export default function Recap({ data, onDataUpdate }) {
           ])}
         />
         <div className="grid grid-cols-3 gap-3 mt-3 text-sm">
-          <StatBlock label="成交额" value={d.totalVolume} />
-          <StatBlock label="上涨" value={d.upCount} color="text-red-400" />
-          <StatBlock label="下跌" value={d.downCount} color="text-green-500" />
-          <StatBlock label="涨停" value={d.limitUp} color="text-red-400" />
-          <StatBlock label="跌停" value={d.limitDown} color="text-green-500" />
+          <StatBlock label="成交额" value={d.totalVolume && d.totalVolume !== '待刷新' ? d.totalVolume : '—'} />
+          <StatBlock label="上涨" value={d.upCount || '—'} color={d.upCount ? 'text-red-400' : ''} />
+          <StatBlock label="下跌" value={d.downCount || '—'} color={d.downCount ? 'text-green-500' : ''} />
+          <StatBlock label="涨停" value={d.limitUp || '—'} color={d.limitUp ? 'text-red-400' : ''} />
+          <StatBlock label="跌停" value={d.limitDown || '—'} color={d.limitDown ? 'text-green-500' : ''} />
           <StatBlock label="封板率" value={d.boardRate} />
         </div>
       </Section>
