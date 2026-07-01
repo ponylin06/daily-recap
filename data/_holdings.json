@@ -1,7 +1,0 @@
-{
-  "holdings": [
-    { "stock": "昊华科技", "code": "sh600378", "cost": 71.50, "shares": 100 },
-    { "stock": "中国巨石", "code": "sh600176", "cost": 69.09, "shares": 100 },
-    { "stock": "半导体设备ETF", "code": "sh561980", "cost": 0.927, "shares": 6700 }
-  ]
-}
