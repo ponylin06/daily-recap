@@ -60,6 +60,34 @@
   ],
   "ladder": [
     {
+      "tier": "3板",
+      "stock": "国华退",
+      "direction": "软件开发",
+      "role": "最高标",
+      "relation": "炸板5次"
+    },
+    {
+      "tier": "3板",
+      "stock": "海南海药",
+      "direction": "化学制药",
+      "role": "最高标",
+      "relation": ""
+    },
+    {
+      "tier": "3板",
+      "stock": "浙江东日",
+      "direction": "一般零售",
+      "role": "最高标",
+      "relation": "炸板7次"
+    },
+    {
+      "tier": "3板",
+      "stock": "多氟多",
+      "direction": "化学制品",
+      "role": "最高标",
+      "relation": "炸板1次"
+    },
+    {
       "tier": "2板",
       "stock": "恒久退",
       "direction": "光学光电",
@@ -198,34 +226,6 @@
       "direction": "半导体",
       "role": "",
       "relation": "炸板15次"
-    },
-    {
-      "tier": "3板",
-      "stock": "国华退",
-      "direction": "软件开发",
-      "role": "最高标",
-      "relation": "炸板5次"
-    },
-    {
-      "tier": "3板",
-      "stock": "海南海药",
-      "direction": "化学制药",
-      "role": "最高标",
-      "relation": ""
-    },
-    {
-      "tier": "3板",
-      "stock": "浙江东日",
-      "direction": "一般零售",
-      "role": "最高标",
-      "relation": "炸板7次"
-    },
-    {
-      "tier": "3板",
-      "stock": "多氟多",
-      "direction": "化学制品",
-      "role": "最高标",
-      "relation": "炸板1次"
     }
   ],
   "keyMoments": [
