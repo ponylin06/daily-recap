@@ -4,32 +4,32 @@
   "external": {
     "nasdaq": "+1.52%",
     "note": "手动补充",
-    "nikkei": "N/A",
-    "kospi": "N/A"
+    "nikkei": "+0.59%",
+    "kospi": "-2.04%"
   },
   "indices": {
     "上证": {
       "close": 4112.45,
       "chg": "+0.44%",
-      "vol": 2
+      "vol": 1.69848757
     },
     "深成指": {
       "close": 16119.17,
       "chg": "-0.53%",
-      "vol": 2
+      "vol": 1.96151609
     },
     "创业板": {
       "close": 4260.72,
       "chg": "-1.89%",
-      "vol": 1
+      "vol": 0.98152112
     },
     "科创50": {
       "close": 2153.04,
       "chg": "-2.48%",
-      "vol": 0
+      "vol": 0.23232827
     }
   },
-  "totalVolume": "4.00万亿",
+  "totalVolume": "3.66万亿",
   "upCount": 4043,
   "downCount": 1110,
   "limitUp": 224,
