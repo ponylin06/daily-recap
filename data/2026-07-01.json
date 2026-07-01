@@ -1,75 +1,245 @@
 {
-  "date": "2026-07-01", "weekday": "周三",
+  "date": "2026-07-01",
+  "weekday": "周三",
   "external": {
-    "nasdaq": "+1.52%", "nikkei": "+0.59%", "kospi": "-2.04%",
+    "nasdaq": "+1.52%",
+    "nikkei": "+0.59%",
+    "kospi": "-2.04%",
     "note": "费半无免费API。纳指+1.52%偏强，韩国-2.04%续弱，日经+0.59%平稳。外围分裂。"
   },
   "indices": {
-    "上证": { "close": 4112.45, "chg": "+0.44%", "vol": 16985 },
-    "深成指": { "close": 16119.17, "chg": "-0.53%", "vol": 19615 },
-    "创业板": { "close": 4260.72, "chg": "-1.89%", "vol": 9815 },
-    "科创50": { "close": 2153.04, "chg": "-2.48%", "vol": 2323 }
+    "上证": {
+      "close": 4112.45,
+      "chg": "+0.44%",
+      "vol": 16985
+    },
+    "深成指": {
+      "close": 16119.17,
+      "chg": "-0.53%",
+      "vol": 19615
+    },
+    "创业板": {
+      "close": 4260.72,
+      "chg": "-1.89%",
+      "vol": 9815
+    },
+    "科创50": {
+      "close": 2153.04,
+      "chg": "-2.48%",
+      "vol": 2323
+    }
   },
-  "totalVolume": "3.68万亿", "volumeChange": "放量3862亿",
-  "upCount": 4043, "downCount": 1110,
-  "limitUp": 221, "limitDown": 11, "boardRate": "67%",
+  "totalVolume": "3.68万亿",
+  "volumeChange": "放量3862亿",
+  "upCount": 4043,
+  "downCount": 1110,
+  "limitUp": 221,
+  "limitDown": 11,
+  "boardRate": "67%",
   "internalExternal": [
-    { "period": "6.30", "internal": "科技修复延续", "external": "费半弱", "result": "独立修复" },
-    { "period": "7.01", "internal": "风格切换试探", "external": "纳指+1.52%", "result": "传统金融崛起、科技回调" }
+    {
+      "period": "6.30",
+      "internal": "科技修复延续",
+      "external": "费半弱",
+      "result": "独立修复"
+    },
+    {
+      "period": "7.01",
+      "internal": "风格切换试探",
+      "external": "纳指+1.52%",
+      "result": "传统金融崛起、科技回调"
+    }
   ],
   "newsEvents": [
-    { "event": "医保双目录初审公示", "impact": "利好", "sector": "医药", "performance": "海南海药3板、20余股涨停" },
-    { "event": "券商/保险全线爆发", "impact": "利好", "sector": "金融", "performance": "华安/天风/国盛涨停" },
-    { "event": "有研新材-10%跌停", "impact": "利空", "sector": "半导体靶材", "performance": "PCB/光纤集体回调" }
+    {
+      "event": "医保双目录初审公示",
+      "impact": "利好",
+      "sector": "医药",
+      "performance": "海南海药3板、20余股涨停"
+    },
+    {
+      "event": "券商/保险全线爆发",
+      "impact": "利好",
+      "sector": "金融",
+      "performance": "华安/天风/国盛涨停"
+    },
+    {
+      "event": "有研新材-10%跌停",
+      "impact": "利空",
+      "sector": "半导体靶材",
+      "performance": "PCB/光纤集体回调"
+    }
   ],
-  "cycle": { "stage": "风格切换试探", "pivot": "6.15", "days": 16, "nature": "7月开门红但剧烈分化。沪指+0.44%而科创50-2.48%。金融+传统行业崛起，科技高位回调。221涨停=高潮，次日本身就有分化预期加风格切换压力。" },
+  "cycle": {
+    "stage": "风格切换试探",
+    "pivot": "6.15",
+    "days": 16,
+    "nature": "7月开门红但剧烈分化。沪指+0.44%而科创50-2.48%。金融+传统行业崛起，科技高位回调。221涨停=高潮，次日本身就有分化预期加风格切换压力。"
+  },
   "techAnchors": [
-    { "anchor": "20日线", "position": "沪指4112.45站上", "status": "守住" },
-    { "anchor": "科创50", "position": "2153.04", "status": "2000点上但-2.48%回落" }
+    {
+      "anchor": "20日线",
+      "position": "沪指4112.45站上",
+      "status": "守住"
+    },
+    {
+      "anchor": "科创50",
+      "position": "2153.04",
+      "status": "2000点上但-2.48%回落"
+    }
   ],
   "volumeProfile": [
-    { "period": "早盘", "volume": "放量", "behavior": "证券+保险拉指数，科技冲高回落" },
-    { "period": "午盘", "volume": "午后放量", "behavior": "医药+电力接力，科技尾盘加速回落" }
+    {
+      "period": "全天",
+      "volume": "放量3862亿",
+      "behavior": "增量但方向在金融消费非科技"
+    }
   ],
   "sentiment": {
-    "limitUp": 221, "limitUpPrev": 100, "limitDown": 11, "limitDownPrev": 37,
-    "upCount": 4043, "upCountPrev": 2468, "downCount": 1110, "downCountPrev": 2933,
+    "limitUp": 221,
+    "limitUpPrev": 100,
+    "limitDown": 11,
+    "limitDownPrev": 37,
+    "upCount": 4043,
+    "upCountPrev": 2468,
+    "downCount": 1110,
+    "downCountPrev": 2933,
     "note": "4300+涨+221涨停=普涨高潮。连板晋级率仅12.5%，高度压缩至3板。金融+传统领涨掩盖了科技内部剧烈回调。224涨停但赚钱效应集中在非科技方向。"
   },
   "divergence": [
-    { "dim": "沪指+0.44% vs 科创50-2.48%", "today": "极度背离——传统金融vs科技" },
-    { "dim": "221涨停 vs 有研/PCB跌停", "today": "方向割裂——买对方向牛市，买错熊市" }
+    {
+      "dim": "沪指+0.44% vs 科创50-2.48%",
+      "today": "极度背离——传统金融vs科技"
+    },
+    {
+      "dim": "221涨停 vs 有研/PCB跌停",
+      "today": "方向割裂——买对方向牛市，买错熊市"
+    }
   ],
   "auction": [
-    { "signal": "竞价无大单一字", "performance": "科技方向无批量封单", "meaning": "科技竞价不及预期→日内回调" },
-    { "signal": "金融竞价偏高", "performance": "证券保险高开", "meaning": "资金开盘即切换" }
+    {
+      "signal": "竞价无大单一字",
+      "performance": "科技方向无批量封单",
+      "meaning": "科技竞价不及预期→日内回调"
+    },
+    {
+      "signal": "金融竞价偏高",
+      "performance": "证券保险高开",
+      "meaning": "资金开盘即切换"
+    }
   ],
-  "ceiling": { "max": "3板", "stock": "浙江东日、海南海药、多氟多", "status": "高度压缩" },
+  "ceiling": {
+    "max": "3板",
+    "stock": "浙江东日、海南海药、多氟多",
+    "status": "高度压缩"
+  },
   "ladder": [
-    { "tier": "3板", "stock": "浙江东日", "direction": "一般零售", "role": "最高标", "relation": "炸板7次" },
-    { "tier": "3板", "stock": "海南海药", "direction": "化学制药", "role": "最高标", "relation": "" },
-    { "tier": "3板", "stock": "多氟多", "direction": "化学制品", "role": "最高标", "relation": "炸板1次" },
-    { "tier": "2板", "stock": "水晶光电/肯特催化/赛伍技术等18只", "direction": "光学/化工/光伏", "role": "", "relation": "量化平铺二板" }
+    {
+      "tier": "3板",
+      "stock": "浙江东日",
+      "direction": "一般零售",
+      "role": "最高标",
+      "relation": "炸板7次"
+    },
+    {
+      "tier": "3板",
+      "stock": "海南海药",
+      "direction": "化学制药",
+      "role": "最高标",
+      "relation": ""
+    },
+    {
+      "tier": "3板",
+      "stock": "多氟多",
+      "direction": "化学制品",
+      "role": "最高标",
+      "relation": "炸板1次"
+    },
+    {
+      "tier": "2板",
+      "stock": "水晶光电/肯特催化/赛伍技术等18只",
+      "direction": "光学/化工/光伏",
+      "role": "",
+      "relation": "量化平铺二板"
+    }
   ],
   "keyMoments": [
-    { "time": "10:39", "event": "昊华科技涨停卖出82.92", "signal": "+16%止盈" },
-    { "time": "早盘", "event": "106只涨停集中封板", "signal": "早盘做多积极" },
-    { "time": "午后", "event": "33只封板+医药拉升", "signal": "午后风格切换加速" },
-    { "time": "14:37", "event": "中国巨石69.88卖出", "signal": "PCB走弱，平出避险" },
-    { "time": "全天", "event": "37只炸板超2次", "signal": "分歧较大" }
+    {
+      "time": "10:39",
+      "event": "昊华科技涨停卖出82.92",
+      "signal": "+16%止盈"
+    },
+    {
+      "time": "早盘",
+      "event": "106只涨停集中封板",
+      "signal": "早盘做多积极"
+    },
+    {
+      "time": "午后",
+      "event": "33只封板+医药拉升",
+      "signal": "午后风格切换加速"
+    },
+    {
+      "time": "14:37",
+      "event": "中国巨石69.88卖出",
+      "signal": "PCB走弱，平出避险"
+    },
+    {
+      "time": "全天",
+      "event": "37只炸板超2次",
+      "signal": "分歧较大"
+    }
   ],
   "visibleLines": "证券/保险★★★★★(华安/天风涨停)、养殖/猪肉★★★★★(新希望涨停)、医药(午后)★★★★(20余股涨停)、电子特气★★★(金宏气体20cm)、机器人★★★(拓斯达20cm)",
   "hiddenLines": "221涨停的普涨日，你的持仓方向(半导体靶材/PCB)却在跌。资金从高位科技切向低位金融+消费——是短暂跷跷板还是风格切换？关键看明天：如果科技继续弱→风格切换确认；科技修复→跷跷板。",
   "seeSaw": [
-    { "strong": "金融/传统(证券+保险+养殖)", "weak": "科技/半导体(科创50-2.48%)", "stage": "剧烈跷跷板" },
-    { "strong": "医药(午后)", "weak": "储能/算力", "stage": "医药轮动接棒" }
+    {
+      "strong": "金融/传统(证券+保险+养殖)",
+      "weak": "科技/半导体(科创50-2.48%)",
+      "stage": "剧烈跷跷板"
+    },
+    {
+      "strong": "医药(午后)",
+      "weak": "储能/算力",
+      "stage": "医药轮动接棒"
+    }
   ],
   "poolStatus": [
-    { "status": "🟡", "stock": "中国巨石", "today": "-3.58%", "close": 70.27, "ma5": "边缘" },
-    { "status": "🔴", "stock": "兆易创新", "today": "-5.27%", "close": 772.01, "ma5": "跌破" },
-    { "status": "🟡", "stock": "冰轮环境", "today": "-2.35%", "close": 54.9, "ma5": "边缘" },
-    { "status": "🔴", "stock": "新洁能", "today": "-7.00%", "close": 92.2, "ma5": "跌破" },
-    { "status": "🟢", "stock": "风华高科", "today": "+2.99%", "close": 74.4, "ma5": "站上" }
+    {
+      "status": "🟡",
+      "stock": "中国巨石",
+      "today": "-3.58%",
+      "close": 70.27,
+      "ma5": "边缘"
+    },
+    {
+      "status": "🔴",
+      "stock": "兆易创新",
+      "today": "-5.27%",
+      "close": 772.01,
+      "ma5": "跌破"
+    },
+    {
+      "status": "🟡",
+      "stock": "冰轮环境",
+      "today": "-2.35%",
+      "close": 54.9,
+      "ma5": "边缘"
+    },
+    {
+      "status": "🔴",
+      "stock": "新洁能",
+      "today": "-7.00%",
+      "close": 92.2,
+      "ma5": "跌破"
+    },
+    {
+      "status": "🟢",
+      "stock": "风华高科",
+      "today": "+2.99%",
+      "close": 74.4,
+      "ma5": "站上"
+    }
   ],
   "capitalFlow": "放量3862亿至3.68万亿。4300+涨=普涨增量。但增量方向是金融+消费，不是科技。场内资金从科技流出切向低位传统行业。",
   "risks": [
@@ -79,8 +249,5 @@
     "连板高度仅3板→短线情绪冰点"
   ],
   "selfQA": "1. 昊华科技+16%两日止盈✅ 竞价买入→涨停卖出，本周最漂亮交易\n2. 有研新材接飞刀❌ 跌停日不应加仓，且方向逆风(半导体回调)\n3. 持仓偏见：对半导体方向过于乐观，忽视风格切换风险",
-  "strategy": "明日：有研新材不能继续跌，破59(今日跌停价)必须止损一半。ETF持有不动。观察科创50能否止跌修复→决定是否回补科技仓位。如果金融继续强→等分歧再考虑。不追量化平铺的二板。",
-  "volumeProfile": [
-    { "period": "全天", "volume": "放量3862亿", "behavior": "增量但方向在金融消费非科技" }
-  ]
+  "strategy": "明日：有研新材不能继续跌，破59(今日跌停价)必须止损一半。ETF持有不动。观察科创50能否止跌修复→决定是否回补科技仓位。如果金融继续强→等分歧再考虑。不追量化平铺的二板。"
 }
