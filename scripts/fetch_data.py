@@ -24,12 +24,21 @@ for i, n in enumerate(nms):
     d = diffs[i]
     indices[n] = {'close': d['f2'], 'chg': f"{d['f3']:+.2f}%", 'vol': round(d.get('f6',0)/1e8)}
 
-# 纳指
+# 纳指（东财优先，腾讯fallback）
 nas = "N/A"
 try:
     u = api("https://push2.eastmoney.com/api/qt/ulist.np/get?fltt=2&fields=f3&secids=100.NDX")
     nas = f"{u['data']['diff'][0]['f3']:+.2f}%"
-except: pass
+except:
+    try:
+        # 腾讯: 纳指综合指数
+        req = urllib.request.Request('https://qt.gtimg.cn/q=usIXIC', headers={'User-Agent':'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=8) as r:
+            t = r.read().decode('gbk', errors='ignore')
+        m = __import__('re').search(r'(\d{14})~(-?[\d.]+)~(-?[\d.]+)~', t)
+        if m:
+            nas = f"{float(m.group(3)):+.2f}%"
+    except: pass
 
 # 两市合计成交额 = 沪+深
 total = round((diffs[0].get('f6',0) + diffs[1].get('f6',0))/1e8)
