@@ -4,8 +4,8 @@
   "external": {
     "nasdaq": "+1.52%",
     "note": "手动补充",
-    "nikkei": "N/A",
-    "kospi": "N/A"
+    "nikkei": "+0.59%",
+    "kospi": "-2.04%"
   },
   "indices": {
     "上证": {
@@ -64,168 +64,168 @@
       "stock": "恒久退",
       "direction": "光学光电",
       "role": "",
-      "relation": "封板093806 炸板0次"
+      "relation": ""
     },
     {
       "tier": "2板",
       "stock": "赛伍技术",
       "direction": "光伏设备",
       "role": "",
-      "relation": "封板130202 炸板3次"
+      "relation": "炸板3次"
     },
     {
       "tier": "2板",
       "stock": "润建股份",
       "direction": "通信服务",
       "role": "",
-      "relation": "封板130021 炸板7次"
+      "relation": "炸板7次"
     },
     {
       "tier": "2板",
       "stock": "胜通能源",
       "direction": "燃气Ⅱ",
       "role": "",
-      "relation": "封板110809 炸板8次"
+      "relation": "炸板8次"
     },
     {
       "tier": "2板",
       "stock": "盛达资源",
       "direction": "贵金属",
       "role": "",
-      "relation": "封板100815 炸板0次"
+      "relation": ""
     },
     {
       "tier": "2板",
       "stock": "先导基电",
       "direction": "半导体",
       "role": "",
-      "relation": "封板100055 炸板13次"
+      "relation": "炸板13次"
     },
     {
       "tier": "2板",
       "stock": "领先股份",
       "direction": "半导体",
       "role": "",
-      "relation": "封板094958 炸板23次"
+      "relation": "炸板23次"
     },
     {
       "tier": "2板",
       "stock": "鲁信创投",
       "direction": "通用设备",
       "role": "",
-      "relation": "封板094617 炸板14次"
+      "relation": "炸板14次"
     },
     {
       "tier": "2板",
       "stock": "肯特催化",
       "direction": "化学制品",
       "role": "",
-      "relation": "封板094229 炸板2次"
+      "relation": "炸板2次"
     },
     {
       "tier": "2板",
       "stock": "云南能投",
       "direction": "电力",
       "role": "",
-      "relation": "封板093515 炸板5次"
+      "relation": "炸板5次"
     },
     {
       "tier": "2板",
       "stock": "水晶光电",
       "direction": "光学光电",
       "role": "",
-      "relation": "封板092500 炸板0次"
+      "relation": ""
     },
     {
       "tier": "2板",
       "stock": "星网锐捷",
       "direction": "通信设备",
       "role": "",
-      "relation": "封板093257 炸板4次"
+      "relation": "炸板4次"
     },
     {
       "tier": "2板",
       "stock": "新迅达",
       "direction": "互联网电",
       "role": "",
-      "relation": "封板093221 炸板0次"
+      "relation": ""
     },
     {
       "tier": "2板",
       "stock": "东方锆业",
       "direction": "小金属",
       "role": "",
-      "relation": "封板093215 炸板20次"
+      "relation": "炸板20次"
     },
     {
       "tier": "2板",
       "stock": "埃斯顿",
       "direction": "自动化设",
       "role": "",
-      "relation": "封板093148 炸板2次"
+      "relation": "炸板2次"
     },
     {
       "tier": "2板",
       "stock": "康欣新材",
       "direction": "包装印刷",
       "role": "",
-      "relation": "封板093147 炸板0次"
+      "relation": ""
     },
     {
       "tier": "2板",
       "stock": "三美股份",
       "direction": "化学制品",
       "role": "",
-      "relation": "封板093129 炸板15次"
+      "relation": "炸板15次"
     },
     {
       "tier": "2板",
       "stock": "中矿资源",
       "direction": "能源金属",
       "role": "",
-      "relation": "封板093054 炸板0次"
+      "relation": ""
     },
     {
       "tier": "2板",
       "stock": "恒尚节能",
       "direction": "装修装饰",
       "role": "",
-      "relation": "封板092502 炸板0次"
+      "relation": ""
     },
     {
       "tier": "2板",
       "stock": "格科微",
       "direction": "半导体",
       "role": "",
-      "relation": "封板133330 炸板15次"
+      "relation": "炸板15次"
     },
     {
       "tier": "3板",
       "stock": "国华退",
       "direction": "软件开发",
       "role": "最高标",
-      "relation": "封板092500 炸板5次"
+      "relation": "炸板5次"
     },
     {
       "tier": "3板",
       "stock": "海南海药",
       "direction": "化学制药",
       "role": "最高标",
-      "relation": "封板131624 炸板0次"
+      "relation": ""
     },
     {
       "tier": "3板",
       "stock": "浙江东日",
       "direction": "一般零售",
       "role": "最高标",
-      "relation": "封板093017 炸板7次"
+      "relation": "炸板7次"
     },
     {
       "tier": "3板",
       "stock": "多氟多",
       "direction": "化学制品",
       "role": "最高标",
-      "relation": "封板093130 炸板1次"
+      "relation": "炸板1次"
     }
   ],
   "keyMoments": [
