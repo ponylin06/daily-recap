@@ -347,6 +347,42 @@ export default function Recap({ data, onDataUpdate }) {
         />
       </Section> */}
 
+      {/* 调仓记录 */}
+      {d.trades && d.trades.length > 0 && (
+        <section className="bg-[#1a1d27] border border-purple-500/30 rounded-xl p-5 mb-4">
+          <h2 className="text-base font-bold mb-3 flex items-center gap-2">
+            <span className="bg-purple-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">📝</span>
+            <span className="text-purple-400">今日调仓</span>
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr>
+                  <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">时间</th>
+                  <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">操作</th>
+                  <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">标的</th>
+                  <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">价格</th>
+                  <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">数量</th>
+                  <th className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">盈亏</th>
+                </tr>
+              </thead>
+              <tbody>
+                {d.trades.map((t, i) => (
+                  <tr key={i} className="border-b border-[#22252e]">
+                    <td className="py-2 px-3 text-gray-300">{t.time}</td>
+                    <td className={`py-2 px-3 font-semibold ${t.action === '买入' ? 'text-red-400' : 'text-green-500'}`}>{t.action}</td>
+                    <td className="py-2 px-3 text-gray-300">{t.stock}</td>
+                    <td className="py-2 px-3 text-gray-300">{t.price}</td>
+                    <td className="py-2 px-3 text-gray-400">{t.shares}股</td>
+                    <td className={`py-2 px-3 font-semibold ${String(t.pnl).startsWith('+') ? 'text-red-400' : 'text-green-500'}`}>{t.pnl}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
       {/* 18. 增量/腾挪 */}
       <Section num={18} title="增量资金 vs 场内腾挪">
         <p className="text-sm text-gray-300">{d.capitalFlow}</p>
