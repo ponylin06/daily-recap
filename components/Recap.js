@@ -86,15 +86,9 @@ function HoldingsSection() {
       })
   }, [])
 
-  if (h.length === 0) return (
-    <section className="bg-[#1a1d27] border border-amber-500/30 rounded-xl p-5 mb-4">
-      <h2 className="text-base font-bold mb-3 flex items-center gap-2">
-        <span className="bg-amber-500 text-black text-xs px-2 py-0.5 rounded-full font-bold">📌</span>
-        <span className="text-amber-400">我的持仓</span>
-      </h2>
-      <p className="text-sm text-gray-500">加载中...</p>
-    </section>
-  )
+  // 数据没到齐之前不显示
+  const ready = h.length > 0 && h[0].price !== undefined
+  if (!ready) return null
 
   return (
     <section className="bg-[#1a1d27] border border-amber-500/30 rounded-xl p-5 mb-4">
