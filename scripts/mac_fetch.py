@@ -122,7 +122,10 @@ if dn_count > 0 or old.get('downCount',0) == 0: old['downCount'] = dn_count
 if limit_up > 0 or old.get('limitUp',0) == 0: old['limitUp'] = limit_up
 if limit_down > 0 or old.get('limitDown',0) == 0: old['limitDown'] = limit_down
 if pool_status: old['poolStatus'] = pool_status
-if ladder: old['ladder'] = ladder
+if ladder:
+    old['ladder'] = ladder
+    top = ladder[0]
+    old['ceiling'] = {'max': top['tier'], 'stock': top['stock'], 'status': ''}
 old['external'] = old.get('external',{})
 # 只写有效值，不覆盖已有数据
 for key, new_val in [('nasdaq',nas),('nikkei',nikkei),('kospi',kospi)]:
