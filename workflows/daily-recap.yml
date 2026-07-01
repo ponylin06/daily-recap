@@ -1,12 +1,7 @@
 name: 每日复盘自动抓取
 
 on:
-  schedule:
-    # 北京时间 08:00 = UTC 00:00，只抓美股数据
-    - cron: '0 0 * * 1-5'
-    # 北京时间 16:00 = UTC 08:00，全量抓取A股+写入复盘
-    - cron: '0 8 * * 1-5'
-  workflow_dispatch:
+  workflow_dispatch:  # 仅手动触发，定时已由Mac接管
 
 jobs:
   # ===== 早上 8 点(北京)：只抓美股 =====
@@ -44,8 +39,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
-      - run: pip install requests
       - name: 全量抓取复盘数据
+        env:
+          DEEPSEEK_KEY: ${{ secrets.DEEPSEEK_KEY }}
         run: python3 scripts/fetch_data.py
       - name: 提交复盘数据
         run: |
