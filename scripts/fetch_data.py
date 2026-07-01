@@ -9,6 +9,18 @@ TODAY = NOW.strftime('%Y-%m-%d')
 W = ['周一','周二','周三','周四','周五','周六','周日'][NOW.weekday()]
 if NOW.weekday() >= 5: print("非交易日"); sys.exit(0)
 
+# 如果Mac已经生成了数据，不覆盖
+import os as _os
+data_dir = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))), 'data')
+today_file = _os.path.join(data_dir, f'{TODAY}.json')
+if _os.path.exists(today_file):
+    with open(today_file) as f:
+        existing = json.load(f)
+    # Mac脚本写的标志：有涨跌停数据
+    if existing.get('limitUp', 0) > 0 or existing.get('external', {}).get('kospi'):
+        print("Mac已生成完整数据，跳过")
+        sys.exit(0)
+
 H = {'User-Agent': 'Mozilla/5.0'}
 def tx(code):
     req = urllib.request.Request(f'https://qt.gtimg.cn/q={code}', headers=H)
