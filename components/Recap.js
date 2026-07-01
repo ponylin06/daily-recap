@@ -72,9 +72,7 @@ function HoldingsSection() {
         const items = []
         for (const item of (d.holdings || [])) {
           try {
-            const r = await fetch(`https://qt.gtimg.cn/q=${item.code}`, {
-              headers: { 'User-Agent': 'Mozilla/5.0' }
-            })
+            const r = await fetch(`/api/live?code=${item.code}`)
             const t = await r.text()
             const parts = t.split('~')
             const price = parseFloat(parts[3]) || 0
