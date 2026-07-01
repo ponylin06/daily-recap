@@ -28,6 +28,7 @@ def em(url):
 limit_up = limit_down = up_count = dn_count = 0
 try:
     import akshare as ak
+    import pandas as pd
     import warnings; warnings.filterwarnings('ignore')
     df = ak.stock_market_activity_legu()
     row = df.set_index('item')['value']
@@ -93,7 +94,25 @@ try:
 except Exception as e:
     print(f'连板梯队: {e}')
 
-# ===== 5. 池子 =====
+# ===== 5. 盘中关键节点（从涨停数据推断） =====
+key_moments = []
+try:
+    # 封板时间分布
+    df['封板时'] = pd.to_datetime(df['首次封板时间'], format='%H%M%S', errors='coerce')
+    morning = df[(df['封板时'].dt.hour >= 9) & (df['封板时'].dt.hour < 11)]
+    afternoon = df[(df['封板时'].dt.hour >= 13)]
+    if len(morning) > 50:
+        key_moments.append({'time': '早盘', 'event': f'涨停{len(morning)}只集中封板', 'signal': '早盘做多积极'})
+    if len(afternoon) > 20:
+        key_moments.append({'time': '午后', 'event': f'午后{len(afternoon)}只封板', 'signal': '资金午后回流'})
+    # 炸板统计
+    blown = df[df['炸板次数'] > 2]
+    if len(blown) > 10:
+        key_moments.append({'time': '全天', 'event': f'{len(blown)}只炸板超2次', 'signal': '分歧较大'})
+except Exception as e:
+    print(f'关键节点: {e}')
+
+# ===== 6. 池子 =====
 POOL = [('sh600176','中国巨石'),('sh603986','兆易创新'),('sz000811','冰轮环境'),
         ('sh605111','新洁能'),('sz002384','东山精密'),('sz002281','光迅科技'),
         ('sz000636','风华高科'),('sh600183','生益科技')]
@@ -124,6 +143,7 @@ if dn_count > 0 or old.get('downCount',0) == 0: old['downCount'] = dn_count
 if limit_up > 0 or old.get('limitUp',0) == 0: old['limitUp'] = limit_up
 if limit_down > 0 or old.get('limitDown',0) == 0: old['limitDown'] = limit_down
 if pool_status: old['poolStatus'] = pool_status
+if key_moments: old['keyMoments'] = key_moments
 if ladder:
     old['ladder'] = ladder
     top_tier = ladder[0]['tier']
