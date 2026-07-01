@@ -266,7 +266,7 @@ export default function Recap({ data, onDataUpdate }) {
         <p className="text-sm text-gray-300">{d.visibleLines}</p>
       </Section>
 
-      {/* 17. 池子 */}
+      {/* 17. 池子（暂时隐藏）
       <Section num={17} title="博主池子追踪">
         <DataTable
           headers={['状态', '标的', '今日', '5日线']}
@@ -277,7 +277,7 @@ export default function Recap({ data, onDataUpdate }) {
             p.ma5
           ])}
         />
-      </Section>
+      </Section> */}
 
       {/* 18. 增量/腾挪 */}
       <Section num={18} title="增量资金 vs 场内腾挪">
