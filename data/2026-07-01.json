@@ -10,17 +10,17 @@
     "上证": {
       "close": 4138.65,
       "chg": "+1.08%",
-      "vol": 4
+      "vol": 0
     },
     "深成指": {
       "close": 16271.32,
       "chg": "+0.41%",
-      "vol": 6
+      "vol": 0
     },
     "创业板": {
       "close": 4325.67,
       "chg": "-0.39%",
-      "vol": 2
+      "vol": 0
     },
     "科创50": {
       "close": 2201.01,
@@ -33,7 +33,7 @@
       "vol": 0
     }
   },
-  "totalVolume": "0.00万亿",
+  "totalVolume": "待刷新",
   "upCount": 0,
   "downCount": 0,
   "limitUp": 0,
