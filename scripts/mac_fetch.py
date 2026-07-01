@@ -58,7 +58,7 @@ for code, name in idx_cfg:
         m = re.search(r'(\d{14})~(-?[\d.]+)~(-?[\d.]+)~', t)
         chg = float(m.group(3)) if m else 0
         amt = float(parts[37])/1e8 if len(parts) > 37 and parts[37] else 0
-        indices[name] = {'close': round(price,2), 'chg': f'{chg:+.2f}%', 'vol': round(amt)}
+        indices[name] = {'close': round(price,2), 'chg': f'{chg:+.2f}%', 'vol': amt}
     except: indices[name] = {'close':0,'chg':'N/A','vol':0}
 
 nas = "N/A"
@@ -68,7 +68,7 @@ try:
     if m: nas = f"{float(m.group(3)):+.2f}%"
 except: pass
 
-total_vol = sum(indices.get(n,{}).get('vol',0) for n in ['上证','深成指','创业板'])
+total_vol = indices.get('上证',{}).get('vol',0) + indices.get('深成指',{}).get('vol',0)
 
 # ===== 4. 池子 =====
 POOL = [('sh600176','中国巨石'),('sh603986','兆易创新'),('sz000811','冰轮环境'),
