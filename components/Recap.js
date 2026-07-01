@@ -62,12 +62,50 @@ function StatBlock({ label, value, color }) {
   )
 }
 
-export default function Recap({ data }) {
+export default function Recap({ data, onDataUpdate }) {
   if (!data) return <div className="text-center text-gray-500 py-20">未找到该日期的复盘数据</div>
-  const d = data
+  const [d, setD] = useState(data)
+  useEffect(() => { setD(data) }, [data])
+  const [aiLoading, setAiLoading] = useState(false)
+  const [aiMsg, setAiMsg] = useState('')
+
+  const handleLiveAI = async () => {
+    setAiLoading(true); setAiMsg('')
+    try {
+      const r = await fetch('/api/ai-draft', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ data: d, pass: 'live' })
+      })
+      const res = await r.json()
+      if (res.error) { setAiMsg('生成失败: '+res.error); setAiLoading(false); return }
+      // 把 AI 结果直接填进当前页面
+      if (res.visibleLines) d.visibleLines = res.visibleLines
+      if (res.hiddenLines) d.hiddenLines = res.hiddenLines
+      if (res.capitalFlow) d.capitalFlow = res.capitalFlow
+      if (res.strategy) d.strategy = res.strategy
+      if (res['sentiment.note']) d.sentiment = d.sentiment || {}; d.sentiment.note = res['sentiment.note']
+      if (res['cycle.nature']) d.cycle = d.cycle || {}; d.cycle.nature = res['cycle.nature']
+      if (res.risks) d.risks = res.risks
+      setAiMsg('✅ 分析已生成')
+      const updated = JSON.parse(JSON.stringify(d))
+      setD(updated)
+      if (onDataUpdate) onDataUpdate(updated)
+    } catch { setAiMsg('生成失败') }
+    setAiLoading(false)
+  }
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
+
+      {/* AI 实时分析按钮 */}
+      <div className="flex items-center gap-3 mb-4">
+        <button onClick={handleLiveAI} disabled={aiLoading}
+          className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition"
+          style={{ background: aiLoading ? '#374151' : '#8b5cf6' }}>
+          {aiLoading ? '⏳ AI分析中...' : '🤖 AI实时分析'}
+        </button>
+        {aiMsg && <span className="text-sm" style={{color: aiMsg.includes('✅')?'#fca5a5':'#9ca3af'}}>{aiMsg}</span>}
+      </div>
 
       {/* 1. 外围速览 */}
       <Section num={1} title="外围速览">
