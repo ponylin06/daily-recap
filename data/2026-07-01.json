@@ -4,8 +4,8 @@
   "external": {
     "nasdaq": "+1.52%",
     "note": "手动补充",
-    "nikkei": "+0.59%",
-    "kospi": "-2.04%"
+    "nikkei": "N/A",
+    "kospi": "N/A"
   },
   "indices": {
     "上证": {
@@ -29,7 +29,7 @@
       "vol": 0
     }
   },
-  "totalVolume": "5.00万亿",
+  "totalVolume": "4.00万亿",
   "upCount": 4043,
   "downCount": 1110,
   "limitUp": 224,
