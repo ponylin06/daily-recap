@@ -75,15 +75,17 @@ ladder = []
 try:
     import akshare as ak
     df = ak.stock_zt_pool_em(date=TODAY.replace('-',''))
-    df_lb = df[df['连板数']>=2].sort_values('连板数', ascending=False)
-    for lb, grp in df_lb.groupby('连板数'):
+    df_lb = df[df['连板数']>=2].copy()
+    df_lb['连板数'] = df_lb['连板数'].astype(int)
+    df_lb = df_lb.sort_values('连板数', ascending=False)
+    for lb, grp in sorted(df_lb.groupby('连板数'), reverse=True):
         for _, row in grp.iterrows():
             ladder.append({
                 'tier': f'{int(lb)}板',
                 'stock': row['名称'],
                 'direction': row.get('所属行业',''),
                 'role': '最高标' if lb == df_lb['连板数'].max() else '',
-                'relation': f"封板{row.get('首次封板时间','?')} 炸板{int(row.get('炸板次数',0))}次"
+                'relation': f"炸板{int(row.get('炸板次数',0))}次" if int(row.get('炸板次数',0)) > 0 else ''
             })
     print(f'连板梯队: {len(ladder)}只')
 except Exception as e:
@@ -114,16 +116,20 @@ if os.path.exists(filepath):
 else: old = {}
 
 old['indices'] = indices
-old['upCount'] = up_count
-old['downCount'] = dn_count
-old['limitUp'] = limit_up
-old['limitDown'] = limit_down
-old['poolStatus'] = pool_status
-old['ladder'] = ladder
+# 有数据才更新，不覆盖已有有效值
+if up_count > 0 or old.get('upCount',0) == 0: old['upCount'] = up_count
+if dn_count > 0 or old.get('downCount',0) == 0: old['downCount'] = dn_count
+if limit_up > 0 or old.get('limitUp',0) == 0: old['limitUp'] = limit_up
+if limit_down > 0 or old.get('limitDown',0) == 0: old['limitDown'] = limit_down
+if pool_status: old['poolStatus'] = pool_status
+if ladder: old['ladder'] = ladder
 old['external'] = old.get('external',{})
-old['external']['nasdaq'] = nas
-old['external']['nikkei'] = nikkei
-old['external']['kospi'] = kospi
+# 只写有效值，不覆盖已有数据
+for key, new_val in [('nasdaq',nas),('nikkei',nikkei),('kospi',kospi)]:
+    if new_val and new_val != 'N/A':
+        old['external'][key] = new_val
+    elif key not in old['external'] or old['external'][key] == 'N/A':
+        old['external'][key] = old['external'].get(key, 'N/A')
 old['totalVolume'] = f'{total_vol:.2f}万亿'
 if 'sentiment' in old:
     old['sentiment']['limitUp'] = limit_up
