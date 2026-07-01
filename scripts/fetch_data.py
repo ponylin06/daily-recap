@@ -18,6 +18,7 @@ def tx(code):
 # ===== 指数 =====
 idx_cfg = [('sh000001','上证'),('sz399001','深成指'),('sz399006','创业板'),('sh000688','科创50'),('bj899050','北证50')]
 indices = {}
+total_vol = 0
 for code, name in idx_cfg:
     try:
         t = tx(code)
@@ -25,7 +26,10 @@ for code, name in idx_cfg:
         price = float(parts[3]) if len(parts) > 3 else 0
         m = re.search(r'(\d{14})~(-?[\d.]+)~(-?[\d.]+)~', t)
         chg = float(m.group(3)) if m else 0
+        # 腾讯parts[37] = 成交额(万元)
+        amt = float(parts[37])/1e8 if len(parts) > 37 and parts[37] else 0
         indices[name] = {'close': round(price,2), 'chg': f'{chg:+.2f}%', 'vol': 0}
+        if name in ['上证','深成指','创业板']: total_vol += amt
     except:
         indices[name] = {'close': 0, 'chg': 'N/A', 'vol': 0}
 
