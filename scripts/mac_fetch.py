@@ -76,6 +76,8 @@ try:
     import akshare as ak
     df = ak.stock_zt_pool_em(date=TODAY.replace('-',''))
     df_lb = df[df['连板数']>=2].copy()
+    # 排除退市股和ST股
+    df_lb = df_lb[~df_lb['名称'].str.contains('退|ST|\\*ST', na=False)]
     df_lb['连板数'] = df_lb['连板数'].astype(int)
     df_lb = df_lb.sort_values('连板数', ascending=False)
     for lb, grp in sorted(df_lb.groupby('连板数'), reverse=True):
@@ -124,8 +126,9 @@ if limit_down > 0 or old.get('limitDown',0) == 0: old['limitDown'] = limit_down
 if pool_status: old['poolStatus'] = pool_status
 if ladder:
     old['ladder'] = ladder
-    top = ladder[0]
-    old['ceiling'] = {'max': top['tier'], 'stock': top['stock'], 'status': ''}
+    top_tier = ladder[0]['tier']
+    top_stocks = [x['stock'] for x in ladder if x['tier'] == top_tier]
+    old['ceiling'] = {'max': top_tier, 'stock': '、'.join(top_stocks), 'status': ''}
 old['external'] = old.get('external',{})
 # 只写有效值，不覆盖已有数据
 for key, new_val in [('nasdaq',nas),('nikkei',nikkei),('kospi',kospi)]:
