@@ -1,6 +1,10 @@
 {
   "holdings": [
-    { "stock": "有研新材", "code": "sh600206", "cost": 62.52, "shares": 200 },
-    { "stock": "半导体设备ETF", "code": "sh561980", "cost": 0.927, "shares": 6700 }
+    {
+      "stock": "半导体设备ETF",
+      "code": "sh561980",
+      "cost": 0.927,
+      "shares": 6700
+    }
   ]
 }
