@@ -77,6 +77,11 @@
   ],
   "keyMoments": [
     {
+      "time": "13:52",
+      "event": "有研新材59.95清仓",
+      "signal": "-4.1%止损，防御"
+    },
+    {
       "time": "早盘",
       "event": "涨停72只集中封板",
       "signal": "早盘做多积极"
@@ -353,5 +358,52 @@
       "shares": 200,
       "pnl": "-4.1%"
     }
-  ]
+  ],
+  "internalExternal": [
+    {
+      "period": "7.01",
+      "internal": "风格切换",
+      "external": "纳指+1.52%",
+      "result": "金融崛起、科技回调"
+    },
+    {
+      "period": "7.02",
+      "internal": "科技继续走弱",
+      "external": "韩国-7.89%暴跌",
+      "result": "外围崩盘拖累A股"
+    }
+  ],
+  "newsEvents": [
+    {
+      "event": "韩国KOSPI暴跌-7.89%",
+      "impact": "利空",
+      "sector": "整体",
+      "performance": "亚太普跌，A股承压"
+    },
+    {
+      "event": "日经-2.47%",
+      "impact": "利空",
+      "sector": "整体",
+      "performance": "外围环境极差"
+    },
+    {
+      "event": "半导体设备ETF抗跌",
+      "impact": "中性",
+      "sector": "半导体",
+      "performance": "相对防御"
+    }
+  ],
+  "seeSaw": [
+    {
+      "strong": "医药/防御",
+      "weak": "科技/半导体",
+      "stage": "韩国暴跌→避险情绪升温"
+    },
+    {
+      "strong": "公用事业/红利",
+      "weak": "高位连板",
+      "stage": "资金流向低估值"
+    }
+  ],
+  "selfQA": "1. 有研新材-4.1%止损✅ 砍得果断\n2. ETF持有不动✅ 防御姿态正确\n3. 持仓偏见：对半导体过于乐观？韩国-7.89%需要重新评估风险"
 }
