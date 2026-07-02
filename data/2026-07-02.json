@@ -213,5 +213,69 @@
     "nikkei": "-1.25%",
     "kospi": "-3.89%"
   },
-  "totalVolume": "2.18万亿"
+  "totalVolume": "2.18万亿",
+  "news": [
+    {
+      "title": "科技领跑！上半年A股IPO融资大增86% 71股创纪录零破发",
+      "time": "2026-07-02 11:13",
+      "link": "https://finance.eastmoney.com/a/202607023791631794.html"
+    },
+    {
+      "title": "新能源产业链需求持续释放！工业有色ETF易方达（159032）涨2.47%，矿企加速布局电池产业，铜铝锡镍工业金属全线走强",
+      "time": "2026-07-02 11:06",
+      "link": "https://finance.eastmoney.com/a/202607023791640338.html"
+    },
+    {
+      "title": "A股大跌中有色金属逆势崛起！有色ETF易方达（560470）涨2.79%，贵金属掀起涨停潮，稀土钨矿齐飞，避险逻辑与资源重估共振",
+      "time": "2026-07-02 11:05",
+      "link": "https://finance.eastmoney.com/a/202607023791639732.html"
+    },
+    {
+      "title": "半导体设备持续走弱 北方华创逼近跌停",
+      "time": "2026-07-02 11:04",
+      "link": "https://finance.eastmoney.com/a/202607023791630644.html"
+    },
+    {
+      "title": "苹果被曝正洽谈采购长鑫 + 长江存储芯片 供应中国市场设备",
+      "time": "2026-07-02 11:02",
+      "link": "https://finance.eastmoney.com/a/202607023791629961.html"
+    },
+    {
+      "title": "沪深两市成交额突破2万亿元 较上一日此时缩量超1300亿元",
+      "time": "2026-07-02 11:01",
+      "link": "https://finance.eastmoney.com/a/202607023791628536.html"
+    }
+  ],
+  "globalNews": [
+    {
+      "title": "川崎重工将通过发行新股和债券筹集超10亿美元投资AI",
+      "time": "2026-07-02 11:09",
+      "link": "https://finance.eastmoney.com/a/202607023791637060.html"
+    },
+    {
+      "title": "日本上个财政年度的税收预计将达到约84万亿日元 连续6年创下新高",
+      "time": "2026-07-02 11:09",
+      "link": "https://finance.eastmoney.com/a/202607023791636964.html"
+    },
+    {
+      "title": "沃什表示过去四周通胀预期已下降，有色ETF鹏华涨超2%",
+      "time": "2026-07-02 10:57",
+      "link": "https://finance.eastmoney.com/a/202607023791627288.html"
+    },
+    {
+      "title": "AI芯片初创Oxmiq获3500万美元融资 用于开发新型芯片架构和软件",
+      "time": "2026-07-02 10:51",
+      "link": "https://finance.eastmoney.com/a/202607023791621897.html"
+    },
+    {
+      "title": "韩国对涉华碳钢及合金钢热轧板卷征收反倾销税",
+      "time": "2026-07-02 10:48",
+      "link": "https://finance.eastmoney.com/a/202607023791618643.html"
+    },
+    {
+      "title": "人工智能ETF华富(515980)单日获资金净流入超6500万元，2026年AI需求持续超预期，韩国宣布“万亿级”芯片投资计划",
+      "time": "2026-07-02 10:46",
+      "link": "https://finance.eastmoney.com/a/202607023791627081.html"
+    }
+  ]
 }
