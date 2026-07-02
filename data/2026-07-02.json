@@ -277,5 +277,10 @@
       "time": "2026-07-02 10:46",
       "link": "https://finance.eastmoney.com/a/202607023791627081.html"
     }
-  ]
+  ],
+  "sentiment": {
+    "note": ""
+  },
+  "strategy": "",
+  "visibleLines": ""
 }
