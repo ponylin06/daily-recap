@@ -5,14 +5,7 @@ import Briefing from '../components/Briefing'
 import Weekly from '../components/Weekly'
 import { fetchLiveData } from '../lib/liveData'
 
-function MainContent({ date, data }) {
-  const [view, setView] = useState('recap')
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setView(new URLSearchParams(window.location.search).get('view') || 'recap')
-    }
-  }, [date])
-
+function MainContent({ date, data, view }) {
   if (!data && view === 'recap') return (
     <div className="text-center text-gray-500 py-20">
       <p className="text-lg mb-2">该日期暂无复盘数据</p>
@@ -30,6 +23,12 @@ export default function Home() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [dates, setDates] = useState([])
+  const [view, setView] = useState('recap')
+
+  useEffect(() => {
+    const v = new URLSearchParams(window.location.search).get('view')
+    if (v) setView(v)
+  }, [])
 
   useEffect(() => {
     // 获取所有可用的复盘日期
@@ -113,15 +112,12 @@ export default function Home() {
             ['recap','📊 复盘'],
             ['briefing','🌅 简报'],
             ['weekly','📈 周报'],
-          ].map(([view, label]) => {
-            const currentView = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('view') || 'recap' : 'recap'
-            return (
-              <a key={view} href={`?date=${date}&view=${view}`}
-                className={`px-3 py-1 text-xs rounded-full font-medium transition ${currentView === view ? 'bg-amber-500 text-black' : 'text-gray-400 hover:text-gray-200'}`}>
-                {label}
-              </a>
-            )
-          })}
+          ].map(([v, label]) => (
+            <button key={v} onClick={() => setView(v)}
+              className={`px-3 py-1 text-xs rounded-full font-medium transition ${view === v ? 'bg-amber-500 text-black' : 'text-gray-400 hover:text-gray-200'}`}>
+              {label}
+            </button>
+          ))}
         </div>
 
         <div className="flex items-center justify-center gap-3 mt-4">
@@ -159,7 +155,7 @@ export default function Home() {
       {loading ? (
         <div className="text-center text-gray-500 py-20">加载中...</div>
       ) : (
-        <MainContent date={date} data={data} />
+        <MainContent date={date} data={data} view={view} />
       )}
     </>
   )
