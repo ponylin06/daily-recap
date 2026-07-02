@@ -62,6 +62,52 @@ function StatBlock({ label, value, color }) {
   )
 }
 
+function AlertsBanner({ data }) {
+  const alerts = []
+  const ext = data.external || {}
+  const kc = data.indices?.['科创50']
+  const lu = data.limitUp || 0
+  const ld = data.limitDown || 0
+  const vol = data.totalVolume || ''
+
+  // 韩国暴跌
+  const kospi = ext.kospi || ''
+  const kospiVal = parseFloat(kospi) || 0
+  if (kospiVal < -5) alerts.push({ icon: '🔴', text: `韩国暴跌${kospi}，外围系统性风险` })
+  else if (kospiVal < -3) alerts.push({ icon: '🟡', text: `韩国${kospi}，外围偏弱` })
+
+  // 涨停极端
+  if (lu > 200) alerts.push({ icon: '🟡', text: `涨停${lu}只=高潮日，次日分化不接力` })
+  else if (lu < 80) alerts.push({ icon: '🔴', text: `涨停仅${lu}只=短线冰点，控制仓位` })
+
+  // 跌停
+  if (ld > 60) alerts.push({ icon: '🔴', text: `跌停${ld}只，亏钱效应扩散` })
+
+  // 科创50
+  const kcChg = parseFloat(kc?.chg) || 0
+  if (kcChg < -5) alerts.push({ icon: '🔴', text: `科创50${kc?.chg}，科技恐慌性杀跌` })
+  else if (kcChg < -3) alerts.push({ icon: '🟡', text: `科创50${kc?.chg}，科技承压注意风险` })
+  else if (kcChg > 3) alerts.push({ icon: '🟢', text: `科创50${kc?.chg}，科技强势修复` })
+
+  // 成交额
+  if (vol.includes('3.8') || vol.includes('3.9') || vol.includes('4')) alerts.push({ icon: '🟡', text: `成交${vol}，逼近4万亿高潮预警` })
+
+  if (alerts.length === 0) return null
+
+  return (
+    <div className="mb-4 space-y-1">
+      {alerts.map((a, i) => (
+        <div key={i} className="px-4 py-2 rounded-lg text-sm font-medium"
+          style={{ background: a.icon === '🔴' ? 'rgba(239,68,68,0.12)' : a.icon === '🟡' ? 'rgba(234,179,8,0.12)' : 'rgba(34,197,94,0.12)',
+                   color: a.icon === '🔴' ? '#fca5a5' : a.icon === '🟡' ? '#fde68a' : '#86efac',
+                   border: '1px solid ' + (a.icon === '🔴' ? 'rgba(239,68,68,0.3)' : a.icon === '🟡' ? 'rgba(234,179,8,0.3)' : 'rgba(34,197,94,0.3)') }}>
+          {a.icon} {a.text}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function PerformanceSection() {
   const [p, setP] = useState(null)
   useEffect(() => {
@@ -209,6 +255,9 @@ export default function Recap({ data, onDataUpdate }) {
 
       {/* AI自动分析：页面加载时若缺分析则自动生成 */}
       {aiMsg && <div className="text-center mb-2"><span className="text-xs" style={{color: aiMsg.includes('✅')?'#fca5a5':'#9ca3af'}}>{aiMsg}</span></div>}
+
+      {/* 智能警报 */}
+      <AlertsBanner data={d} />
 
       {/* 1. 外围速览 */}
       <Section num={1} title="外围速览">
