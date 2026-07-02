@@ -1,7 +1,29 @@
 import { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 import Recap from '../components/Recap'
+import Briefing from '../components/Briefing'
+import Weekly from '../components/Weekly'
 import { fetchLiveData } from '../lib/liveData'
+
+function MainContent({ date, data }) {
+  const [view, setView] = useState('recap')
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setView(new URLSearchParams(window.location.search).get('view') || 'recap')
+    }
+  }, [date])
+
+  if (!data && view === 'recap') return (
+    <div className="text-center text-gray-500 py-20">
+      <p className="text-lg mb-2">该日期暂无复盘数据</p>
+      <p className="text-sm">在 data/ 目录下创建对应 JSON 即可</p>
+    </div>
+  )
+
+  if (view === 'briefing') return <Briefing />
+  if (view === 'weekly') return <Weekly date={date} />
+  return <Recap data={data} />
+}
 
 export default function Home() {
   const [date, setDate] = useState('')
@@ -85,6 +107,23 @@ export default function Home() {
       <header className="text-center py-6 border-b border-gray-800">
         <h1 className="text-xl font-bold text-gray-200">📊 每日复盘 — {date || '加载中...'}</h1>
 
+        {/* 导航标签 */}
+        <div className="flex items-center justify-center gap-1 mt-3">
+          {[
+            ['recap','📊 复盘'],
+            ['briefing','🌅 简报'],
+            ['weekly','📈 周报'],
+          ].map(([view, label]) => {
+            const currentView = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('view') || 'recap' : 'recap'
+            return (
+              <a key={view} href={`?date=${date}&view=${view}`}
+                className={`px-3 py-1 text-xs rounded-full font-medium transition ${currentView === view ? 'bg-amber-500 text-black' : 'text-gray-400 hover:text-gray-200'}`}>
+                {label}
+              </a>
+            )
+          })}
+        </div>
+
         <div className="flex items-center justify-center gap-3 mt-4">
           <button
             onClick={() => {
@@ -119,13 +158,8 @@ export default function Home() {
 
       {loading ? (
         <div className="text-center text-gray-500 py-20">加载中...</div>
-      ) : data ? (
-        <Recap data={data} />
       ) : (
-        <div className="text-center text-gray-500 py-20">
-          <p className="text-lg mb-2">该日期暂无复盘数据</p>
-          <p className="text-sm">在 data/ 目录下创建 {date}.json 即可</p>
-        </div>
+        <MainContent date={date} data={data} />
       )}
     </>
   )
