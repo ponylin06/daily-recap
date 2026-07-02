@@ -62,6 +62,37 @@ function StatBlock({ label, value, color }) {
   )
 }
 
+function PerformanceSection() {
+  const [p, setP] = useState(null)
+  useEffect(() => {
+    fetch('/api/performance').then(r => r.json()).then(setP)
+  }, [])
+  if (!p || p.totalTrades === 0) return null
+  return (
+    <details className="mb-4 opacity-80 hover:opacity-100 transition">
+      <summary className="text-sm text-gray-400 cursor-pointer py-2">📈 交易绩效（{p.totalTrades}笔）</summary>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-2 p-4 bg-[#1a1d27] rounded-xl border border-[#2a2d37]">
+        <div className="text-center">
+          <div className="text-xs text-gray-500">总盈亏</div>
+          <div className={`font-bold ${String(p.totalPnL).startsWith('-')?'text-green-500':'text-red-400'}`}>{p.totalPnL}</div>
+        </div>
+        <div className="text-center">
+          <div className="text-xs text-gray-500">胜率</div>
+          <div className="text-gray-200 font-bold">{p.winRate}</div>
+        </div>
+        <div className="text-center">
+          <div className="text-xs text-gray-500">最佳</div>
+          <div className="text-red-400 font-bold text-sm">{p.best?.pnl} {p.best?.stock}</div>
+        </div>
+        <div className="text-center">
+          <div className="text-xs text-gray-500">最差</div>
+          <div className="text-green-500 font-bold text-sm">{p.worst?.pnl} {p.worst?.stock}</div>
+        </div>
+      </div>
+    </details>
+  )
+}
+
 function HoldingsSection() {
   const [h, setH] = useState([])
 
@@ -463,6 +494,9 @@ export default function Recap({ data, onDataUpdate }) {
           <p>博主复盘帖 — 量化信号/深度分析 (手动)</p>
         </div>
       </details>
+
+      {/* 交易绩效 */}
+      <PerformanceSection />
 
       <footer className="text-center text-xs text-gray-600 py-8">
         daily-recap · deploy on Vercel
