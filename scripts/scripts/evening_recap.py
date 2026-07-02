@@ -44,10 +44,15 @@ if not KEY:
 if KEY:
     idx = d.get('indices', {})
     ext = d.get('external', {})
+    for k in ['sentiment','cycle','external']:
+        if k not in d: d[k] = {}
+    if 'indices' not in d: d['indices'] = {}
+    if not d.get('strategy'): d['strategy'] = ''
+    if not d.get('visibleLines'): d['visibleLines'] = ''
     sent = d.get('sentiment', {})
     ceiling = d.get('ceiling', {})
     ladder = d.get('ladder', [])
-    risks_text = '、'.join(d.get('risks', [])[:3])
+    risks_text = '、'.join(d.get('risks', [])[:3] if d.get('risks') else [])
 
     ladder_summary = '、'.join([f"{x['tier']} {x['stock']}" for x in ladder[:5]])
 
@@ -116,6 +121,28 @@ try:
     print(f'新闻: A股{len(cn_news)}条 全球{len(gl_news)}条')
 except Exception as e:
     print(f'新闻失败: {e}')
+
+# 竞价复盘（从涨停数据反推）
+if not d.get('auction'):
+    try:
+        import akshare as ak, pandas as pd
+        df = ak.stock_zt_pool_em(date=TODAY.replace('-',''))
+        df['封板时'] = pd.to_datetime(df['首次封板时间'], format='%H%M%S', errors='coerce')
+        early = df[(df['封板时'].dt.hour==9)&(df['封板时'].dt.minute<=35)]
+        late = df[(df['封板时'].dt.hour>=13)]
+        auction_info = [{'signal':f'竞价期{len(early)}只快速封板','performance':f'早期封板率{len(early)}/{len(df)}',
+                         'meaning':'竞价做多积极' if len(early)>15 else '竞价分歧较大'}]
+        if len(late)>10:
+            auction_info.append({'signal':f'午后{len(late)}只封板','performance':'资金午后回流','meaning':'先弱后强'})
+        top3 = early.nlargest(3,'封板资金')
+        for _,r in top3.iterrows():
+            auction_info.append({'signal':f"{r['名称']}封板{r['首次封板时间']}",
+                                 'performance':f"封板资金{r['封板资金']/1e8:.1f}亿",
+                                 'meaning':'竞价抢筹龙头'})
+        d['auction'] = auction_info
+        print(f'竞价: {len(auction_info)}条')
+    except Exception as e:
+        print(f'竞价: {e}')
 
 # 写入
 with open(FILE, 'w') as f: json.dump(d, f, ensure_ascii=False, indent=2)
