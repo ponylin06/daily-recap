@@ -1,85 +1,90 @@
 {
   "indices": {
     "上证": {
-      "close": 4078.65,
-      "chg": "-0.82%",
-      "vol": 9911
+      "close": 4050.97,
+      "chg": "-1.49%",
+      "vol": 14066
     },
     "深成指": {
-      "close": 15812.83,
-      "chg": "-1.90%",
-      "vol": 11916
+      "close": 15582.46,
+      "chg": "-3.33%",
+      "vol": 16737
     },
     "创业板": {
-      "close": 4124.94,
-      "chg": "-3.19%",
-      "vol": 5534
+      "close": 4042.15,
+      "chg": "-5.13%",
+      "vol": 7893
     },
     "科创50": {
-      "close": 2067.01,
-      "chg": "-4.00%",
-      "vol": 1219
+      "close": 2010.0,
+      "chg": "-6.64%",
+      "vol": 1884
     }
   },
-  "upCount": 2897,
-  "downCount": 2132,
-  "limitUp": 133,
-  "limitDown": 5,
+  "upCount": 2571,
+  "downCount": 2499,
+  "limitUp": 161,
+  "limitDown": 34,
   "poolStatus": [
     {
       "status": "🟡",
       "stock": "中国巨石",
-      "today": "-0.23%",
-      "close": 70.11
+      "today": "-2.85%",
+      "close": 68.27
     },
     {
       "status": "🔴",
       "stock": "兆易创新",
-      "today": "-8.47%",
-      "close": 706.59
+      "today": "-10.00%",
+      "close": 694.81
     },
     {
-      "status": "🟡",
+      "status": "🔴",
       "stock": "冰轮环境",
-      "today": "-1.58%",
-      "close": 54.03
+      "today": "-6.39%",
+      "close": 51.39
     },
     {
-      "status": "🟡",
+      "status": "🔴",
       "stock": "新洁能",
-      "today": "-4.56%",
-      "close": 88.0
+      "today": "-8.99%",
+      "close": 83.91
     },
     {
       "status": "🔴",
       "stock": "东山精密",
-      "today": "-9.98%",
-      "close": 221.73
+      "today": "-10.00%",
+      "close": 221.68
     },
     {
       "status": "🔴",
       "stock": "光迅科技",
-      "today": "-9.05%",
-      "close": 220.5
+      "today": "-10.00%",
+      "close": 218.19
     },
     {
       "status": "🔴",
       "stock": "风华高科",
-      "today": "-8.19%",
-      "close": 68.31
+      "today": "-9.96%",
+      "close": 66.99
     },
     {
-      "status": "🟡",
+      "status": "🔴",
       "stock": "生益科技",
-      "today": "-3.48%",
-      "close": 159.06
+      "today": "-7.51%",
+      "close": 152.43
     }
   ],
   "keyMoments": [
     {
       "time": "早盘",
-      "event": "涨停78只集中封板",
+      "event": "涨停74只集中封板",
       "signal": "早盘做多积极"
+    },
+    {
+      "time": "全天",
+      "event": "12只炸板超2次",
+      "signal": "分歧较大"
     }
   ],
   "ladder": [
@@ -102,7 +107,7 @@
       "stock": "东方锆业",
       "direction": "小金属",
       "role": "",
-      "relation": ""
+      "relation": "炸板3次"
     },
     {
       "tier": "3板",
@@ -113,17 +118,31 @@
     },
     {
       "tier": "2板",
-      "stock": "亚威股份",
-      "direction": "通用设备",
+      "stock": "和远气体",
+      "direction": "化学制品",
+      "role": "",
+      "relation": "炸板3次"
+    },
+    {
+      "tier": "2板",
+      "stock": "粤海饲料",
+      "direction": "饲料",
       "role": "",
       "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "金石资源",
+      "direction": "化学制品",
+      "role": "",
+      "relation": "炸板3次"
     },
     {
       "tier": "2板",
       "stock": "福莱新材",
       "direction": "塑料",
       "role": "",
-      "relation": "炸板2次"
+      "relation": "炸板3次"
     },
     {
       "tier": "2板",
@@ -141,22 +160,22 @@
     },
     {
       "tier": "2板",
-      "stock": "和远气体",
-      "direction": "化学制品",
-      "role": "",
-      "relation": "炸板3次"
-    },
-    {
-      "tier": "2板",
-      "stock": "易明医药",
-      "direction": "化学制药",
+      "stock": "争光股份",
+      "direction": "塑料",
       "role": "",
       "relation": "炸板5次"
     },
     {
       "tier": "2板",
-      "stock": "争光股份",
-      "direction": "塑料",
+      "stock": "亚威股份",
+      "direction": "通用设备",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "易明医药",
+      "direction": "化学制药",
       "role": "",
       "relation": "炸板5次"
     },
@@ -197,10 +216,10 @@
     },
     {
       "tier": "2板",
-      "stock": "永太科技",
-      "direction": "化学制品",
+      "stock": "富春染织",
+      "direction": "纺织制造",
       "role": "",
-      "relation": "炸板2次"
+      "relation": ""
     }
   ],
   "ceiling": {
@@ -213,7 +232,7 @@
     "nikkei": "-1.25%",
     "kospi": "-3.89%"
   },
-  "totalVolume": "2.18万亿",
+  "totalVolume": "3.08万亿",
   "news": [
     {
       "title": "科技领跑！上半年A股IPO融资大增86% 71股创纪录零破发",
@@ -279,7 +298,11 @@
     }
   ],
   "sentiment": {
-    "note": ""
+    "note": "",
+    "limitUp": 161,
+    "limitDown": 34,
+    "upCount": 2571,
+    "downCount": 2499
   },
   "strategy": "",
   "visibleLines": ""
