@@ -64,7 +64,15 @@ export default function Home() {
         <title>每日复盘 {date ? `— ${date}` : ''}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>{`
-          body { background: #0f1117; color: #d1d5db; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; }
+          body { background: #0f1117; color: #d1d5db; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; font-size: 14px; }
+          @media (max-width: 640px) {
+            .container { max-width: 100% !important; padding: 8px !important; }
+            table { font-size: 11px; }
+            th, td { padding: 4px 6px !important; }
+            h2 { font-size: 14px !important; }
+            .grid { gap: 6px !important; }
+            section { padding: 12px !important; margin-bottom: 8px !important; }
+          }
         `}</style>
         <script src="https://cdn.tailwindcss.com" async></script>
         <script dangerouslySetInnerHTML={{ __html: `
