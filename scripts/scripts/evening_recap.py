@@ -73,28 +73,53 @@ if KEY:
 输出JSON(不要markdown):
 {{"sentimentNote":"情绪定性(100字)","cycleNature":"周期定性(100字)","visibleLines":"明线方向(3行按强度排序)","hiddenLines":"暗线逻辑(3行资金+轮动)","capitalFlow":"资金判断(2行)","strategy":"明日策略(3行具体操作+方向+节奏)","risks":["风险1","风险2","风险3","风险4"],"volumeProfile":[{{"period":"上午","volume":"","behavior":""}},{{"period":"下午","volume":"","behavior":""}}],"techAnchors":[{{"anchor":"20日线","position":"","status":""}},{{"anchor":"科创50","position":"","status":""}}],"divergence":[{{"dim":"","today":""}},{{"dim":"","today":""}}]}}"""
 
-    try:
-        req = urllib.request.Request('https://api.deepseek.com/v1/chat/completions',
-            data=json.dumps({"model":"deepseek-chat","messages":[{"role":"user","content":prompt}],"max_tokens":1500}).encode(),
-            headers={'Content-Type':'application/json','Authorization':f'Bearer {KEY}'})
-        with urllib.request.urlopen(req, timeout=45) as r:
-            t = json.loads(r.read())['choices'][0]['message']['content']
-        m = re.search(r'\{[\s\S]*\}', t)
-        if m:
-            ai = json.loads(m.group())
-            d['sentiment']['note'] = ai.get('sentimentNote','')
-            d['cycle']['nature'] = ai.get('cycleNature','')
-            d['visibleLines'] = ai.get('visibleLines','')
-            d['hiddenLines'] = ai.get('hiddenLines','')
-            d['capitalFlow'] = ai.get('capitalFlow','')
-            d['strategy'] = ai.get('strategy','')
-            d['risks'] = ai.get('risks', d.get('risks',['']))
-            if ai.get('volumeProfile'): d['volumeProfile'] = ai['volumeProfile']
-            if ai.get('techAnchors'): d['techAnchors'] = ai['techAnchors']
-            if ai.get('divergence'): d['divergence'] = ai['divergence']
-            print("✅ AI完整复盘已生成")
-    except Exception as e:
-        print(f"AI失败: {e}")
+    # 3次重试+退避
+    ai_data = None
+    for attempt in range(3):
+        try:
+            import time
+            req = urllib.request.Request('https://api.deepseek.com/v1/chat/completions',
+                data=json.dumps({"model":"deepseek-chat","messages":[{"role":"user","content":prompt}],"max_tokens":1500}).encode(),
+                headers={'Content-Type':'application/json','Authorization':f'Bearer {KEY}'})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                t = json.loads(r.read())['choices'][0]['message']['content']
+            m = re.search(r'\{[\s\S]*\}', t)
+            if m:
+                ai_data = json.loads(m.group())
+                break
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(3 * (attempt+1))  # 3s, 6s backoff
+                print(f"  AI重试{attempt+1}/2...")
+            else:
+                print(f"  AI失败: {e}")
+
+    if ai_data:
+        d['sentiment']['note'] = ai_data.get('sentimentNote','')
+        d['cycle']['nature'] = ai_data.get('cycleNature','')
+        d['visibleLines'] = ai_data.get('visibleLines','')
+        d['hiddenLines'] = ai_data.get('hiddenLines','')
+        d['capitalFlow'] = ai_data.get('capitalFlow','')
+        d['strategy'] = ai_data.get('strategy','')
+        d['risks'] = ai_data.get('risks', d.get('risks',['']))
+        if ai_data.get('volumeProfile'): d['volumeProfile'] = ai_data['volumeProfile']
+        if ai_data.get('techAnchors'): d['techAnchors'] = ai_data['techAnchors']
+        if ai_data.get('divergence'): d['divergence'] = ai_data['divergence']
+        print("✅ AI完整复盘已生成")
+    else:
+        # 规则兜底
+        print("⚠️ AI失败，使用规则生成")
+        lu, ld = sent.get('limitUp',0), sent.get('limitDown',0)
+        up_cnt = int(d.get('upCount',0))
+        dn_cnt = int(d.get('downCount',0))
+        d['sentiment']['note'] = '涨停%s跌停%s。涨%s跌%s。' % (lu, ld, up_cnt, dn_cnt)
+        d['cycle']['nature'] = '上证%s(%s)成交%s' % (idx['上证']['close'], idx['上证']['chg'], d['totalVolume'])
+        d['visibleLines'] = '待博主复盘补充'
+        d['hiddenLines'] = '待补充'
+        d['capitalFlow'] = '成交' + d['totalVolume']
+        d['strategy'] = '待博主复盘补充'
+        if not d.get('risks') or d['risks'] == ['']:
+            d['risks'] = ['涨停%s只观察连板高度' % lu]
 
 # 财经新闻（金十模式：A股精选 + 全球宏观）
 try:
