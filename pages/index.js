@@ -37,9 +37,14 @@ export default function Home() {
       const res = await fetch(`/api/recap?date=${d}`)
       if (res.ok) {
         const json = await res.json()
-        // 用腾讯API实时刷新数据
-        const live = await fetchLiveData(json)
-        setData(live)
+        // 只在今天才用腾讯实时数据覆盖，历史数据不动
+        const today = new Date().toISOString().split('T')[0]
+        if (d === today) {
+          const live = await fetchLiveData(json)
+          setData(live)
+        } else {
+          setData(json)
+        }
       } else {
         setData(null)
       }
