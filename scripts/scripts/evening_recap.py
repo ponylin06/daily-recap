@@ -56,7 +56,19 @@ if KEY:
 
     ladder_summary = '、'.join([f"{x['tier']} {x['stock']}" for x in ladder[:5]])
 
-    prompt = f"""你是A股复盘助手。根据当日收盘数据，生成完整的每日复盘分析。
+    # 加载知识库
+    kb = ''
+    try:
+        with open(os.path.expanduser('~/recap-site/data/knowledge.json')) as f:
+            kb_data = json.load(f)
+        rules = kb_data.get('rules',[])
+        patterns = kb_data.get('patterns',[])
+        kb = '复盘风格参考(博主常用术语和框架):\n'
+        kb += '规则: ' + '; '.join([r['name']+':'+r['desc'][:60] for r in rules[:8]]) + '\n'
+        kb += '模式: ' + '; '.join([p['name'] for p in patterns[:6]]) + '\n'
+    except: pass
+
+    prompt = f"""你是A股短线复盘助手。{kb}
 
 数据：
 - 上证{idx['上证']['close']}({idx['上证']['chg']}) 深{idx['深成指']['chg']} 创{idx['创业板']['chg']} 科创{idx['科创50']['chg']}
