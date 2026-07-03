@@ -1,13 +1,38 @@
 {
   "date": "2026-07-03",
   "weekday": "周四",
-  "indices": {},
-  "external": {},
-  "totalVolume": "",
-  "upCount": 0,
-  "downCount": 0,
-  "limitUp": 0,
-  "limitDown": 0,
+  "indices": {
+    "上证": {
+      "close": 4056.71,
+      "chg": "+0.69%",
+      "vol": 8114
+    },
+    "深成指": {
+      "close": 15745.79,
+      "chg": "+1.59%",
+      "vol": 9757
+    },
+    "创业板": {
+      "close": 4100.25,
+      "chg": "+2.07%",
+      "vol": 4486
+    },
+    "科创50": {
+      "close": 2014.26,
+      "chg": "+1.36%",
+      "vol": 944
+    }
+  },
+  "external": {
+    "nasdaq": "-0.80%",
+    "nikkei": "+0.74%",
+    "kospi": "+3.11%"
+  },
+  "totalVolume": "1.79万亿",
+  "upCount": 2965,
+  "downCount": 2081,
+  "limitUp": 94,
+  "limitDown": 10,
   "trades": [
     {
       "time": "09:30",
@@ -33,5 +58,160 @@
       "shares": 100,
       "pnl": ""
     }
-  ]
+  ],
+  "poolStatus": [
+    {
+      "status": "🟢",
+      "stock": "中国巨石",
+      "today": "+10.00%",
+      "close": 74.6
+    },
+    {
+      "status": "🟢",
+      "stock": "兆易创新",
+      "today": "+0.60%",
+      "close": 699.01
+    },
+    {
+      "status": "🟢",
+      "stock": "冰轮环境",
+      "today": "+8.78%",
+      "close": 55.36
+    },
+    {
+      "status": "🟢",
+      "stock": "新洁能",
+      "today": "+0.36%",
+      "close": 83.68
+    },
+    {
+      "status": "🟡",
+      "stock": "东山精密",
+      "today": "-0.00%",
+      "close": 221.67
+    },
+    {
+      "status": "🟢",
+      "stock": "光迅科技",
+      "today": "+3.44%",
+      "close": 225.7
+    },
+    {
+      "status": "🟢",
+      "stock": "风华高科",
+      "today": "+0.76%",
+      "close": 67.47
+    },
+    {
+      "status": "🟢",
+      "stock": "生益科技",
+      "today": "+8.29%",
+      "close": 164.54
+    }
+  ],
+  "keyMoments": [
+    {
+      "time": "早盘",
+      "event": "涨停66只集中封板",
+      "signal": "早盘做多积极"
+    }
+  ],
+  "ladder": [
+    {
+      "tier": "4板",
+      "stock": "恒尚节能",
+      "direction": "装修装饰",
+      "role": "最高标",
+      "relation": ""
+    },
+    {
+      "tier": "3板",
+      "stock": "宜宾纸业",
+      "direction": "造纸",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "宝塔实业",
+      "direction": "电力",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "金科股份",
+      "direction": "房地产开",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "雷赛智能",
+      "direction": "自动化设",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "招金黄金",
+      "direction": "贵金属",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "赤峰黄金",
+      "direction": "贵金属",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "三羊马",
+      "direction": "铁路公路",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "中通国脉",
+      "direction": "通信服务",
+      "role": "",
+      "relation": "炸板1次"
+    },
+    {
+      "tier": "2板",
+      "stock": "先锋新材",
+      "direction": "化学制品",
+      "role": "",
+      "relation": "炸板21次"
+    },
+    {
+      "tier": "2板",
+      "stock": "天域生物",
+      "direction": "基础建设",
+      "role": "",
+      "relation": "炸板1次"
+    },
+    {
+      "tier": "2板",
+      "stock": "甘化科工",
+      "direction": "地面兵装",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "日盈电子",
+      "direction": "汽车零部",
+      "role": "",
+      "relation": ""
+    }
+  ],
+  "ceiling": {
+    "max": "4板",
+    "stock": "恒尚节能",
+    "status": ""
+  }
 }
