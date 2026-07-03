@@ -3,24 +3,24 @@
   "weekday": "周四",
   "indices": {
     "上证": {
-      "close": 4056.78,
-      "chg": "+0.69%",
-      "vol": 9392
+      "close": 4058.87,
+      "chg": "+0.74%",
+      "vol": 9398
     },
     "深成指": {
-      "close": 15714.22,
-      "chg": "+1.39%",
+      "close": 15737.51,
+      "chg": "+1.54%",
       "vol": 11205
     },
     "创业板": {
-      "close": 4080.57,
-      "chg": "+1.58%",
+      "close": 4091.57,
+      "chg": "+1.85%",
       "vol": 5188
     },
     "科创50": {
-      "close": 2008.07,
-      "chg": "+1.05%",
-      "vol": 1129
+      "close": 2012.15,
+      "chg": "+1.25%",
+      "vol": 1130
     }
   },
   "external": {
@@ -67,52 +67,52 @@
       "close": 74.6
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "兆易创新",
-      "today": "-0.44%",
-      "close": 691.78
+      "today": "+0.75%",
+      "close": 700.0
     },
     {
       "status": "🟢",
       "stock": "冰轮环境",
-      "today": "+6.37%",
-      "close": 54.13
+      "today": "+6.60%",
+      "close": 54.25
     },
     {
       "status": "🟢",
       "stock": "新洁能",
-      "today": "+0.32%",
-      "close": 83.65
+      "today": "+0.23%",
+      "close": 83.57
     },
     {
       "status": "🟢",
       "stock": "东山精密",
-      "today": "+4.78%",
-      "close": 232.28
+      "today": "+5.40%",
+      "close": 233.66
     },
     {
       "status": "🟢",
       "stock": "光迅科技",
-      "today": "+2.89%",
-      "close": 224.5
+      "today": "+2.90%",
+      "close": 224.52
     },
     {
       "status": "🟡",
       "stock": "风华高科",
-      "today": "-1.42%",
-      "close": 66.01
+      "today": "-1.19%",
+      "close": 66.16
     },
     {
       "status": "🟢",
       "stock": "生益科技",
-      "today": "+7.90%",
-      "close": 163.95
+      "today": "+8.58%",
+      "close": 164.98
     }
   ],
   "keyMoments": [
     {
       "time": "早盘",
-      "event": "涨停69只集中封板",
+      "event": "涨停67只集中封板",
       "signal": "早盘做多积极"
     }
   ],
@@ -179,13 +179,6 @@
       "direction": "通信服务",
       "role": "",
       "relation": "炸板1次"
-    },
-    {
-      "tier": "2板",
-      "stock": "先锋新材",
-      "direction": "化学制品",
-      "role": "",
-      "relation": "炸板31次"
     },
     {
       "tier": "2板",
