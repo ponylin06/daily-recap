@@ -3,36 +3,36 @@
   "weekday": "周四",
   "indices": {
     "上证": {
-      "close": 4061.03,
-      "chg": "+0.80%",
-      "vol": 8275
+      "close": 4056.78,
+      "chg": "+0.69%",
+      "vol": 9392
     },
     "深成指": {
-      "close": 15766.47,
-      "chg": "+1.73%",
-      "vol": 9945
+      "close": 15714.22,
+      "chg": "+1.39%",
+      "vol": 11205
     },
     "创业板": {
-      "close": 4107.84,
-      "chg": "+2.25%",
-      "vol": 4579
+      "close": 4080.57,
+      "chg": "+1.58%",
+      "vol": 5188
     },
     "科创50": {
-      "close": 2018.08,
-      "chg": "+1.55%",
-      "vol": 971
+      "close": 2008.07,
+      "chg": "+1.05%",
+      "vol": 1129
     }
   },
   "external": {
     "nasdaq": "-0.80%",
-    "nikkei": "+0.74%",
-    "kospi": "+3.42%"
+    "nikkei": "+0.80%",
+    "kospi": "+3.55%"
   },
-  "totalVolume": "1.82万亿",
-  "upCount": 2965,
-  "downCount": 2081,
-  "limitUp": 94,
-  "limitDown": 10,
+  "totalVolume": "2.06万亿",
+  "upCount": 3290,
+  "downCount": 1774,
+  "limitUp": 113,
+  "limitDown": 11,
   "trades": [
     {
       "time": "09:30",
@@ -67,52 +67,52 @@
       "close": 74.6
     },
     {
-      "status": "🟢",
+      "status": "🟡",
       "stock": "兆易创新",
-      "today": "+0.06%",
-      "close": 695.2
+      "today": "-0.44%",
+      "close": 691.78
     },
     {
       "status": "🟢",
       "stock": "冰轮环境",
-      "today": "+9.29%",
-      "close": 55.62
+      "today": "+6.37%",
+      "close": 54.13
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "新洁能",
-      "today": "-0.10%",
-      "close": 83.3
+      "today": "+0.32%",
+      "close": 83.65
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "东山精密",
-      "today": "-0.23%",
-      "close": 221.17
+      "today": "+4.78%",
+      "close": 232.28
     },
     {
       "status": "🟢",
       "stock": "光迅科技",
-      "today": "+3.44%",
-      "close": 225.7
+      "today": "+2.89%",
+      "close": 224.5
     },
     {
-      "status": "🟢",
+      "status": "🟡",
       "stock": "风华高科",
-      "today": "+0.12%",
-      "close": 67.04
+      "today": "-1.42%",
+      "close": 66.01
     },
     {
       "status": "🟢",
       "stock": "生益科技",
-      "today": "+8.82%",
-      "close": 165.35
+      "today": "+7.90%",
+      "close": 163.95
     }
   ],
   "keyMoments": [
     {
       "time": "早盘",
-      "event": "涨停70只集中封板",
+      "event": "涨停69只集中封板",
       "signal": "早盘做多积极"
     }
   ],
@@ -182,10 +182,10 @@
     },
     {
       "tier": "2板",
-      "stock": "天域生物",
-      "direction": "基础建设",
+      "stock": "先锋新材",
+      "direction": "化学制品",
       "role": "",
-      "relation": "炸板1次"
+      "relation": "炸板31次"
     },
     {
       "tier": "2板",
@@ -209,10 +209,10 @@
   },
   "sentiment": {
     "note": "今日情绪偏积极，涨停66只集中在早盘封板，显示做多意愿。但成交额1.79万亿，高低切换明显，科技分化。创业板和科创板领涨，权重股中国巨石涨停带动板块，但整体涨停家数未超200，非高潮状态。最高板恒尚节能4板，逼近5板天花板，接力风险增大。",
-    "limitUp": 94,
-    "limitDown": 10,
-    "upCount": 2965,
-    "downCount": 2081
+    "limitUp": 113,
+    "limitDown": 11,
+    "upCount": 3290,
+    "downCount": 1774
   },
   "cycle": {
     "nature": "当前周期处于退潮尾声或震荡修复期。最高板4板，连板高度受限于5板天花板，3板以上接力风险大。金融+科技未同步杀跌，创业板强于主板，指数站稳20日线，上升趋势确认。但缩量+科技涨+4000跌的腾挪信号未出现，需关注增量资金持续性。"
