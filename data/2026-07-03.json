@@ -3,36 +3,36 @@
   "weekday": "周四",
   "indices": {
     "上证": {
-      "close": 4058.87,
-      "chg": "+0.74%",
-      "vol": 9398
+      "close": 4064.33,
+      "chg": "+0.88%",
+      "vol": 11883
     },
     "深成指": {
-      "close": 15737.51,
-      "chg": "+1.54%",
-      "vol": 11205
+      "close": 15746.14,
+      "chg": "+1.60%",
+      "vol": 14035
     },
     "创业板": {
-      "close": 4091.57,
-      "chg": "+1.85%",
-      "vol": 5188
+      "close": 4073.94,
+      "chg": "+1.41%",
+      "vol": 6553
     },
     "科创50": {
-      "close": 2012.15,
-      "chg": "+1.25%",
-      "vol": 1130
+      "close": 2008.83,
+      "chg": "+1.08%",
+      "vol": 1440
     }
   },
   "external": {
     "nasdaq": "-0.80%",
-    "nikkei": "+0.80%",
-    "kospi": "+3.55%"
+    "nikkei": "+1.31%",
+    "kospi": "+5.42%"
   },
-  "totalVolume": "2.06万亿",
-  "upCount": 3290,
-  "downCount": 1774,
-  "limitUp": 113,
-  "limitDown": 11,
+  "totalVolume": "2.59万亿",
+  "upCount": 3707,
+  "downCount": 1405,
+  "limitUp": 146,
+  "limitDown": 15,
   "trades": [
     {
       "time": "09:30",
@@ -63,50 +63,50 @@
     {
       "status": "🟢",
       "stock": "中国巨石",
-      "today": "+10.00%",
-      "close": 74.6
+      "today": "+6.86%",
+      "close": 72.47
     },
     {
       "status": "🟢",
       "stock": "兆易创新",
-      "today": "+0.75%",
-      "close": 700.0
+      "today": "+1.40%",
+      "close": 704.56
     },
     {
       "status": "🟢",
       "stock": "冰轮环境",
-      "today": "+6.60%",
-      "close": 54.25
+      "today": "+5.17%",
+      "close": 53.52
     },
     {
-      "status": "🟢",
+      "status": "🟡",
       "stock": "新洁能",
-      "today": "+0.23%",
-      "close": 83.57
+      "today": "-1.10%",
+      "close": 82.46
     },
     {
       "status": "🟢",
       "stock": "东山精密",
-      "today": "+5.40%",
-      "close": 233.66
+      "today": "+8.44%",
+      "close": 240.39
     },
     {
       "status": "🟢",
       "stock": "光迅科技",
-      "today": "+2.90%",
-      "close": 224.52
+      "today": "+2.34%",
+      "close": 223.29
     },
     {
       "status": "🟡",
       "stock": "风华高科",
-      "today": "-1.19%",
-      "close": 66.16
+      "today": "-2.94%",
+      "close": 64.99
     },
     {
       "status": "🟢",
       "stock": "生益科技",
-      "today": "+8.58%",
-      "close": 164.98
+      "today": "+8.44%",
+      "close": 164.77
     }
   ],
   "keyMoments": [
@@ -114,6 +114,16 @@
       "time": "早盘",
       "event": "涨停67只集中封板",
       "signal": "早盘做多积极"
+    },
+    {
+      "time": "午后",
+      "event": "午后29只封板",
+      "signal": "资金午后回流"
+    },
+    {
+      "time": "全天",
+      "event": "17只炸板超2次",
+      "signal": "分歧较大"
     }
   ],
   "ladder": [
@@ -128,6 +138,13 @@
       "tier": "3板",
       "stock": "宜宾纸业",
       "direction": "造纸",
+      "role": "",
+      "relation": ""
+    },
+    {
+      "tier": "3板",
+      "stock": "富春染织",
+      "direction": "纺织制造",
       "role": "",
       "relation": ""
     },
@@ -182,6 +199,13 @@
     },
     {
       "tier": "2板",
+      "stock": "天域生物",
+      "direction": "基础建设",
+      "role": "",
+      "relation": "炸板10次"
+    },
+    {
+      "tier": "2板",
       "stock": "甘化科工",
       "direction": "地面兵装",
       "role": "",
@@ -193,6 +217,20 @@
       "direction": "汽车零部",
       "role": "",
       "relation": ""
+    },
+    {
+      "tier": "2板",
+      "stock": "浙江鼎力",
+      "direction": "工程机械",
+      "role": "",
+      "relation": "炸板7次"
+    },
+    {
+      "tier": "2板",
+      "stock": "锋龙股份",
+      "direction": "通用设备",
+      "role": "",
+      "relation": ""
     }
   ],
   "ceiling": {
@@ -202,10 +240,10 @@
   },
   "sentiment": {
     "note": "今日情绪偏积极，涨停66只集中在早盘封板，显示做多意愿。但成交额1.79万亿，高低切换明显，科技分化。创业板和科创板领涨，权重股中国巨石涨停带动板块，但整体涨停家数未超200，非高潮状态。最高板恒尚节能4板，逼近5板天花板，接力风险增大。",
-    "limitUp": 113,
-    "limitDown": 11,
-    "upCount": 3290,
-    "downCount": 1774
+    "limitUp": 146,
+    "limitDown": 15,
+    "upCount": 3707,
+    "downCount": 1405
   },
   "cycle": {
     "nature": "当前周期处于退潮尾声或震荡修复期。最高板4板，连板高度受限于5板天花板，3板以上接力风险大。金融+科技未同步杀跌，创业板强于主板，指数站稳20日线，上升趋势确认。但缩量+科技涨+4000跌的腾挪信号未出现，需关注增量资金持续性。"
