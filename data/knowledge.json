@@ -236,6 +236,17 @@
         "增速"
       ],
       "signal": "bullish"
+    },
+    {
+      "name": "英伟达-OpenAI闭环融资",
+      "desc": "Nvidia投100B给OpenAI→OpenAI花在Nvidia硬件上→闭环。Startup用未来未赚到的收入分成换取GPU。类比1999年Lucent给自家客户融资→电信泡沫破灭→数十亿坏账。Vendor financing=伪需求=泡沫加速器。",
+      "keywords": [
+        "闭环融资",
+        "vendor financing",
+        "朗讯",
+        "泡沫"
+      ],
+      "signal": "bearish"
     }
   ],
   "rules": [
@@ -322,6 +333,11 @@
     {
       "name": "中报季=淘汰赛裁判",
       "desc": "EPS持续加速但Q3见顶。Q2中报(7月15日前)=验证业绩真伪。超预期→主升，不及预期→淘汰。",
+      "trigger": null
+    },
+    {
+      "name": "警惕闭环融资",
+      "desc": "当上游给下游融资来买自己的产品=需求可能是人造的。AI算力闭环融资+token价格通缩=算力过剩风险在累积。",
       "trigger": null
     }
   ],
