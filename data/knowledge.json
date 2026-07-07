@@ -247,6 +247,38 @@
         "泡沫"
       ],
       "signal": "bearish"
+    },
+    {
+      "name": "Kyber延期→PCB/CCL承压",
+      "desc": "Nvidia Kyber NVL144延期12个月→Jefferies预期AI PCB/CCL TAM减少5-8%(2027)+11-16%(2028)。上游材料供应商(电子布)定价权优于下游PCB制造商。AMD/MI450受益。",
+      "keywords": [
+        "Kyber",
+        "延期",
+        "PCB",
+        "CCL"
+      ],
+      "signal": "bearish"
+    },
+    {
+      "name": "ASIC崛起",
+      "desc": "AWS Trainium 3出货量提升20-30%+花旗预期ASIC收入119%CAGR至2030。博通-苹果合作延至2031=定制芯片长期趋势确认。",
+      "keywords": [
+        "ASIC",
+        "Trainium",
+        "博通"
+      ],
+      "signal": "bullish"
+    },
+    {
+      "name": "DRAM超级周期",
+      "desc": "花旗上调美光DRAM ASP至+44%QoQ。UBS预期三星DRAM ASP+56%QoQ。HBM+NAND供应紧张至2028。SK海力士ADR募资280亿美元。存储=AI硬件唯一确定性方向。",
+      "keywords": [
+        "DRAM",
+        "HBM",
+        "美光",
+        "三星"
+      ],
+      "signal": "bullish"
     }
   ],
   "rules": [
@@ -338,6 +370,16 @@
     {
       "name": "警惕闭环融资",
       "desc": "当上游给下游融资来买自己的产品=需求可能是人造的。AI算力闭环融资+token价格通缩=算力过剩风险在累积。",
+      "trigger": null
+    },
+    {
+      "name": "PCB上游>下游",
+      "desc": "AI PCB TAM承压时(如Kyber延期)，上游材料(电子布/CCL)定价权>下游PCB制造。巨石=上游=相对受益。",
+      "trigger": null
+    },
+    {
+      "name": "买铲子不买挖矿的(全球版)",
+      "desc": "AI投资周期:买设备/材料/封测(ASML/AMAT/台积电)=铲子。买ASIC定制芯片=趋势。买光模块/PCB下游=风险。",
       "trigger": null
     }
   ],
