@@ -1,78 +1,78 @@
 {
   "indices": {
     "上证": {
-      "close": 3977.95,
-      "chg": "-0.31%",
-      "vol": 4072
+      "close": 3984.8,
+      "chg": "-0.14%",
+      "vol": 6830
     },
     "深成指": {
-      "close": 14981.16,
-      "chg": "-1.60%",
-      "vol": 4821
+      "close": 15071.09,
+      "chg": "-1.01%",
+      "vol": 8060
     },
     "创业板": {
-      "close": 3852.78,
-      "chg": "-1.51%",
-      "vol": 2191
+      "close": 3895.29,
+      "chg": "-0.42%",
+      "vol": 3818
     },
     "科创50": {
-      "close": 1980.25,
-      "chg": "-1.07%",
-      "vol": 531
+      "close": 2010.59,
+      "chg": "+0.45%",
+      "vol": 904
     }
   },
-  "upCount": 1763,
-  "downCount": 3261,
-  "limitUp": 21,
-  "limitDown": 12,
+  "upCount": 1271,
+  "downCount": 3780,
+  "limitUp": 31,
+  "limitDown": 16,
   "poolStatus": [
     {
       "status": "🟡",
       "stock": "中国巨石",
-      "today": "-3.38%",
-      "close": 57.97
+      "today": "-2.50%",
+      "close": 58.5
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "兆易创新",
-      "today": "-3.15%",
-      "close": 600.5
+      "today": "+1.60%",
+      "close": 629.91
     },
     {
       "status": "🟢",
       "stock": "冰轮环境",
-      "today": "+0.87%",
-      "close": 53.06
+      "today": "+1.71%",
+      "close": 53.5
     },
     {
       "status": "🟡",
       "stock": "新洁能",
-      "today": "-4.65%",
-      "close": 76.03
+      "today": "-1.66%",
+      "close": 78.42
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "东山精密",
-      "today": "-3.89%",
-      "close": 227.66
+      "today": "+0.40%",
+      "close": 237.82
     },
     {
       "status": "🟡",
       "stock": "光迅科技",
-      "today": "-3.14%",
-      "close": 214.72
+      "today": "-0.42%",
+      "close": 220.73
     },
     {
       "status": "🟡",
       "stock": "风华高科",
-      "today": "-4.34%",
-      "close": 58.6
+      "today": "-0.36%",
+      "close": 61.04
     },
     {
       "status": "🟡",
       "stock": "生益科技",
-      "today": "-2.20%",
-      "close": 147.46
+      "today": "-0.78%",
+      "close": 149.6
     }
   ],
   "ladder": [
@@ -122,5 +122,5 @@
     "nikkei": "-0.64%",
     "kospi": "-1.73%"
   },
-  "totalVolume": "0.89万亿"
+  "totalVolume": "1.49万亿"
 }
