@@ -29,50 +29,50 @@
     {
       "status": "🔴",
       "stock": "中国巨石",
-      "today": "-5.90%",
-      "close": 56.46
+      "today": "-6.57%",
+      "close": 56.06
     },
     {
       "status": "🟡",
       "stock": "兆易创新",
-      "today": "-0.48%",
-      "close": 617.01
+      "today": "-2.71%",
+      "close": 603.17
     },
     {
       "status": "🟡",
       "stock": "冰轮环境",
-      "today": "-2.74%",
-      "close": 51.16
+      "today": "-4.75%",
+      "close": 50.1
     },
     {
       "status": "🟡",
       "stock": "新洁能",
-      "today": "+0.00%",
-      "close": 79.74
+      "today": "-2.12%",
+      "close": 78.05
     },
     {
       "status": "🟢",
       "stock": "东山精密",
-      "today": "+1.32%",
-      "close": 240.0
+      "today": "0.29%",
+      "close": 237.56
     },
     {
       "status": "🟡",
-      "stock": "光迅科技",
-      "today": "-0.01%",
-      "close": 221.65
-    },
-    {
-      "status": "🟢",
       "stock": "风华高科",
-      "today": "+0.69%",
-      "close": 61.68
+      "today": "-0.91%",
+      "close": 60.7
     },
     {
       "status": "🟡",
       "stock": "生益科技",
-      "today": "-1.76%",
-      "close": 148.11
+      "today": "-3.52%",
+      "close": 145.46
+    },
+    {
+      "status": "🟡",
+      "stock": "光迅科技",
+      "today": "-2.19%",
+      "close": 216.81
     }
   ],
   "ladder": [
