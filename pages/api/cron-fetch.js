@@ -95,5 +95,34 @@ export default async function handler(req, res) {
     } catch(e) { result.error = e.message }
   }
 
+  // AI分析 (DeepSeek)
+  const dsKey = process.env.DEEPSEEK_KEY
+  if (dsKey && result.indices['上证']?.close > 0) {
+    try {
+      const aiPrompt = `A股复盘。上证${result.indices['上证'].close}(${result.indices['上证'].chg}) 深${result.indices['深成指']?.chg} 创${result.indices['创业板']?.chg} 科创${result.indices['科创50']?.chg}。成交${(totalVol/1e4).toFixed(2)}万亿。纳指${result.external.nasdaq}。输出JSON:{"sentimentNote":"情绪一句","cycleNature":"周期一句","visibleLines":"明线排序","hiddenLines":"暗线逻辑","capitalFlow":"资金判断","strategy":"明日策略","risks":["风险1","风险2"]}`
+      const aiResp = await fetch('https://api.deepseek.com/v1/chat/completions', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':`Bearer ${dsKey}`},
+        body: JSON.stringify({model:'deepseek-chat',messages:[{role:'user',content:aiPrompt}],max_tokens:1000})
+      })
+      const aiJson = await aiResp.json()
+      const aiText = aiJson.choices?.[0]?.message?.content || ''
+      const m = aiText.match(/\{[\s\S]*\}/)
+      if (m) {
+        const ai = JSON.parse(m[0])
+        if (!old.sentiment) old.sentiment = {}
+        old.sentiment.note = ai.sentimentNote || ''
+        if (!old.cycle) old.cycle = {}
+        old.cycle.nature = ai.cycleNature || ''
+        old.visibleLines = ai.visibleLines || ''
+        old.hiddenLines = ai.hiddenLines || ''
+        old.capitalFlow = ai.capitalFlow || ''
+        old.strategy = ai.strategy || ''
+        old.risks = ai.risks || ['']
+        result.aiGenerated = true
+      }
+    } catch(e) { result.aiError = e.message }
+  }
+
   res.status(200).json(result)
 }
