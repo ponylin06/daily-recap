@@ -16,9 +16,9 @@ function chgColor(v) {
   return ''
 }
 
-function Section({ num, title, children }) {
+function Section({ num, title, children, className }) {
   return (
-    <section className="bg-[#1a1d27] border border-[#2a2d37] rounded-xl p-5 mb-4">
+    <section className={`bg-[#1a1d27] border border-[#2a2d37] rounded-xl p-5 mb-4 ${className || ''}`}>
       <h2 className="text-base font-bold text-gray-200 mb-3 flex items-center gap-2">
         <span className="bg-amber-500 text-black text-xs px-2 py-0.5 rounded-full font-bold">{num}</span>
         {title}
@@ -26,6 +26,11 @@ function Section({ num, title, children }) {
       {children}
     </section>
   )
+}
+
+// 双列容器：桌面端并排
+function Row({ children }) {
+  return <div className="recap-grid">{children}</div>
 }
 
 function DataTable({ headers, rows }) {
@@ -293,7 +298,8 @@ export default function Recap({ data, onDataUpdate }) {
         </div>
       </Section>
 
-      {/* 3. 内外因博弈 */}
+      
+      <div className="recap-grid">{/* 3. 内外因博弈 */}
       <Section num={3} title="内外因博弈">
         <DataTable
           headers={['时期', '内因', '外因', '结果']}
@@ -393,7 +399,7 @@ export default function Recap({ data, onDataUpdate }) {
         />
       </Section>
 
-      {/* 14. 明线暗线 */}
+      </div>{/* 14. 明线暗线 */}
       <Section num={14} title="明线 & 暗线">
         <div className="mb-3">
           <div className="text-xs text-gray-500 mb-1">明线</div>
@@ -405,7 +411,7 @@ export default function Recap({ data, onDataUpdate }) {
         </div>
       </Section>
 
-      {/* 15. 跷跷板 */}
+      <div className="recap-grid">{/* 15. 跷跷板 */}
       <Section num={15} title="科技内部跷跷板">
         <DataTable
           headers={['强', '弱', '轮动阶段']}
@@ -486,7 +492,7 @@ export default function Recap({ data, onDataUpdate }) {
         <p className="text-sm text-gray-300 whitespace-pre-line">{d.selfQA}</p>
       </Section>
 
-      {/* 21. 明日策略 */}
+      </div>{/* 21. 明日策略 */}
       <Section num={21} title="明日策略">
         <p className="text-sm text-gray-300 whitespace-pre-line">{d.strategy}</p>
       </Section>
