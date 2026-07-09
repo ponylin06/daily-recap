@@ -18,9 +18,9 @@ function chgColor(v) {
 
 function Section({ num, title, children, className }) {
   return (
-    <section className={`bg-[#1a1d27] border border-[#2a2d37] rounded-xl p-5 mb-4 ${className || ''}`}>
-      <h2 className="text-base font-bold text-gray-200 mb-3 flex items-center gap-2">
-        <span className="bg-amber-500 text-black text-xs px-2 py-0.5 rounded-full font-bold">{num}</span>
+    <section className={`bg-[#12151c] border border-[#1e2230] rounded-lg p-4 mb-3 ${className || ''}`}>
+      <h2 className="text-sm font-semibold text-gray-200 mb-2 flex items-center gap-2">
+        <span className="bg-amber-500/20 text-amber-400 text-xs px-1.5 py-0.5 rounded font-medium">{num}</span>
         {title}
       </h2>
       {children}
@@ -40,15 +40,15 @@ function DataTable({ headers, rows }) {
         <thead>
           <tr>
             {headers.map((h, i) => (
-              <th key={i} className="text-left py-2 px-3 text-xs text-gray-400 font-medium border-b border-[#2a2d37]">{h}</th>
+              <th key={i} className="text-left py-1.5 px-2 text-xs text-gray-500 font-medium border-b border-[#1e2230]">{h}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {rows.map((row, i) => (
-            <tr key={i} className="border-b border-[#22252e]">
+            <tr key={i} className="border-b border-[#1a1d27]">
               {row.map((cell, j) => (
-                <td key={j} className={`py-2 px-3 text-gray-300 ${chgColor(cell)}`}>{cell}</td>
+                <td key={j} className={`py-1.5 px-2 text-gray-300 text-sm ${chgColor(cell)}`}>{cell}</td>
               ))}
             </tr>
           ))}
@@ -60,9 +60,9 @@ function DataTable({ headers, rows }) {
 
 function StatBlock({ label, value, color }) {
   return (
-    <div className="bg-white/5 rounded-lg p-3 text-center">
+    <div className="bg-[#0f1117] rounded-lg p-2.5 text-center">
       <div className="text-gray-500 text-xs">{label}</div>
-      <div className={`font-semibold ${color || 'text-gray-200'}`}>{value}</div>
+      <div className={`font-semibold text-sm ${color || 'text-gray-200'}`}>{value}</div>
     </div>
   )
 }
@@ -173,9 +173,9 @@ function HoldingsSection() {
   if (!ready) return null
 
   return (
-    <section className="bg-[#1a1d27] border border-amber-500/30 rounded-xl p-5 mb-4">
-      <h2 className="text-base font-bold mb-3 flex items-center gap-2">
-        <span className="bg-amber-500 text-black text-xs px-2 py-0.5 rounded-full font-bold">📌</span>
+    <section className="bg-[#12151c] border border-amber-500/20 rounded-lg p-4 mb-3">
+      <h2 className="text-sm font-semibold mb-2 flex items-center gap-2">
+        <span className="bg-amber-500/20 text-amber-400 text-xs px-1.5 py-0.5 rounded font-medium">📌</span>
         <span className="text-amber-400">我的持仓</span>
       </h2>
       <div className="overflow-x-auto">
