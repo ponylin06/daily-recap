@@ -9,13 +9,52 @@ function MainContent({ date, data, view }) {
   if (!data && view === 'recap') return (
     <div className="text-center text-gray-500 py-20">
       <p className="text-lg mb-2">该日期暂无复盘数据</p>
-      <p className="text-sm">在 data/ 目录下创建对应 JSON 即可</p>
     </div>
   )
-
   if (view === 'briefing') return <Briefing />
   if (view === 'weekly') return <Weekly date={date} />
   return <Recap data={data} />
+}
+
+function Sidebar({ dates, date, setDate, view, setView }) {
+  return (
+    <div className="w-48 flex-shrink-0 border-r border-gray-800 min-h-screen p-4">
+      <h1 className="text-sm font-bold text-gray-200 mb-4 px-2">📊 每日复盘</h1>
+
+      {/* 导航 */}
+      <div className="space-y-1 mb-4">
+        {[
+          ['recap','📊 复盘'],
+          ['briefing','🌅 简报'],
+          ['weekly','📈 周报'],
+        ].map(([v, label]) => (
+          <button key={v} onClick={() => setView(v)}
+            className={`w-full text-left px-2 py-1.5 text-xs rounded-md font-medium transition ${
+              view === v ? 'bg-amber-500/20 text-amber-400' : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
+            }`}>
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {/* 日期选择 */}
+      <div className="text-xs text-gray-500 mb-1 px-2 mt-6">历史复盘</div>
+      <div className="space-y-0.5 max-h-[50vh] overflow-y-auto">
+        {(dates || []).slice().reverse().map(d => (
+          <button key={d} onClick={() => { setDate(d); setView('recap') }}
+            className={`w-full text-left px-2 py-1 rounded text-xs transition ${
+              date === d && view === 'recap' ? 'bg-white/10 text-gray-200' : 'text-gray-500 hover:text-gray-300'
+            }`}>
+            {d.slice(5)}
+          </button>
+        ))}
+      </div>
+
+      <div className="text-xs text-gray-600 mt-6 px-2">
+        <a href="/edit" className="hover:text-gray-400">✏️ 编辑</a>
+      </div>
+    </div>
+  )
 }
 
 export default function Home() {
@@ -31,7 +70,6 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    // 获取所有可用的复盘日期
     fetch('/api/dates')
       .then(r => r.json())
       .then(d => {
@@ -41,7 +79,6 @@ export default function Home() {
           setDate(latest)
           loadData(latest)
         } else {
-          // fallback to today
           const today = new Date().toISOString().split('T')[0]
           setDate(today)
         }
@@ -58,7 +95,6 @@ export default function Home() {
       const res = await fetch(`/api/recap?date=${d}`)
       if (res.ok) {
         const json = await res.json()
-        // 只在今天才用腾讯实时数据覆盖，历史数据不动
         const today = new Date().toISOString().split('T')[0]
         if (d === today) {
           const live = await fetchLiveData(json)
@@ -66,101 +102,42 @@ export default function Home() {
         } else {
           setData(json)
         }
-      } else {
-        setData(null)
-      }
-    } catch {
-      setData(null)
-    }
+      } else { setData(null) }
+    } catch { setData(null) }
     setLoading(false)
   }, [])
 
-  useEffect(() => {
-    if (date) loadData(date)
-  }, [date, loadData])
+  useEffect(() => { if (date) loadData(date) }, [date, loadData])
 
   return (
     <>
       <Head>
         <title>每日复盘 {date ? `— ${date}` : ''}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdn.tailwindcss.com" async></script>
         <style>{`
-          body { background: #0f1117; color: #d1d5db; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; font-size: 15px; }
-          @media (min-width: 1024px) {
-            body { font-size: 15px; }
-            .recap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-            .recap-full { grid-column: 1 / -1; }
-          }
+          body { background: #0f1117; color: #d1d5db; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; font-size: 14px; }
+          @media (min-width: 1024px) { body { font-size: 14px; } }
           @media (max-width: 640px) {
             body { font-size: 13px; }
-            section { padding: 12px !important; margin-bottom: 8px !important; }
-            th, td { padding: 4px 6px !important; font-size: 11px; }
-            h2 { font-size: 14px !important; }
-            .recap-grid { display: block; }
+            .sidebar { display: none; }
+            section { padding: 10px !important; margin-bottom: 6px !important; }
+            th, td { padding: 3px 5px !important; font-size: 11px; }
           }
         `}</style>
-        <script src="https://cdn.tailwindcss.com" async></script>
-        <script dangerouslySetInnerHTML={{ __html: `
-          tailwind.config = {
-            theme: { extend: { colors: { gray: { 200: '#e5e7eb', 300: '#d1d5db', 400: '#9ca3af', 500: '#6b7280', 600: '#4b5563', 700: '#374151', 800: '#1f2937', 900: '#111827' } } } }
-          }
-        `}} />
       </Head>
 
-      <header className="text-center py-6 border-b border-gray-800">
-        <h1 className="text-xl font-bold text-gray-200">📊 每日复盘 — {date || '加载中...'}</h1>
+      <div className="flex">
+        <Sidebar dates={dates} date={date} setDate={setDate} view={view} setView={setView} />
 
-        {/* 导航标签 */}
-        <div className="flex items-center justify-center gap-1 mt-3">
-          {[
-            ['recap','📊 复盘'],
-            ['briefing','🌅 简报'],
-            ['weekly','📈 周报'],
-          ].map(([v, label]) => (
-            <button key={v} onClick={() => setView(v)}
-              className={`px-3 py-1 text-xs rounded-full font-medium transition ${view === v ? 'bg-amber-500 text-black' : 'text-gray-400 hover:text-gray-200'}`}>
-              {label}
-            </button>
-          ))}
+        <div className="flex-1 min-w-0">
+          {loading ? (
+            <div className="text-center text-gray-500 py-20">加载中...</div>
+          ) : (
+            <MainContent date={date} data={data} view={view} />
+          )}
         </div>
-
-        <div className="flex items-center justify-center gap-3 mt-4">
-          <button
-            onClick={() => {
-              const idx = dates.indexOf(date)
-              if (idx > 0) setDate(dates[idx - 1])
-            }}
-            className="px-3 py-1.5 text-sm rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 transition"
-          >
-            ← 前日
-          </button>
-
-          <select
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="px-3 py-1.5 text-sm rounded-lg bg-gray-800 text-gray-200 border border-gray-700 focus:outline-none focus:border-amber-500 appearance-none cursor-pointer"
-          >
-            {dates.length === 0 && <option value={date}>{date}</option>}
-            {dates.map(d => <option key={d} value={d}>{d}</option>)}
-          </select>
-
-          <button
-            onClick={() => {
-              const idx = dates.indexOf(date)
-              if (idx < dates.length - 1) setDate(dates[idx + 1])
-            }}
-            className="px-3 py-1.5 text-sm rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 transition"
-          >
-            后日 →
-          </button>
-        </div>
-      </header>
-
-      {loading ? (
-        <div className="text-center text-gray-500 py-20">加载中...</div>
-      ) : (
-        <MainContent date={date} data={data} view={view} />
-      )}
+      </div>
     </>
   )
 }
