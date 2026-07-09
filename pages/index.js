@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Recap from '../components/Recap'
 import Briefing from '../components/Briefing'
 import Weekly from '../components/Weekly'
+import Market from '../components/Market'
 import { fetchLiveData } from '../lib/liveData'
 
 function MainContent({ date, data, dates, setDate, view }) {
@@ -26,7 +27,7 @@ function MainContent({ date, data, dates, setDate, view }) {
         ))}
       </div>
 
-      {view === 'briefing' ? <Briefing /> : view === 'weekly' ? <Weekly date={date} /> : <Recap data={data} />}
+      {view === 'briefing' ? <Briefing /> : view === 'weekly' ? <Weekly date={date} /> : view === 'market' ? <Market /> : <Recap data={data} />}
     </div>
   )
 }
@@ -42,8 +43,9 @@ function Sidebar({ view, setView }) {
       <nav className="space-y-0.5 flex-1">
         {[
           ['recap','📊 复盘'],
+          ['market','📈 市场'],
           ['briefing','🌅 简报'],
-          ['weekly','📈 周报'],
+          ['weekly','📊 周报'],
         ].map(([v, label]) => (
           <button key={v} onClick={() => setView(v)}
             className={`w-full text-left px-2 py-1.5 text-xs rounded-md transition ${
