@@ -251,7 +251,7 @@ export default function Recap({ data, onDataUpdate }) {
   }, [d, aiDone, aiLoading, handleLiveAI])
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6">
+    <div className="max-w-5xl mx-auto px-4 py-6">
 
       {/* AI自动分析：页面加载时若缺分析则自动生成 */}
       {aiMsg && <div className="text-center mb-2"><span className="text-xs" style={{color: aiMsg.includes('✅')?'#fca5a5':'#9ca3af'}}>{aiMsg}</span></div>}
