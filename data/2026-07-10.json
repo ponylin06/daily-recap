@@ -1,216 +1,186 @@
 {
   "indices": {
     "上证": {
-      "close": 4068.32,
-      "chg": "+0.79%",
-      "vol": 10098
+      "close": 4032.78,
+      "chg": "-0.09%",
+      "vol": 12749
     },
     "深成指": {
-      "close": 15495.68,
-      "chg": "+0.63%",
-      "vol": 11631
+      "close": 15276.05,
+      "chg": "-0.80%",
+      "vol": 14810
     },
     "创业板": {
-      "close": 3991.0,
-      "chg": "-0.68%",
-      "vol": 5408
+      "close": 3921.49,
+      "chg": "-2.41%",
+      "vol": 6950
     },
     "科创50": {
-      "close": 2177.21,
-      "chg": "-0.39%",
-      "vol": 1489
+      "close": 2135.52,
+      "chg": "-2.30%",
+      "vol": 1848
     }
   },
-  "upCount": 4205,
-  "downCount": 942,
-  "limitUp": 93,
-  "limitDown": 1,
+  "upCount": 4017,
+  "downCount": 1115,
+  "limitUp": 108,
+  "limitDown": 2,
   "poolStatus": [
     {
       "status": "🟡",
       "stock": "中国巨石",
-      "today": "-0.94%",
-      "close": 58.15
-    },
-    {
-      "status": "🟢",
-      "stock": "兆易创新",
-      "today": "+0.01%",
-      "close": 663.55
-    },
-    {
-      "status": "🟢",
-      "stock": "冰轮环境",
-      "today": "+1.61%",
-      "close": 56.0
+      "today": "-3.29%",
+      "close": 56.77
     },
     {
       "status": "🟡",
+      "stock": "兆易创新",
+      "today": "-3.49%",
+      "close": 640.32
+    },
+    {
+      "status": "🟡",
+      "stock": "冰轮环境",
+      "today": "-1.45%",
+      "close": 54.31
+    },
+    {
+      "status": "🔴",
       "stock": "新洁能",
-      "today": "-3.25%",
-      "close": 76.99
+      "today": "-5.39%",
+      "close": 75.29
     },
     {
       "status": "🟡",
       "stock": "东山精密",
-      "today": "-0.52%",
-      "close": 259.97
+      "today": "-3.38%",
+      "close": 252.48
     },
     {
       "status": "🟢",
       "stock": "光迅科技",
-      "today": "+2.66%",
-      "close": 244.83
+      "today": "+0.71%",
+      "close": 240.19
     },
     {
       "status": "🟡",
       "stock": "风华高科",
-      "today": "-3.34%",
-      "close": 62.3
+      "today": "-3.83%",
+      "close": 61.98
     },
     {
       "status": "🟡",
       "stock": "生益科技",
-      "today": "-1.45%",
-      "close": 155.11
+      "today": "-2.99%",
+      "close": 152.7
     }
   ],
   "keyMoments": [
     {
       "time": "早盘",
-      "event": "涨停81只集中封板",
+      "event": "涨停65只集中封板",
       "signal": "早盘做多积极"
     },
     {
+      "time": "午后",
+      "event": "午后28只封板",
+      "signal": "资金午后回流"
+    },
+    {
       "time": "全天",
-      "event": "18只炸板超2次",
+      "event": "23只炸板超2次",
       "signal": "分歧较大"
     }
   ],
   "ladder": [
     {
-      "tier": "9板",
-      "stock": "恒尚节能",
-      "direction": "装修装饰",
-      "role": "最高标",
-      "relation": ""
-    },
-    {
       "tier": "2板",
       "stock": "华天科技",
       "direction": "半导体",
-      "role": "",
+      "role": "最高标",
       "relation": ""
     },
     {
       "tier": "2板",
       "stock": "高德红外",
       "direction": "军工电子",
-      "role": "",
+      "role": "最高标",
       "relation": "炸板5次"
     },
     {
       "tier": "2板",
       "stock": "柘中股份",
       "direction": "电网设备",
-      "role": "",
+      "role": "最高标",
       "relation": "炸板1次"
     },
     {
       "tier": "2板",
       "stock": "亚联机械",
       "direction": "专用设备",
-      "role": "",
+      "role": "最高标",
       "relation": "炸板2次"
-    },
-    {
-      "tier": "2板",
-      "stock": "中鼎股份",
-      "direction": "汽车零部",
-      "role": "",
-      "relation": "炸板5次"
-    },
-    {
-      "tier": "2板",
-      "stock": "崇达技术",
-      "direction": "元件",
-      "role": "",
-      "relation": "炸板8次"
-    },
-    {
-      "tier": "2板",
-      "stock": "旭光电子",
-      "direction": "其他电子",
-      "role": "",
-      "relation": ""
     },
     {
       "tier": "2板",
       "stock": "深科达",
       "direction": "专用设备",
-      "role": "",
-      "relation": "炸板12次"
-    },
-    {
-      "tier": "2板",
-      "stock": "中恒电气",
-      "direction": "其他电源",
-      "role": "",
-      "relation": "炸板2次"
+      "role": "最高标",
+      "relation": "炸板18次"
     },
     {
       "tier": "2板",
       "stock": "好莱客",
       "direction": "家居用品",
-      "role": "",
+      "role": "最高标",
       "relation": ""
     },
     {
       "tier": "2板",
       "stock": "立方制药",
       "direction": "化学制药",
-      "role": "",
+      "role": "最高标",
       "relation": "炸板2次"
     },
     {
       "tier": "2板",
       "stock": "星网宇达",
       "direction": "航天装备",
-      "role": "",
+      "role": "最高标",
       "relation": ""
     },
     {
       "tier": "2板",
       "stock": "贵绳股份",
       "direction": "通用设备",
-      "role": "",
+      "role": "最高标",
       "relation": ""
     },
     {
       "tier": "2板",
       "stock": "欢瑞世纪",
       "direction": "影视院线",
-      "role": "",
+      "role": "最高标",
       "relation": "炸板1次"
     }
   ],
   "ceiling": {
-    "max": "9板",
-    "stock": "恒尚节能",
+    "max": "2板",
+    "stock": "华天科技、高德红外、柘中股份、亚联机械、深科达、好莱客、立方制药、星网宇达、贵绳股份、欢瑞世纪",
     "status": ""
   },
   "external": {
     "nasdaq": "+1.30%",
-    "nikkei": "+1.50%",
-    "kospi": "+4.59%"
+    "nikkei": "+1.35%",
+    "kospi": "+3.96%"
   },
-  "totalVolume": "2.17万亿",
+  "totalVolume": "2.76万亿",
   "sentiment": {
     "note": "今日指数大涨但涨跌家数接近，涨停家数未超200，属于结构性行情而非普涨高潮。午后37只封板显示资金回流，但13只炸板超2次说明分歧较大。连板高度突破5板天花板至8板，但高位接力风险依然存在，需警惕高潮次日分化。",
-    "limitUp": 93,
-    "limitDown": 1,
-    "upCount": 4205,
-    "downCount": 942
+    "limitUp": 108,
+    "limitDown": 2,
+    "upCount": 4017,
+    "downCount": 1115
   },
   "cycle": {
     "nature": "当前处于退潮后的修复阶段，非主升。指数站上20日线确认上升趋势，但缩量+科技涨+4000跌的格局显示场内资金腾挪，非增量入场。退潮期反弹力度有限，反弹后大概率继续分化，需等待分歧后的确定性机会。"
