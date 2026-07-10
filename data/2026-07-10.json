@@ -36,7 +36,7 @@
       "status": "🔴",
       "stock": "兆易创新",
       "today": "-7.76%",
-      "close": 612.0
+      "close": 612
     },
     {
       "status": "🟡",
@@ -57,12 +57,6 @@
       "close": 242.3
     },
     {
-      "status": "🟡",
-      "stock": "光迅科技",
-      "today": "-2.11%",
-      "close": 233.45
-    },
-    {
       "status": "🔴",
       "stock": "风华高科",
       "today": "-6.89%",
@@ -73,6 +67,12 @@
       "stock": "生益科技",
       "today": "-5.09%",
       "close": 149.39
+    },
+    {
+      "status": "🟡",
+      "stock": "光迅科技",
+      "today": "-2.11%",
+      "close": 233.45
     }
   ],
   "keyMoments": [
