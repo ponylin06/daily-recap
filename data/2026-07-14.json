@@ -1,78 +1,78 @@
 {
   "indices": {
     "上证": {
-      "close": 3891.9,
-      "chg": "-0.56%",
-      "vol": 7633
+      "close": 3928.67,
+      "chg": "+0.38%",
+      "vol": 10436
     },
     "深成指": {
-      "close": 14523.5,
-      "chg": "+0.00%",
-      "vol": 8633
+      "close": 14759.49,
+      "chg": "+1.63%",
+      "vol": 11914
     },
     "创业板": {
-      "close": 3737.95,
-      "chg": "+0.39%",
-      "vol": 3844
+      "close": 3809.56,
+      "chg": "+2.31%",
+      "vol": 5429
     },
     "科创50": {
-      "close": 1932.86,
-      "chg": "-3.08%",
-      "vol": 1217
+      "close": 1975.37,
+      "chg": "-0.95%",
+      "vol": 1686
     }
   },
-  "upCount": 2343,
-  "downCount": 2740,
-  "limitUp": 32,
-  "limitDown": 36,
+  "upCount": 2959,
+  "downCount": 2109,
+  "limitUp": 55,
+  "limitDown": 24,
   "external": {
     "nasdaq": "-1.55%",
     "nikkei": "+0.31%",
     "kospi": "+0.55%"
   },
-  "totalVolume": "1.63万亿",
+  "totalVolume": "2.23万亿",
   "poolStatus": [
     {
       "status": "🟢",
       "stock": "中国巨石",
-      "today": "+4.09%",
-      "close": 52.18
+      "today": "+7.04%",
+      "close": 53.66
     },
     {
       "status": "🟢",
       "stock": "兆易创新",
-      "today": "+1.20%",
-      "close": 557.41
+      "today": "+3.48%",
+      "close": 569.95
     },
     {
       "status": "🟢",
       "stock": "冰轮环境",
-      "today": "+3.47%",
-      "close": 49.79
+      "today": "+5.55%",
+      "close": 50.79
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "新洁能",
-      "today": "-0.12%",
-      "close": 67.21
+      "today": "+2.42%",
+      "close": 68.92
     },
     {
       "status": "🟢",
       "stock": "东山精密",
-      "today": "+7.73%",
-      "close": 255.0
+      "today": "+10.00%",
+      "close": 260.37
     },
     {
       "status": "🟢",
       "stock": "光迅科技",
-      "today": "+4.10%",
-      "close": 224.85
+      "today": "+6.25%",
+      "close": 229.5
     },
     {
       "status": "🟢",
       "stock": "风华高科",
-      "today": "+5.54%",
-      "close": 57.0
+      "today": "+7.74%",
+      "close": 58.19
     },
     {
       "status": "🟢",
@@ -108,5 +108,12 @@
     "max": "3板",
     "stock": "哈药股份",
     "status": ""
-  }
+  },
+  "keyMoments": [
+    {
+      "time": "午后",
+      "event": "午后24只封板",
+      "signal": "资金午后回流"
+    }
+  ]
 }
