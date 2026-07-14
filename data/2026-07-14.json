@@ -1,78 +1,78 @@
 {
   "indices": {
     "上证": {
-      "close": 3894.06,
-      "chg": "-0.50%",
-      "vol": 6439
+      "close": 3887.92,
+      "chg": "-0.66%",
+      "vol": 7624
     },
     "深成指": {
-      "close": 14477.55,
-      "chg": "-0.31%",
-      "vol": 7445
+      "close": 14461.2,
+      "chg": "-0.42%",
+      "vol": 8633
     },
     "创业板": {
-      "close": 3715.01,
-      "chg": "-0.23%",
-      "vol": 3286
+      "close": 3712.74,
+      "chg": "-0.29%",
+      "vol": 3826
     },
     "科创50": {
-      "close": 1922.96,
-      "chg": "-3.58%",
-      "vol": 987
+      "close": 1925.43,
+      "chg": "-3.45%",
+      "vol": 1215
     }
   },
-  "upCount": 2495,
-  "downCount": 2567,
-  "limitUp": 30,
-  "limitDown": 32,
+  "upCount": 2343,
+  "downCount": 2740,
+  "limitUp": 32,
+  "limitDown": 36,
   "external": {
     "nasdaq": "-1.55%",
-    "nikkei": "-0.84%",
-    "kospi": "-2.07%"
+    "nikkei": "-0.26%",
+    "kospi": "-1.91%"
   },
-  "totalVolume": "1.39万亿",
+  "totalVolume": "1.63万亿",
   "poolStatus": [
     {
       "status": "🟢",
       "stock": "中国巨石",
-      "today": "+2.87%",
-      "close": 51.57
+      "today": "+2.83%",
+      "close": 51.55
     },
     {
       "status": "🟡",
       "stock": "兆易创新",
-      "today": "-0.41%",
-      "close": 548.54
+      "today": "-0.51%",
+      "close": 548.0
     },
     {
       "status": "🟢",
       "stock": "冰轮环境",
-      "today": "+1.75%",
-      "close": 48.96
+      "today": "+1.12%",
+      "close": 48.66
     },
     {
       "status": "🟡",
       "stock": "新洁能",
-      "today": "-0.59%",
-      "close": 66.89
+      "today": "-0.24%",
+      "close": 67.13
     },
     {
       "status": "🟢",
       "stock": "东山精密",
-      "today": "+3.89%",
-      "close": 245.9
+      "today": "+6.60%",
+      "close": 252.32
     },
     {
       "status": "🟢",
       "stock": "光迅科技",
-      "today": "+0.83%",
-      "close": 217.8
+      "today": "+2.31%",
+      "close": 221.0
     },
     {
       "status": "🟢",
       "stock": "风华高科",
-      "today": "+3.20%",
-      "close": 55.74
+      "today": "+3.67%",
+      "close": 55.99
     },
     {
       "status": "🟢",
