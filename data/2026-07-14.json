@@ -1,24 +1,24 @@
 {
   "indices": {
     "上证": {
-      "close": 3887.92,
-      "chg": "-0.66%",
-      "vol": 7624
+      "close": 3891.9,
+      "chg": "-0.56%",
+      "vol": 7633
     },
     "深成指": {
-      "close": 14461.2,
-      "chg": "-0.42%",
+      "close": 14523.5,
+      "chg": "+0.00%",
       "vol": 8633
     },
     "创业板": {
-      "close": 3712.74,
-      "chg": "-0.29%",
-      "vol": 3826
+      "close": 3737.95,
+      "chg": "+0.39%",
+      "vol": 3844
     },
     "科创50": {
-      "close": 1925.43,
-      "chg": "-3.45%",
-      "vol": 1215
+      "close": 1932.86,
+      "chg": "-3.08%",
+      "vol": 1217
     }
   },
   "upCount": 2343,
@@ -27,58 +27,58 @@
   "limitDown": 36,
   "external": {
     "nasdaq": "-1.55%",
-    "nikkei": "-0.26%",
-    "kospi": "-1.91%"
+    "nikkei": "+0.31%",
+    "kospi": "+0.55%"
   },
   "totalVolume": "1.63万亿",
   "poolStatus": [
     {
       "status": "🟢",
       "stock": "中国巨石",
-      "today": "+2.83%",
-      "close": 51.55
+      "today": "+4.09%",
+      "close": 52.18
     },
     {
-      "status": "🟡",
+      "status": "🟢",
       "stock": "兆易创新",
-      "today": "-0.51%",
-      "close": 548.0
+      "today": "+1.20%",
+      "close": 557.41
     },
     {
       "status": "🟢",
       "stock": "冰轮环境",
-      "today": "+1.12%",
-      "close": 48.66
+      "today": "+3.47%",
+      "close": 49.79
     },
     {
       "status": "🟡",
       "stock": "新洁能",
-      "today": "-0.24%",
-      "close": 67.13
+      "today": "-0.12%",
+      "close": 67.21
     },
     {
       "status": "🟢",
       "stock": "东山精密",
-      "today": "+6.60%",
-      "close": 252.32
+      "today": "+7.73%",
+      "close": 255.0
     },
     {
       "status": "🟢",
       "stock": "光迅科技",
-      "today": "+2.31%",
-      "close": 221.0
+      "today": "+4.10%",
+      "close": 224.85
     },
     {
       "status": "🟢",
       "stock": "风华高科",
-      "today": "+3.67%",
-      "close": 55.99
+      "today": "+5.54%",
+      "close": 57.0
     },
     {
       "status": "🟢",
       "stock": "生益科技",
-      "today": "+8.63%",
-      "close": 146.05
+      "today": "+10.00%",
+      "close": 147.9
     }
   ],
   "ladder": [
